@@ -23,6 +23,23 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+# Use Devise for user authentication
+gem 'devise'
+# Debugging
+gem 'pry'
+# Openauth 
+gem 'omniauth'
+# Openauth for facebook
+gem 'omniauth-facebook'
+# Use Pundit for user authorization
+gem 'pundit'
+# Use Bootstrap for styles
+gem 'bootstrap-sass', '~> 3.3.6'
+# Use FriendlyId for user friendly URLs
+gem 'friendly_id', '~> 5.1.0'
+
+gem 'benchmark_methods'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

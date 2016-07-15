@@ -1,0 +1,6 @@
+<%= form_for(comment) do |f| %>
+    <%= f.text_area :description %>
+  <%= f.hidden_field :user_id, value: @user.id %>
+  <%= f.hidden_field :task_id, value: @task.id %>
+  <%= f.submit %>
+<% end %>

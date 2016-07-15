@@ -1,0 +1,12 @@
+<h1>Tags</h1>
+
+<% @tags.each do |tag| %>
+
+  <%= form_for(tag) do |f| %>
+  <%= f.label :name %>
+    <%= f.text_field :name %>
+  <%= f.submit %>
+  <% end %>
+  <%= button_to "Delete", tag_path(tag), method: :delete %>
+
+<% end %>

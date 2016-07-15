@@ -1,0 +1,10 @@
+<h1>Notes</h1>
+
+<%= render partial: "form", locals: {note: @note} %>
+
+<% @notes.each do |note| %>
+
+  <%= render partial: "form", locals: {note: note} %>
+  <%= button_to "Delete", note_path(note), method: :delete, class: "btn btn-default" %>
+
+<% end %>

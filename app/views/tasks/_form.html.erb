@@ -1,0 +1,23 @@
+<%= form_for [project, task] do |f| %>
+  <%= f.label :name %>
+    <%= f.text_field :name %>
+  <%= f.label :description %>
+    <%= f.text_field :description %>
+  <%= f.label :due_date %>
+    <%= f.date_select(:due_date, :order => [:month, :day, :year]) %>
+  <%= f.label :status %>
+    <% Task.statuses.each do |s,index| %>
+      <%= s.capitalize %>
+      <%= f.radio_button :status, s %>
+    <% end %>
+  <%= f.label :priority %>
+    <% Task.priorities.each do |p,index| %>
+      <%= p.capitalize %>
+      <%= f.radio_button :priority, p %>
+    <% end %>
+  <%= f.label :tag_names, "Tags (Comma seperated)" %>
+    <%= f.text_field :tag_names %>
+  <%= f.hidden_field :user_id, value: @user.id %>
+  <%= f.hidden_field :project_id, value: @project.id %>
+  <%= f.submit %>
+<% end %>

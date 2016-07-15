@@ -1,0 +1,5 @@
+<% @tasks.each do|task| %>
+  <h3> <%= link_to task.name, project_path(task.project) %> </h3>
+  <p> <%= task.description %> </p>
+  <p> <%= task.due_date %> </p>
+<% end %>

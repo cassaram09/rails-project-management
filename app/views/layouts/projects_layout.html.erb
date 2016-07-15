@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RailsTaskManager</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <%= render "layouts/base" %>
+    <h1>Projects</h1>
+    <nav class="navbar navbar-default">
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Active", projects_path %></li>
+          <li><%= link_to "Complete", complete_projects_path %></li>
+            </ul>
+          </li>
+        <ul>
+    </div>
+    </nav>
+    <%= yield %>
+
+  </body>
+</html>

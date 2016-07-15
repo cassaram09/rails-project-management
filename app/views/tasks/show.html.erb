@@ -1,0 +1,13 @@
+<h1>Edit Task</h1>
+<%= render partial: "form", locals: {project: @project, task: @task} %>
+
+
+<h2>Comments</h2>
+<% @task.comments.reverse.each do |comment| %>
+  <p> <%= comment.description %> by <%= comment.user.email %> 
+  <%= link_to "Edit Comment", edit_comment_path(comment) %> 
+  <%= link_to "Delete", comment_path(comment), method: :delete %></p>
+<% end %>
+
+<h2>New Comment</h2>
+<%= render partial: "comments/form", locals: {comment: @comment} %>

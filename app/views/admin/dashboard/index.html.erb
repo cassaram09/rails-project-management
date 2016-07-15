@@ -1,0 +1,19 @@
+<h1>Admin Dashboard</h1>
+
+<h3> <%= @users.count %> users</h3>
+
+<h3> <%= @projects.count %> projects</h3>
+  <h5> <%= @projects.active.count %> active</h5>
+  <h5> <%= @projects.complete.count %> complete</h5>
+  <h5> <%= @projects.on_hold.count %> on hold</h5>
+
+<h3> <%= @tasks.count %> tasks</h3>
+  <h5> <%= @tasks.active.count %> active</h5>
+  <h5> <%= @tasks.complete.count %> complete</h5>
+  <h5> <%= @tasks.on_hold.count %> on hold</h5>
+
+<h3> <%= @notes.count %> notes</h3>
+
+<h3> <%= @comments.count %> comments</h3>
+
+<h3> <%= @tags.count %> tags</h3>

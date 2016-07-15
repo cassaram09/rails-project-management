@@ -1,0 +1,9 @@
+<h1>Responsibilities Index</h1>
+
+<%= render partial: "form", locals: {responsibility: @responsibility} %>
+
+<% @responsibilities.reverse.each do|responsibility| %>
+  <h3> <%= link_to responsibility.name, responsibility_path(responsibility) %> </h3>
+  <%= render partial: "form", locals: {responsibility: responsibility} %>
+    <%= button_to "Delete", responsibility_path(responsibility), method: :delete, class: "btn btn-default" %>
+<% end %>

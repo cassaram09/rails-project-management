@@ -1,4 +1,47 @@
 Rails.application.routes.draw do
+
+  get 'sessions/create'
+
+  get 'sessions/auth'
+
+  root to: 'home#index'
+
+  devise_for :users, skip: [:sessions] 
+    as :user do
+      get 'login' => 'devise/sessions#new', :as => :new_user_session
+      post 'login' => 'devise/sessions#create', :as => :user_session
+      delete 'logout' => 'devise/sessions#destroy', :as => :destroy_user_session
+    end
+
+  devise_scope :user do
+    get "/signup" => "devise/registrations#new"
+    get "/edit-profile" => "devise/registrations#edit"
+  end
+
+  resources :comments
+  
+  resources :notes
+
+  resources :tags
+
+  resources :responsibilities
+
+  resources :projects do
+    get :all_tasks, on: :collection
+    get :on_hold, on: :collection
+    get :complete, on: :collection
+    resources :tasks do 
+      get :complete, on: :collection
+    end
+  end
+
+  namespace :admin do 
+    resources :dashboard, only: [:index]
+  end
+
+  get '/auth/facebook/callback' => 'sessions#create'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

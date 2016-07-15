@@ -1,3 +1,3 @@
 # Be sure to restart your server when you modify this file.
 
-Rails.application.config.session_store :cookie_store, key: '_rails-personal-task-manager_session'
+Rails.application.config.session_store :cookie_store, key: '_rails-task-manager_session'

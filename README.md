@@ -1,2 +1,2 @@
-# rails-personal-task-manager
-Rails personal task manger
+# rails-task-manager
+Basic RoR task manager application

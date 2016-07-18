@@ -4,9 +4,12 @@ class TasksController < ApplicationController
   before_action :set_project
 
   def index
-
-    @tasks = @user.tasks
-    @task = Task.new
+    if !@user.project_ids.include?(params[:project_id].to_i)
+      redirect_to projects_path
+    else
+      @tasks = @project.tasks
+      @task = Task.new
+    end
   end
 
   def new
@@ -25,6 +28,7 @@ class TasksController < ApplicationController
   end
 
   def show
+    authorize @task
     @comment = Comment.new
   end
 
@@ -33,18 +37,20 @@ class TasksController < ApplicationController
   end
 
   def update
-    binding.pry
+    authorize @task
     @task.tags.clear
     @task.update(task_params)
     redirect_to project_tasks_path
   end
 
   def destroy
+    authorize @task
     @task.destroy
     redirect_to project_tasks_path
   end
 
   def complete
+    authorize @task
     @complete = Task.complete
   end
 

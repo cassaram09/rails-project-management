@@ -4,7 +4,8 @@ class ProjectsController < ApplicationController
   layout "projects_layout", except: [:all_tasks]
 
   def index
-    @projects = @user.active_projects
+    
+    @projects = policy_scope(Project)
     @project = Project.new
   end
 
@@ -24,6 +25,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    authorize @project
   end
 
   def edit 
@@ -31,6 +33,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    authorize @project
     if (@project.status == "complete" && project_params[:status] == "active")
       @project.update(project_params)
       redirect_to project_path(@project)
@@ -43,6 +46,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
+    authorize @project
     @project.destroy
     redirect_to projects_path
   end

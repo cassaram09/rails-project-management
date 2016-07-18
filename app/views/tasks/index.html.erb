@@ -4,7 +4,7 @@
 
 
 <h3> <%= @project.name %> </h3>
-<% @project.tasks.each do |task| %>
+<% @tasks.each do |task| %>
   <h4><%= link_to task.name, project_task_path(@project, task) %></h4>
   <p><%= task.description %></p>
   <p>Due: <%= task.due_date %></p>

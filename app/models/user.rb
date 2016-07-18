@@ -15,7 +15,6 @@ class User < ActiveRecord::Base
   enum role: [:user, :admin]
 
   def self.from_omniauth(auth)
-    binding.pry
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.name = auth.info.name
@@ -23,6 +22,7 @@ class User < ActiveRecord::Base
     end    
   end
 
+  #collect all tags from all tasks owned by the user
   def tags
     tags = self.tasks.collect do |task|
       task.tags.collect {|tag| tag}

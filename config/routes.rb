@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'sessions/create'
-
-  get 'sessions/auth'
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   root to: 'home#index'
 
@@ -38,8 +36,6 @@ Rails.application.routes.draw do
   namespace :admin do 
     resources :dashboard, only: [:index]
   end
-
-  get '/auth/facebook/callback' => 'sessions#create'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

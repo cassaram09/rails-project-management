@@ -42,6 +42,8 @@ App Features
 
   Add other users to other project
 
+  add search 
+
 Models
   User
   Project

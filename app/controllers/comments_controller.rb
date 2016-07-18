@@ -1,5 +1,4 @@
 class CommentsController < ApplicationController
-  before_action :set_user
   before_action :set_comment, only: [:edit, :update, :destroy]
 
   def index

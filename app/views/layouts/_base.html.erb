@@ -16,14 +16,13 @@
     
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        
-        <li><%= link_to "Home", root_path %></li>
         <% if current_user && user_signed_in? %>
           <% if current_user.admin? %>
             <%= render "/admin/dashboard/nav" %>
           <% end %>
           <li><%= link_to "Profile", profile_path %></li>
           <li><%= link_to "Projects", projects_path %></li>
+          <li><%= link_to "Tasks", all_tasks_projects_path %></li>
           <li><%= link_to "Comments", comments_path %></li>
           <li><%= link_to "Tags", tags_path %></li>
           <li><%= link_to "Responsibilities", responsibilities_path %></li>

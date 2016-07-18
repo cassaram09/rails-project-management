@@ -29,6 +29,10 @@ class Task < ActiveRecord::Base
     tags.join(", ")
   end
 
+  def self.search(search)
+    where("name LIKE ?", "%#{search}%") 
+  end
+
 
 
 end

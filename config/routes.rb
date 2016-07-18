@@ -34,7 +34,12 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do 
-    resources :dashboard, only: [:index]
+    get 'dashboard' => 'dashboard#index', :as => :dashboard
+    get 'tags' => 'dashboard#tags', :as => :tags
+    get 'users' => 'dashboard#users', :as => :users
+    get 'users/:id' => 'dashboard#user_edit', :as => :user_edit
+    get 'search' => 'dashboard#search', :as => :search
+
   end
 
 

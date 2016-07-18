@@ -1,0 +1,48 @@
+<h3> All Users</h3>
+
+
+<table>
+<thead>
+  <td>
+    ID
+    </td>
+  <td>
+    Name
+    </td>
+  <td>
+    Role
+    </td>
+  <td>
+    Projects
+    </td>
+  <td>
+    Tasks
+    </td>
+  <td>
+    Responsibilities
+    </td>
+</thead>
+<% @users.each do |user| %>
+  <tr>
+    <td>
+      <%= user.id %>
+    </td>
+    <td>
+      <%= user.name %>
+    </td>
+    <td>
+      <%= user.role %>
+    </td>
+    <td>
+      <%= user.projects.count %>
+    </td>
+    <td>
+      <%= user.tasks.count %>
+    </td>
+    <td>
+      <%= user.responsibilities.count %>
+    </td>
+  </tr>
+<% end %>
+
+</table>

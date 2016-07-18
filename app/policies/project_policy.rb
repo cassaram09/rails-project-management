@@ -13,8 +13,4 @@ class ProjectPolicy < ApplicationPolicy
 
   end
 
-  def show?
-    user.admin? || record.user_id == user.id
-  end
-
 end

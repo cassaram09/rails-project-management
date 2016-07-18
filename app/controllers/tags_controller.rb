@@ -1,5 +1,4 @@
 class TagsController < ApplicationController
-  before_action :set_user
   before_action :set_tag, only: [:update, :destroy]
 
   def index
@@ -32,11 +31,9 @@ class TagsController < ApplicationController
   end
 
   private
-  def set_user
-    @user = current_user
-  end
 
   def set_tag
     @tag = Tag.find_by(id: params[:id])
   end
+
 end

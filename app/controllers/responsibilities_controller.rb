@@ -1,5 +1,4 @@
 class ResponsibilitiesController < ApplicationController
-  before_action :set_user, except: [:destroy]
   before_action :set_responsibility, except: [:index, :new, :create]
 
   def index
@@ -41,10 +40,6 @@ class ResponsibilitiesController < ApplicationController
   end
 
   private
-  def set_user
-    @user = current_user
-  end
-
   def set_responsibility
     @responsibility = Responsibility.find_by(id: params[:id])
   end

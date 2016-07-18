@@ -1,15 +1,11 @@
 class TasksController < ApplicationController
-  before_action :set_user, except: [:destroy]
   before_action :set_task, except: [:index, :new, :create]
   before_action :set_project
+  before_action :check_user
 
   def index
-    if !@user.project_ids.include?(params[:project_id].to_i)
-      redirect_to projects_path
-    else
-      @tasks = @project.tasks
-      @task = Task.new
-    end
+    @tasks = @project.tasks
+    @task = Task.new
   end
 
   def new
@@ -28,7 +24,6 @@ class TasksController < ApplicationController
   end
 
   def show
-    authorize @task
     @comment = Comment.new
   end
 
@@ -37,26 +32,30 @@ class TasksController < ApplicationController
   end
 
   def update
-    authorize @task
     @task.tags.clear
     @task.update(task_params)
     redirect_to project_tasks_path
   end
 
   def destroy
-    authorize @task
     @task.destroy
     redirect_to project_tasks_path
   end
 
   def complete
-    authorize @task
     @complete = Task.complete
   end
 
   private
   def set_user
     @user = current_user
+  end
+
+  def check_user
+    if !@user.project_ids.include?(params[:project_id].to_i)
+      flash[:alert] = "You are not authorized to perform that action."
+      redirect_to projects_path
+    end
   end
 
   def set_task

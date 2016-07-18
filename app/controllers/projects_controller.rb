@@ -1,11 +1,11 @@
 class ProjectsController < ApplicationController
-  before_action :set_user, except: [:destroy]
   before_action :set_project, except: [:index, :new, :create]
   layout "projects_layout", except: [:all_tasks]
+  before_action :check_user, except: [:index, :create]
+
 
   def index
-    
-    @projects = policy_scope(Project)
+    @projects = @user.active_projects
     @project = Project.new
   end
 
@@ -25,7 +25,6 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    authorize @project
   end
 
   def edit 
@@ -33,7 +32,6 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    authorize @project
     if (@project.status == "complete" && project_params[:status] == "active")
       @project.update(project_params)
       redirect_to project_path(@project)
@@ -46,7 +44,6 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    authorize @project
     @project.destroy
     redirect_to projects_path
   end
@@ -60,8 +57,12 @@ class ProjectsController < ApplicationController
   end
 
   private
-  def set_user
-    @user = current_user
+
+  def check_user
+    unless @user.project_ids.include?(params[:id].to_i) || @user.admin?
+      flash[:alert] = "You are not cleared to perform that action."
+      redirect_to projects_path
+    end
   end
 
   def set_project

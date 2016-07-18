@@ -1,5 +1,4 @@
 class NotesController < ApplicationController
-  before_action :set_user, except: [:destroy]
   before_action :set_note, except: [:index, :new, :create]
 
   def index
@@ -40,10 +39,6 @@ class NotesController < ApplicationController
   end
 
   private
-  def set_user
-    @user = current_user
-  end
-
   def set_note
     @note = Note.find_by(id: params[:id])
   end

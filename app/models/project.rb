@@ -10,4 +10,8 @@ class Project < ActiveRecord::Base
   scope :active, -> { where(status: 0)}
 
   validates :name, :description, :due_date, :status, presence: true
+
+  def self.search(search)
+    where("name LIKE ?", "%#{search}%") 
+  end
 end

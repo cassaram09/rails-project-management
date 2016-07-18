@@ -1,13 +1,8 @@
 class Admin::DashboardController < ApplicationController
   # Controller for users with role: admin
-  
-  before_action :set_user
   before_action :authenticate_user!
 
   def index
-    unless @user.admin?
-      redirect_to root_path
-    end
     @projects = Project.all
     @users = User.all 
     @comments = Comment.all 
@@ -16,8 +11,24 @@ class Admin::DashboardController < ApplicationController
     @tags = Tag.all
   end
 
-  private
-  def set_user
-    @user = current_user
+  def tags
+    @tags = Tag.all
   end
+
+  def users
+    @users = User.all
+  end
+
+  def search
+    @projects = Project.search(params[:search]).order("created_at DESC")
+  end
+
+  private
+
+  def authenticate_user
+    unless @user.admin?
+      redirect_to root_path
+    end
+  end
+
 end

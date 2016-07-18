@@ -4,4 +4,9 @@ class Responsibility < ActiveRecord::Base
   has_many :tags
 
   enum status: [:active, :complete]
+
+
+  def day
+
+  end
 end

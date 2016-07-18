@@ -22,6 +22,20 @@ App Features
 
   Admin section / namespace?
 
+  Projects are temporary endeavors to create something and have defined start and finish points.
+
+  Responsibilities are recurring tasks that need to be completed.
+
+  Notes are general musings.
+
+  Comments are on tasks during a project. 
+
+  Tags are used to help label and sort projects. 
+
+  Users
+    - add full name
+
+  OMNIAUTH!
 
 Models
   User

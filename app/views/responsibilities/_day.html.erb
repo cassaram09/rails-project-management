@@ -1,0 +1,8 @@
+<%= form_tag(responsibility) do |f| %>
+  <%= f.label :name %>
+    <%= f.text_field :name, placeholder: "Name" %>
+  <%= f.label :description %>
+    <%= f.text_field :description, placeholder: "Description" %>
+  <%= f.hidden_field :user_id, value: @user.id %>
+  <%= f.submit class: "btn btn-default" %>
+<% end %>

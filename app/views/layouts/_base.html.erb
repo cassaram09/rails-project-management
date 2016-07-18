@@ -22,6 +22,7 @@
           <% if current_user.admin? %>
             <%= render "/admin/dashboard/nav" %>
           <% end %>
+          <li><%= link_to "Profile", profile_path %></li>
           <li><%= link_to "Projects", projects_path %></li>
           <li><%= link_to "Comments", comments_path %></li>
           <li><%= link_to "Tags", tags_path %></li>

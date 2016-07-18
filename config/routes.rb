@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
+  get '/profile', to: 'home#profile'
+
   devise_for :users, controllers: { :omniauth_callbacks => "users/omniauth_callbacks" }, skip: [:sessions] 
     as :user do
       get 'login' => 'devise/sessions#new', :as => :new_user_session

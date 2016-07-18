@@ -9,6 +9,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :name %><br />
+    <%= f.email_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
     <%= f.label :role %><br />
     <% User.roles.each do |role,index| %>
       <%= role.capitalize %>

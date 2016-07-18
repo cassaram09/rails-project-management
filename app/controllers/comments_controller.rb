@@ -4,9 +4,17 @@ class CommentsController < ApplicationController
 
   def index
   end
+
   def create
-    @comment = Comment.create(comment_params)
-    redirect_to project_task_path(find_project, find_task)
+    @comment = Comment.new(comment_params)
+    if @comment.valid?
+      @comment.save
+      redirect_to project_task_path(find_project, find_task)
+    else
+      @task = Task.find_by(id: params[:comment][:task_id])
+      @comment = Comment.new(comment_params)
+      redirect_to project_task_path(find_project, find_task)
+    end
   end
 
   def edit

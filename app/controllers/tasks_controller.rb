@@ -15,7 +15,13 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.create(task_params)
-    redirect_to project_tasks_path
+    if @task.save
+      redirect_to project_tasks_path
+    else
+      @tasks = @user.tasks
+      @task
+      render :index
+    end
   end
 
   def show

@@ -12,8 +12,14 @@ class NotesController < ApplicationController
   end
 
   def create
-    @note = Note.create(note_params)
-    redirect_to notes_path
+    @note = Note.new(note_params)
+    if @note.save
+      redirect_to notes_path
+    else
+      @notes = @user.notes
+      @note
+      render :index
+    end
   end
 
   def show

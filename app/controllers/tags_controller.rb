@@ -4,10 +4,25 @@ class TagsController < ApplicationController
 
   def index
     @tags = @user.tags
+    @tag = Tag.new
+  end
+
+  def create
+
   end
 
   def update
-    @tag.update(name: params[:tag][:name])
+    if @tag.update(name: params[:tag][:name])
+      redirect_to tags_path
+    else
+      binding.pry
+      @tags = @user.tags
+      @tag
+      render :index
+    end
+  end
+
+  def show
     redirect_to tags_path
   end
 

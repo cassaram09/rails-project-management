@@ -35,6 +35,8 @@ App Features
 
   Tags are used to help label and sort projects. 
 
+  Add custom validator for Tasks - unique names in projects
+
   Users
     - add full name
 

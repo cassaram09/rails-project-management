@@ -13,10 +13,17 @@ class ResponsibilitiesController < ApplicationController
 
   def create
     @responsibility = Responsibility.create(responsibility_params)
-    redirect_to responsibilities_path
+    if @responsibility.save
+      redirect_to responsibilities_path
+    else
+      @responsibilities = @user.responsibilities
+      @responsibility
+      render :index
+    end
   end
 
   def show
+    
   end
 
   def edit 

@@ -1,5 +1,20 @@
 <h1>Tags</h1>
 
+<% if @tag.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@tag.errors.count, "error") %>
+      prohibited this tag from being saved:
+    </h2>
+ 
+    <ul>
+    <% @tag.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <% @tags.each do |tag| %>
 
   <%= form_for(tag) do |f| %>

@@ -5,8 +5,5 @@ class Responsibility < ActiveRecord::Base
 
   enum status: [:active, :complete]
 
-
-  def day
-
-  end
+  validates :description, :name, presence: true
 end

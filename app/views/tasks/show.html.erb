@@ -4,7 +4,7 @@
 
 <h2>Comments</h2>
 <% @task.comments.reverse.each do |comment| %>
-  <p> <%= comment.description %> by <%= comment.user.email %> 
+  <p> <%= comment.content %> by <%= comment.user.email %> 
   <%= link_to "Edit Comment", edit_comment_path(comment) %> 
   <%= link_to "Delete", comment_path(comment), method: :delete %></p>
 <% end %>

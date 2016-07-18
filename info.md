@@ -25,6 +25,9 @@ App Features
   Projects are temporary endeavors to create something and have defined start and finish points.
 
   Responsibilities are recurring tasks that need to be completed.
+    - user should be able to check off a box indicating they have completed the task for that day
+    - checkboxes should automatically update the date every day
+    - clicking on a responsibility should show the statistics for that, frequency, streaks, days completed, etc.
 
   Notes are general musings.
 
@@ -36,6 +39,8 @@ App Features
     - add full name
 
   OMNIAUTH!
+
+  Add other users to other project
 
 Models
   User

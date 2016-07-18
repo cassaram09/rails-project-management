@@ -3,8 +3,7 @@ class CreateComments < ActiveRecord::Migration
     create_table :comments do |t|
       t.belongs_to :user
       t.belongs_to :task
-      t.string :name
-      t.string :description
+      t.string :content
       t.timestamps null: false
     end
   end

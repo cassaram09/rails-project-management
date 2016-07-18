@@ -21,3 +21,19 @@
   border: 1px solid transparent;
   border-radius: 4px;
 }
+
+.hero {
+   background: url(http://core0.staticworld.net/images/article/2015/01/intro_hp-100539459-primary.idge.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 500px;
+}
+
+.hero h1{
+  position: relative;
+  top: 150px;
+  text-align: center;
+  color: white;
+}

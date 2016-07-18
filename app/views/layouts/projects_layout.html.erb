@@ -8,9 +8,12 @@
   </head>
   <body>
     <%= render "layouts/base" %>
+    <div class="container">
     <h1>Projects</h1>
+    </div>
     <nav class="navbar navbar-default">
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="container">
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By <span class="caret"></span></a>
@@ -20,9 +23,12 @@
             </ul>
           </li>
         <ul>
+        </div
     </div>
     </nav>
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
 
   </body>
 </html>

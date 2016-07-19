@@ -1,10 +1,11 @@
 class ProjectsController < ApplicationController
   before_action :set_project, except: [:index, :new, :create]
-  layout "projects_layout"
+  #layout "projects_layout"
   before_action :check_user, except: [:index, :create, :complete, :tasks]
 
 
   def index
+    binding.pry
     @projects = @user.active_projects.reverse
     @project = Project.new
   end

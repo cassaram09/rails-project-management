@@ -7,7 +7,20 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-  <%= render "layouts/base"%>
+  <%= render "navs/nav_base"%>
+    <div class="header">
+      <div class="container">
+        <% if params[:controller] == "devise/registrations" %>
+          <h1>Sign Up</h1>
+        <% elsif params[:controller] == "devise/sessions"%>
+          <h1>Login</h1>
+        <% elsif params[:action] == "profile"%>
+          <h1>Profile</h1>
+        <% else %>
+          <h1><%= params[:controller].capitalize%></h1>
+        <% end %>
+      </div>
+    </div>
     <div class="container">
       <div class="notice"><%= notice %></div>
       <div class="alert"><%= alert %></div>

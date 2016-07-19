@@ -7,10 +7,7 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <%= render "layouts/base" %>
-    <div class="container">
-    <h1>Projects</h1>
-    </div>
+    <%= render "navs/nav_base" %>
     <nav class="navbar navbar-default">
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <div class="container">
@@ -29,6 +26,5 @@
     <div class="container">
       <%= yield %>
     </div>
-
   </body>
 </html>

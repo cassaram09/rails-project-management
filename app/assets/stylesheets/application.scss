@@ -16,17 +16,20 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-
+*{
+  margin: 0px;
+  padding: 0px;
+}
 
 .alert, .notice {
   padding: 0px;
   margin-bottom: 0px;
-  border: 1px solid transparent;
-  border-radius: 4px;
 }
 
 
-
+.navbar {
+  margin-bottom: 0px;
+}
 .form-control {
   max-width: 400px;
 }

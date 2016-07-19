@@ -1,9 +1,18 @@
+<div class="project-block">
 <h2>Complete Projects</h2>
-
+  <div class="line-dark"></div>
 <% @projects.each do|project| %>
-  <h3> <%= link_to project.name, project_path(project) %> </h3>
-  <p> <%= project.description %> </p>
-  <p> <%= project.due_date %> </p>
-  <p> <%= project.status %> </p>
-  <p> <%= link_to "Project Tasks", project_tasks_path(project)%> </p>
-<% end %>
+  <h3> <%= link_to project.name, project_tasks_path(project) %> </h3>
+    <p> <%= project.description %> </p>
+    <p> Created: <%= project.friendly_date_time %> </p>
+    <p> Due: <%= project.due_date %> </p>
+    <p> Status: <%= project.status.capitalize %> </p>
+    <div class="inline-button">
+      <%= link_to "Edit", edit_project_path(project), class: "btn btn-primary" %>
+    </div>
+    <div class="inline-button">
+      <%= link_to "View Tasks", project_tasks_path(project), class: "btn btn-primary" %>
+    </div>
+    <div class="line-light"> </div>
+  <% end %>
+</div>

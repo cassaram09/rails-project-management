@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
 
 
   def index
-    @projects = @user.active_projects
+    @projects = @user.active_projects.reverse
     @project = Project.new
   end
 
@@ -49,7 +49,7 @@ class ProjectsController < ApplicationController
   end
 
   def complete
-    @projects = @user.complete_projects
+    @projects = @user.complete_projects.reverse
   end
 
   def all_tasks

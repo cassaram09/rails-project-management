@@ -1,6 +1,12 @@
-<% @tasks.each do|task| %>
-  <h3> <%= link_to task.name, project_task_path(task.project, task) %> </h3>
-  <p> In project: <%= link_to task.project.name, project_path(task.project) %> </p>
-  <p> <%= task.description %> </p>
-  <p> <%= task.due_date %> </p>
-<% end %>
+<div class="project-block">
+  <% if @tasks.empty? %>
+    <h4>It lookss like you don't have any tasks. Why not create new one?</h4>
+  <% else %>
+    <% @tasks.each do|task| %>
+      <h3> <%= link_to task.name, project_task_path(task.project, task) %> </h3>
+      <p> In project: <%= link_to task.project.name, project_path(task.project) %> </p>
+      <p> <%= task.description %> </p>
+      <p> <%= task.due_date %> </p>
+    <% end %>
+  <% end %>
+</div>

@@ -1,19 +1,30 @@
-<h1>Project Tasks#Index</h1>
+<h1><%= @project.name %> Tasks</h1>
 
 <%= render partial: "form", locals: {project: @project, task: @task} %>
 
+<table class="table">
 
-<h3> <%= @project.name %> </h3>
-<% @tasks.each do |task| %>
-  <h4><%= link_to task.name, project_task_path(@project, task) %></h4>
-  <p><%= task.description %></p>
-  <p>Due: <%= task.due_date %></p>
-  <p>Status: <%= task.status %></p>
-  <p>Priority: <%= task.priority%></p>
-  <p>Tags: <% task.tags.each do |tag| %>
-    <%= tag.name %>, 
-    <% end %></p>
-  <p><%= link_to "Edit Task", project_task_path(@project, task)%></p>
-  <p><%= link_to "Delete Task", project_task_path(@project, task), method: :delete%></p>
-<% end %>
+  <thead>
+    <td><h4>Name</h4></td>
+    <td class="mobile-hide"><h4>Description</h4></td>
+    <td><h4>Due</h4></td>
+    <td class="mobile-hide"><h4>Status</h4></td>
+    <td><h4>Priority</h4></td>
+    <td class="mobile-hide"><h4>Tags</h4></td>
+  </thead>
+    
+  <% @tasks.each do |task| %>
+    <tr>
+      <td> <%= task.name %> </td>
+      <td class="mobile-hide"> <%= task.description %> </td>
+      <td> <%= task.due_date %> </td>
+      <td class="mobile-hide"> <%= task.status %> </td>
+      <td> <%= task.priority %> </td>
+      <td class="mobile-hide"> <% task.tags.each do |tag| %> <%= tag.name%> <% end %> </td>
+      <td> <%= link_to "Edit Task", project_task_path(@project, task), class: "btn btn-sm btn-primary"%> </td>
+      <td> <%= button_to "Delete Task", project_task_path(@project, task), method: :delete, class: "btn btn-sm btn-danger" %> </td>
+    </tr>
 
+  <% end %>
+
+</table>

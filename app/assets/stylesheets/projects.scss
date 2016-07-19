@@ -1,3 +1,14 @@
 // Place all the styles related to the Projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.project-block {
+  background-color: #eee;
+  padding: 10px 25px;
+  margin: 10px 0px;
+  border: 2px solid #ddd;
+}
+
+.quick-add-form-group {
+  margin: 5px;
+}

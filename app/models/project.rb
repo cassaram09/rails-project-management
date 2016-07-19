@@ -1,4 +1,6 @@
 class Project < ActiveRecord::Base
+  include DateTimeConverter
+  
   belongs_to :user
   has_many :tasks
   has_many :tags, through: :tasks

@@ -1,0 +1,33 @@
+<% if project.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(project.errors.count, "error") %>
+      prohibited this post from being saved:
+    </h2>
+ 
+    <ul>
+    <% project.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for(project, html: {class: "form-inline"}) do |f| %>
+  <div class="form-group quick-add-form-group">
+    <%= f.label :name, class: "control-label"%>
+      <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description, class: "control-label"%>
+      <%= f.text_field :description,  class: "form-control quick-add-form-group" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :due_date, class: "control-label"%>
+      <%= f.date_select :due_date, order: [:month, :day, :year], class: "date-select quick-add-form-group"%>
+  </div>
+  <div class="form-group">
+    <%= f.hidden_field :user_id, value: @user.id %>
+    <%= f.submit class: "btn btn-primary quick-add-form-group"%>
+  </div>
+<% end %>

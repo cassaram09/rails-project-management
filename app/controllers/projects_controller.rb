@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :set_project, except: [:index, :new, :create]
   layout "projects_layout", except: [:all_tasks]
-  before_action :check_user, except: [:index, :create, :complete, :all_tasks]
+  before_action :check_user, except: [:index, :create, :complete, :tasks]
 
 
   def index
@@ -28,6 +28,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit 
+    binding.pry
     redirect_to project_path(@project)
   end
 
@@ -48,6 +49,10 @@ class ProjectsController < ApplicationController
     redirect_to projects_path
   end
 
+  def tasks
+    @tasks = @project.tasks
+  end
+
   def complete
     @projects = @user.complete_projects.reverse
   end
@@ -62,7 +67,11 @@ class ProjectsController < ApplicationController
   end
 
   def set_project
-    @project = Project.find_by(id: params[:id])
+    if params[:id]
+       @project = Project.find_by(id: params[:id])
+    else
+      @project = Project.find_by(id: params[:project_id])
+    end
   end
 
   def project_params

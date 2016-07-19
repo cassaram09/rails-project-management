@@ -1,19 +1,19 @@
-<% if task.errors.any? %>
+<% if @task.errors.any? %>
   <div id="error_explanation">
     <h2>
-      <%= pluralize(task.errors.count, "error") %>
-      prohibited this task from being saved:
+      <%= pluralize(@task.errors.count, "error") %>
+      prohibited this @task from being saved:
     </h2>
  
     <ul>
-    <% task.errors.full_messages.each do |msg| %>
+    <% @task.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
     </ul>
   </div>
 <% end %>
 
-<%= form_for(task, {url: root_path, controller: "tasks", action: "create", method: "post"}) do |f| %>
+<%= form_for(@task) do |f| %>
   <div class="form-group">
     <%= f.label :name %>
       <%= f.text_field :name, class: "form-control" %>
@@ -44,8 +44,12 @@
     <%= f.label :tag_names, "Tags (Comma seperated)" %>
       <%= f.text_field :tag_names, class: "form-control"%>
   </div>
+  <div class="form-group project-select">
+    <%= collection_select(:task, :project_id, Project.all, :id, :name) %>
+  </div>
   <div class="form-group">
     <%= f.hidden_field :user_id, value: @user.id %>
+    <%= f.hidden_field :project_id, value: @user.projects.first.id %>
     <%= f.submit class: "btn btn-primary"%>
   </div>
 <% end %>

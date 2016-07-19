@@ -63,7 +63,7 @@
   width: 100%;
 }
 
-.project-block select {
+select {
     display: inline-block;
     width: 60px;
     height: 34px;
@@ -82,11 +82,5 @@
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
 
-.task-block .table td {
-  padding-top: 15px;
-}
 
-.td-button  {
-  padding-top: 8px !important;
-}
 

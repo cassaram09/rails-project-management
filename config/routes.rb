@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   resources :projects do
     get :on_hold, on: :collection
     get :complete, on: :collection
-    get :tasks, to: 'project#tasks'
+    get :tasks, to: 'projects#tasks'
     resources :tasks, only: [:show, :edit, :update, :destroy] do 
       get :complete, on: :collection
     end

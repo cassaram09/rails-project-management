@@ -1,22 +1,21 @@
 class TasksController < ApplicationController
   before_action :set_task, except: [:index, :new, :create]
   before_action :set_project
-  before_action :check_user
+  # before_action :check_user
 
   def index
-    @tasks = @project.tasks
     @task = Task.new
     @tasks = @user.all_user_tasks
   end
 
   def new
-    redirect_to project_tasks_path
+    @task = Task.new
   end
 
   def create
     @task = Task.create(task_params)
     if @task.save
-      redirect_to project_tasks_path
+      redirect_to project_tasks_path(task_params[:project_id])
     else
       @tasks = @user.tasks
       @task
@@ -52,19 +51,19 @@ class TasksController < ApplicationController
     @user = current_user
   end
 
-  def check_user
-    if !@user.project_ids.include?(params[:project_id].to_i)
-      flash[:alert] = "You are not authorized to perform that action."
-      redirect_to projects_path
-    end
-  end
+  # def check_user
+  #   if !@user.project_ids.include?(params[:project_id].to_i)
+  #     flash[:alert] = "You are not authorized to perform that action."
+  #     redirect_to projects_path
+  #   end
+  # end
 
   def set_task
     @task = Task.find_by(id: params[:id])
   end
 
   def set_project
-    @project = Project.find_by(id: params[:project_id])
+    @project = Project.find_by(id: params[:id])
   end
 
   def task_params

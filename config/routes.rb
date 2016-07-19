@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get '/profile', to: 'home#profile'
 
-  devise_for :users, controllers: { :omniauth_callbacks => "users/omniauth_callbacks" }, skip: [:sessions] 
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: 'users/registrations' }, skip: [:sessions] 
     as :user do
       get 'login' => 'devise/sessions#new', :as => :new_user_session
       post 'login' => 'devise/sessions#create', :as => :user_session

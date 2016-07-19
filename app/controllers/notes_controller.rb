@@ -2,7 +2,7 @@ class NotesController < ApplicationController
   before_action :set_note, except: [:index, :new, :create]
 
   def index
-    @notes = @user.notes
+    @notes = @user.notes.reverse
     @note = Note.new
   end
 
@@ -25,7 +25,6 @@ class NotesController < ApplicationController
   end
 
   def edit 
-    redirect_to note_path(@note)
   end
 
   def update
@@ -44,6 +43,6 @@ class NotesController < ApplicationController
   end
 
   def note_params
-    params.require(:note).permit(:name, :description, :user_id, :status)
+    params.require(:note).permit(:name, :content, :user_id, :status)
   end
 end

@@ -13,11 +13,17 @@
   </div>
 <% end %>
 
-<%= form_for(note) do |f| %>
-  <%= f.label :name %>
-    <%= f.text_field :name, placeholder: "Name" %>
-  <%= f.label :content %>
-    <%= f.text_field :content, placeholder: "Description" %>
-  <%= f.hidden_field :user_id, value: @user.id %>
-  <%= f.submit class: "btn btn-default" %>
+<%= form_for(note, html: {class: "note-form"}) do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+      <%= f.text_field :name, placeholder: "Name", class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :content %>
+      <%= f.text_area :content, placeholder: "Description", class: "form-control note-text-area", rows: "5"%>
+  </div>
+  <div class="form-group">
+    <%= f.hidden_field :user_id, value: @user.id %>
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
 <% end %>

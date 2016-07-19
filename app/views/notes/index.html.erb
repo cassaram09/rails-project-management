@@ -1,10 +1,24 @@
 <h1>Notes</h1>
+<div class="note-block">
+  <h2>Create a new note</h2>
+  <div class="line-dark"></div>
+  <%= render partial: "form", locals: {note: @note} %>
+</div>
 
-<%= render partial: "form", locals: {note: @note} %>
+<div class="note-block">
+  <h2>Your Notes</h2>
+  <div class="line-dark"></div>
+  <% @notes.each do |note| %>
+      <h3><%= note.name %></h3>
 
-<% @notes.each do |note| %>
-
-  <%= render partial: "form", locals: {note: note} %>
-  <%= button_to "Delete", note_path(note), method: :delete, class: "btn btn-default" %>
-
-<% end %>
+      <p>Created: <%= note.friendly_date_time %></p>
+      <p><%= note.content %></p>
+      <div class="inline-button">
+        <%= button_to "Edit", edit_note_path(note), method: :get, class: "btn btn-primary" %>
+        </div>
+      <div class="inline-button">
+        <%= button_to "Delete", note_path(note), method: :delete, class: "btn btn-danger" %>
+      </div>
+      <div class="line-light"></div>
+  <% end %>
+</div>

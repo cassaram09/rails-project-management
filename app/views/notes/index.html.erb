@@ -8,17 +8,21 @@
 <div class="note-block">
   <h2>Your Notes</h2>
   <div class="line-dark"></div>
-  <% @notes.each do |note| %>
-      <h3><%= note.name %></h3>
+  <% if !@notes.empty? %>
+    <% @notes.each do |note| %>
+        <h3><%= note.title %></h3>
 
-      <p>Created: <%= note.friendly_date_time %></p>
-      <p><%= note.content %></p>
-      <div class="inline-button">
-        <%= button_to "Edit", edit_note_path(note), method: :get, class: "btn btn-primary" %>
+        <p>Created: <%= note.friendly_date_time %></p>
+        <p><%= note.content %></p>
+        <div class="inline-button">
+          <%= link_to "Edit", edit_note_path(note), class: "btn btn-primary" %>
+          </div>
+        <div class="inline-button">
+          <%= button_to "Delete", note_path(note), method: :delete, class: "btn btn-danger" %>
         </div>
-      <div class="inline-button">
-        <%= button_to "Delete", note_path(note), method: :delete, class: "btn btn-danger" %>
-      </div>
-      <div class="line-light"></div>
+        <div class="line-light"></div>
+    <% end %>
+  <% else %>
+    <h4><%= "You don't have any notes yet. Why not start by writing a new one?" %></h4>
   <% end %>
 </div>

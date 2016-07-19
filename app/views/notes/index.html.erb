@@ -12,7 +12,7 @@
     <% @notes.each do |note| %>
         <h3><%= note.title %></h3>
 
-        <p>Created: <%= note.friendly_date_time %></p>
+        <p>Created: <%= note.friendly_created_at %></p>
         <p><%= note.content %></p>
         <div class="inline-button">
           <%= link_to "Edit", edit_note_path(note), class: "btn btn-primary" %>

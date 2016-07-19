@@ -1,0 +1,12 @@
+<h3> <%= link_to project.name, project_tasks_path(project) %> </h3>
+<p> <%= project.description %> </p>
+<p> Created: <%= project.created_at %> </p>
+<p> Due: <%= project.due_date %> </p>
+<p> Status: <%= project.status.capitalize %> </p>
+<div class="inline-button">
+  <%= link_to "Edit", edit_project_path(project), class: "btn btn-primary" %>
+</div>
+<div class="inline-button">
+  <%= link_to "View Tasks", project_tasks_path(project), class: "btn btn-primary" %>
+</div>
+<div class="line-light"> </div>

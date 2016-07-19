@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   end
 
   def complete_projects
-    self.projects.active 
+    self.projects.complete
   end
 
   def on_hold_projects

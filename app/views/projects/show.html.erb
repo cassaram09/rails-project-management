@@ -1,8 +1,11 @@
-<h3> <%= @project.name %> </h3>
-<p> <%= @project.description %> </p>
-<p> <%= @project.due_date %> </p>
-<p> <%= @project.status %> </p>
+<div class="project-block">
+  <h3> <%= @project.name %> </h3>
+  <p> <%= @project.description %> </p>
+  <p> Created: <%= @project.friendly_created_at %> </p>
+  <p> Due: <%= @project.due_date %> </p>
+  <p> <%= @project.status %> </p>
 
-<%= render partial: "form", locals: {project: @project} %>
+  <%= render partial: "form", locals: {project: @project} %>
 
-<p> <%= button_to "Delete Project", project_path(@project), method: :delete, class: "btn btn-default"%> </p>
+  <%= button_to "Delete Project", project_path(@project), method: :delete, class: "btn btn-danger"%> 
+</div>

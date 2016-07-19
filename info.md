@@ -44,7 +44,11 @@ App Features
 
   Add other users to other project
 
-  add search 
+  add search
+
+  Tasks
+   - add task when creating project
+   - quick add task from tasks page 
 
 Models
   User

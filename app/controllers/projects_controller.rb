@@ -52,10 +52,6 @@ class ProjectsController < ApplicationController
     @projects = @user.complete_projects.reverse
   end
 
-  def all_tasks
-    @tasks = @user.all_user_tasks
-  end
-
   private
 
   def check_user

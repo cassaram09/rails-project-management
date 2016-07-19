@@ -6,6 +6,7 @@ class TasksController < ApplicationController
   def index
     @tasks = @project.tasks
     @task = Task.new
+    @tasks = @user.all_user_tasks
   end
 
   def new

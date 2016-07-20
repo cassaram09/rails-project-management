@@ -1,0 +1,4 @@
+<div class="task-block"><h1>Edit Task</h1>
+  <%= render partial: "edit_form", locals: {project: @project, task: @task} %>
+  <%= button_to "Delete Task", project_task_path(@project, @task), method: :delete, class: "btn btn-danger" %>
+</div>

@@ -1,10 +1,11 @@
-<h1>All Tasks</h1>
+
 
 <%= render partial: "tasks/quick_add_form", locals: {task: @task} %>
 
 <div class="task-block">
-<% if @tasks.empty? %>
-    <h4>It lookss like you don't have any tasks. Why not create new one?</h4>
+  <h2>All Tasks</h2>
+  <% if @tasks.empty? %>
+    <h4>It looks like you don't have any tasks. Why not create new one?</h4>
   <% else %>
     <table class="table">
 

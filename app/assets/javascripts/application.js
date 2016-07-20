@@ -15,3 +15,14 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(document).ready(function(){
+  $( "#show" ).click(function() {
+    $( ".quick-add" ).slideToggle( "slow", "linear" );
+    if ($( "#show" ).val() == "Add a Task"){
+      $( "#show" ).val("Hide");
+    } else {
+      $( "#show" ).val("Add a Task");
+    }
+  });
+});

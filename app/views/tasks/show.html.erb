@@ -1,7 +1,3 @@
-<h1>Edit Task</h1>
-<%= render partial: "edit_form", locals: {project: @project, task: @task} %>
-
-
 <h2>Comments</h2>
 <% @task.comments.reverse.each do |comment| %>
   <p> <%= comment.content %> by <%= comment.user.email %> 

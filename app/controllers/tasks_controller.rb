@@ -33,7 +33,6 @@ class TasksController < ApplicationController
   end
 
   def edit
-    redirect_to project_task_path(@project, @task)
   end
 
   def update

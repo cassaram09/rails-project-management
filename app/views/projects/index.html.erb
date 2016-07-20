@@ -9,7 +9,10 @@
   <% if @projects.empty? %>
     <h4><%= "You don't have any projects yet. Why not start by creating a new one?" %></h4>
   <% else %>
-    <%= render @projects %>
+    <div class="row">
+      <%= render @projects %>
+    </div>
+    
   <% end %>
 </div>
 

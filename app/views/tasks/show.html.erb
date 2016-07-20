@@ -1,5 +1,9 @@
 <h2><%= @task.name %></h2>
   <p><%= @task.description %></p>
+  <p>Created: <%= @task.friendly_created_at %></p>
+  <p>Due: <%= @task.due_date %></p>
+  <p>Status: <%= @task.status %></p>
+  <p>Priority: <%= @task.priority %></p>
 
 <h3>Comments</h3>
 <% @task.comments.reverse.each do |comment| %>

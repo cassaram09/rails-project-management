@@ -1,9 +1,12 @@
-<h2>Comments</h2>
+<h2><%= @task.name %></h2>
+  <p><%= @task.description %></p>
+
+<h3>Comments</h3>
 <% @task.comments.reverse.each do |comment| %>
   <p> <%= comment.content %> by <%= comment.user.email %> 
   <%= link_to "Edit Comment", edit_comment_path(comment) %> 
   <%= link_to "Delete", comment_path(comment), method: :delete %></p>
 <% end %>
 
-<h2>New Comment</h2>
+<h4>New Comment</h4>
 <%= render partial: "comments/form", locals: {comment: @comment} %>

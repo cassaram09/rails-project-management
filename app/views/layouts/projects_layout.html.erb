@@ -7,24 +7,22 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <%= render "navs/nav_base" %>
-    <nav class="navbar navbar-default">
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <div class="container">
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "Active", projects_path %></li>
-          <li><%= link_to "Complete", complete_projects_path %></li>
-            </ul>
-          </li>
-        <ul>
-        </div>
+  <%= render "navs/nav_base"%>
+    <div class="header">
+      <div class="container">
+        <% if params[:project_id] %>
+          <h1><%= @project.name %></h1>
+        <% else %>
+          <h1><%= params[:controller].capitalize%></h1>
+        <% end %>
+      </div>
     </div>
-    </nav>
     <div class="container">
-      <%= yield %>
+      <div class="notice"><%= notice %></div>
+      <div class="alert"><%= alert %></div>
+    <%= yield %>
     </div>
   </body>
 </html>
+
+

@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  layout "projects_layout", only: [:show, :edit]
   before_action :set_task, except: [:index, :new, :create]
   before_action :set_project, except: [:index, :new]
   # before_action :check_user

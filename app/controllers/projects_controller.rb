@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
+  layout "projects_layout"
   before_action :set_project, except: [:index, :new, :create]
-  #layout "projects_layout"
+  
   before_action :check_user, except: [:index, :create, :complete, :tasks, :new]
 
 

@@ -6,7 +6,7 @@ class TasksController < ApplicationController
 
   def index
     @task = Task.new
-    @tasks = @user.all_user_tasks
+    @tasks = @user.tasks.active
   end
 
   def new
@@ -49,7 +49,7 @@ class TasksController < ApplicationController
   end
 
   def complete
-    @complete = Task.complete
+    @tasks = Task.complete
   end
 
   private

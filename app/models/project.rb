@@ -16,4 +16,16 @@ class Project < ActiveRecord::Base
   def self.search(search)
     where("name LIKE ?", "%#{search}%") 
   end
+
+  def active_tasks
+    self.tasks.active 
+  end
+
+  def complete_tasks
+    self.tasks.complete
+  end
+
+  def on_hold_tasks
+    self.tasks.on_hold
+  end
 end

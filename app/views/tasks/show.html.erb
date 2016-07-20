@@ -1,12 +1,34 @@
 <div class="task-block">
-  <h2><%= @task.name %></h2>
-  <div class="line-dark"></div>
-  <p><%= @task.description %></p>
-  <p>Created: <%= @task.friendly_created_at %></p>
-  <p>Due: <%= @task.due_date %></p>
-  <p>Status: <%= @task.status %></p>
-  <p>Priority: <%= @task.priority %></p>
-  <%= link_to "Edit Task", edit_project_task_path(@project, @task), class: "btn btn-sm btn-primary" %> 
+  <div class="row">
+      <div class="col-md-12">
+        <h2><%= @task.name %></h2>
+       
+      </div>
+      <div class="col-md-3">
+        <p> Created: <%= @task.friendly_created_at %></p>
+        <p> Due: <%= @task.due_date %> </p>
+        
+      </div>
+
+      <div class="col-md-3">
+        <p> Status: <%= @task.status %></p>
+        <p> Priority: <%= @task.priority %> </p>
+      </div>
+
+      <div class="col-md-3">
+        <p><%= @task.description %></p>
+      </div>
+
+      <div class="col-md-3">
+        <div class="inline-button">
+          <%= link_to "View Task", project_task_path(@task.project, @task), class: "btn btn-sm btn-default td-button" %> 
+        </div>
+        <div class="inline-button">    
+          <%= link_to "Edit Task", edit_project_task_path(@task.project, @task), class: "btn btn-sm btn-primary td-button" %>
+        </div>
+      </div>
+
+    </div> <!-- Row end -->
 </div>
 
 <div class="comment-block">

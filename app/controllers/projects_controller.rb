@@ -50,6 +50,7 @@ class ProjectsController < ApplicationController
   end
 
   def tasks
+    @task = Task.new
     @tasks = @project.tasks
   end
 

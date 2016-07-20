@@ -1,13 +1,16 @@
-<h1><%= @project.name %> Tasks</h1>
+<%= render partial: "tasks/quick_add_form", locals: {task: @task} %>
 
+<div class="project-block">
+<h1><%= @project.name %> Tasks</h1>
+<div class="line-dark"></div>
 <table class="table">
 
   <thead>
     <td><h4>Name</h4></td>
     <td class="mobile-hide"><h4>Description</h4></td>
-    <td><h4>Due</h4></td>
+    <td class="mobile-hide"><h4>Due</h4></td>
     <td class="mobile-hide"><h4>Status</h4></td>
-    <td><h4>Priority</h4></td>
+    <td class="mobile-hide"><h4>Priority</h4></td>
     <td class="mobile-hide"><h4>Tags</h4></td>
   </thead>
     
@@ -15,9 +18,9 @@
     <tr>
       <td> <%= task.name %> </td>
       <td class="mobile-hide"> <%= task.description %> </td>
-      <td> <%= task.due_date %> </td>
+      <td class="mobile-hide"> <%= task.due_date %> </td>
       <td class="mobile-hide"> <%= task.status %> </td>
-      <td> <%= task.priority %> </td>
+      <td class="mobile-hide"> <%= task.priority %> </td>
       <td class="mobile-hide"> <% task.tags.each do |tag| %> <%= tag.name%> <% end %> </td>
       <td> <%= link_to "Edit Task", project_task_path(@project, task), class: "btn btn-sm btn-primary"%> </td>
       <td> <%= button_to "Delete Task", project_task_path(@project, task), method: :delete, class: "btn btn-sm btn-danger" %> </td>
@@ -26,3 +29,4 @@
   <% end %>
 
 </table>
+</div>

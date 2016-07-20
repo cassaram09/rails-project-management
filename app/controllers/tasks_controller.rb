@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, except: [:index, :new, :create]
-  before_action :set_project
+  before_action :set_project, except: [:index, :new, :create]
   # before_action :check_user
 
   def index
@@ -24,6 +24,7 @@ class TasksController < ApplicationController
   end
 
   def show
+    binding.pry
     @comment = Comment.new
   end
 
@@ -63,7 +64,7 @@ class TasksController < ApplicationController
   end
 
   def set_project
-    @project = Project.find_by(id: params[:id])
+    @project = Project.find_by(id: params[:project_id])
   end
 
   def task_params

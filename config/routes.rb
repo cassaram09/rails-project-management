@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     get :tasks, to: 'projects#tasks'
     post "/tasks", to: 'tasks#create', as: "post_new_task"
     resources :tasks, only: [:show, :edit, :update, :destroy] do 
-      get :complete, on: :collection
+      get :complete, on: :collection, to: "projects#complete_tasks"
     end
   end
 

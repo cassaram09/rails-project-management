@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   layout "projects_layout"
   before_action :set_project, except: [:index, :new, :create]
   
-  before_action :check_user, except: [:index, :create, :complete, :tasks, :new]
+  before_action :check_user, except: [:index, :create, :complete, :tasks, :new, :complete_tasks]
 
 
   def index
@@ -52,6 +52,10 @@ class ProjectsController < ApplicationController
   def tasks
     @task = Task.new
     @tasks = @project.tasks
+  end
+
+  def complete_tasks
+    @tasks = @project.tasks.complete
   end
 
   def complete

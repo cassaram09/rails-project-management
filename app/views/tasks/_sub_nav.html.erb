@@ -1,0 +1,8 @@
+<div class="task-block">
+  <div class="inline-button">
+    <%= link_to "Active Tasks", project_tasks_path(project, task), class: "btn btn-warning" %> 
+  </div>
+  <div class="inline-button">
+    <%= link_to "Complete Tasks", complete_project_tasks_path(project, task), class: "btn btn-success" %>
+  </div>
+</div>

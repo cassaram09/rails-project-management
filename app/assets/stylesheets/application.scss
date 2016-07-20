@@ -83,22 +83,22 @@ select {
   margin: 20px 0px;
 }
 
-.navbar-default {
+.navbar-custom {
     background-color: #333;
     border-color: #111;
     border-radius: 0px; 
 }
 
-.navbar-default .navbar-nav > li > a{
+.navbar-custom .navbar-nav > li > a{
     color: #ddd;
 }
 
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+.navbar-custom .navbar-nav > li > a:hover, .navbar-custom .navbar-nav > li > a:focus {
     color: #fff;
     background-color: transparent;
   }
 
-.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+.navbar-custom .navbar-nav > .open > a, .navbar-custom .navbar-nav > .open > a:hover, .navbar-custom .navbar-nav > .open > a:focus {
     background-color: #444;
     color: #fff;
 }
@@ -123,11 +123,11 @@ select {
 
 }
 
-.navbar-default .navbar-brand {
+.navbar-custom .navbar-brand {
     color: #3399ff;
 }
 
-.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+.navbar-custom .navbar-brand:hover, .navbar-custom .navbar-brand:focus {
     color: #eee;
     background-color: transparent;
 }

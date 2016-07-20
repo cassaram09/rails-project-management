@@ -1,0 +1,53 @@
+<%= render partial: "tasks/sub_nav", locals: {project: @project, task: @task} %>
+
+<div class="task-block">
+
+  <h2>Completed Tasks</h2>
+  <div class="line-dark"></div>
+
+  <% if @tasks.empty? %>
+
+    <h4>It looks like you haven't completed any tasks yet. </h4>
+
+  <% else %>
+
+    <% @tasks.each do |task| %>
+      <div class="row">
+        <div class="col-md-12">
+          <h3><%= task.name %></h3>
+         
+        </div>
+        <div class="col-md-3">
+          <h4>Task Details</h4>
+          <p> Created: <%= task.friendly_created_at %></p>
+          <p> Due: <%= task.due_date %> </p>
+        </div>
+
+        <div class="col-md-3">
+          <h4>Parent Project</h4>
+          <p> <%= link_to " View #{task.project.name}", project_task_path(task.project, task), class: "btn btn-sm btn-default td-button" %> </p>
+        </div>
+
+        <div class="col-md-3">
+          <h4>Description</h4>
+          <p><%= task.description %></p>
+        </div>
+
+
+        <div class="col-md-3">
+          <h4>Options</h4>
+          <div class="inline-button">
+            <%= link_to "View Task", project_task_path(task.project, task), class: "btn btn-sm btn-default td-button" %> 
+          </div>
+          <div class="inline-button">    
+            <%= link_to "Edit Task", edit_project_task_path(task.project, task), class: "btn btn-sm btn-primary td-button" %>
+          </div>
+        </div>
+
+      </div> <!-- Row end -->
+      <div class="line-light"></div>
+    <% end %>
+
+  <% end %> <!-- if/else end -->
+
+</div> <!-- block end -->

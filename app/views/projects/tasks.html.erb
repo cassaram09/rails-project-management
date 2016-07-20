@@ -1,8 +1,11 @@
+<%= render partial: "tasks/sub_nav", locals: {project: @project, task: @task} %>
+
 <%= render partial: "tasks/new_project_task", locals: {project: @project, task: @task} %>
 
 <div class="project-block">
-  <h2><%= @project.name %> Active Tasks</h2>
+  <h2>Active Tasks</h2>
   <h4><%= @tasks.count%> Tasks</h4>
+
   <div class="line-dark"></div>
 
   <% @tasks.each do |task| %>

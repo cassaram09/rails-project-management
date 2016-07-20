@@ -1,45 +1,77 @@
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+<div class="profile-block">
 
-  <div class="field form-group">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, class: "form-control" %>
-  </div>
+  <h2><%= @user.name %></h2>
 
-  <div class="field form-group">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, class: "form-control" %>
-  </div>
+  <p><%= @user.email%></p>
 
-  <div class="field form-group">
-    <%= f.label :role %><br />
-    <% User.roles.each do |role,index| %>
-      <%= role.capitalize %>
-      <%= f.radio_button :role, role %>
+  <p><%= @user.role %></p>
+
+  <input type="button" class="btn btn-primary" id="show-profile-options" value="Edit Profile">
+
+  <div class="profile-options">
+
+    <h3>Edit Profile</h3>
+
+    <div class="line-dark"></div>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= devise_error_messages! %>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="field form-group">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, class: "form-control" %>
+          </div>
+
+          <div class="field form-group">
+            <%= f.label :name %><br />
+            <%= f.text_field :name, autofocus: true, class: "form-control" %>
+          </div>
+          
+          <div class="form-group">
+            <%= f.label :role, class: "label-block" %>
+            <%= f.select(:role) do %>
+              <% User.roles.each do |key,value| %>
+              <%= content_tag(:option, key.capitalize, value: key) %>
+                <% end %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+
+          <div class="field form-group">
+            <%= f.label :password, value: "New Password" %> <i>(leave blank if you don't want to change it)</i><br />
+            <%= f.password_field :password, autocomplete: "off", class: "form-control"%>
+          </div>
+
+          <div class="field form-group">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+          </div>
+
+          <div class="actions form-group">
+            <%= f.submit "Update Profile", class: "btn btn-primary" %>
+          </div>
+        </div>
+
+      </div>
+
+      
     <% end %>
+
+    <div class="line-light"></div>
+
+    <h3>Delete account</h3>
+
+    <p>Unhappy? Close your account any time. We're sorry to see you go! <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %></p>
   </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+<!--   <%= link_to "Back", :back, class: "btn btn-default" %>
+ -->
+</div>
 
-  <div class="field form-group">
-    <%= f.label :password, value: "New Password" %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off", class: "form-control"%>
-  </div>
 
-  <div class="field form-group">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
-  </div>
-
-  <div class="actions form-group">
-    <%= f.submit "Update", class: "btn btn-primary" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %></p>
-
-<%= link_to "Back", :back, class: "btn btn-default" %>

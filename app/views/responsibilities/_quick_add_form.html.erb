@@ -1,9 +1,9 @@
 <% if responsibility.errors.any? %>
   <div id="error_explanation">
-    <h2>
+    <h3>
       <%= pluralize(responsibility.errors.count, "error") %>
       prohibited this responsibility from being saved:
-    </h2>
+    </h3>
  
     <ul>
     <% responsibility.errors.full_messages.each do |msg| %>

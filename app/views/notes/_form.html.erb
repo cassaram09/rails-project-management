@@ -1,9 +1,9 @@
 <% if note.errors.any? %>
   <div id="error_explanation">
-    <h2>
+    <h3>
       <%= pluralize(note.errors.count, "error") %>
-      prohibited this post from being saved:
-    </h2>
+      prohibited this note from being saved:
+    </h3>
  
     <ul>
     <% note.errors.full_messages.each do |msg| %>

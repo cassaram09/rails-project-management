@@ -134,6 +134,17 @@ body {
   background-color: #fefefe;
 }
 
+#error_explanation {
+  background-color:  #ff4d4d;
+  padding: 10px 25px 20px;
+  margin: 10px 0px;
+  border: 2px solid #ddd;
+  color: #eee
+}
+
+#error_explanation ul{
+  margin-left: 30px;
+}
 
 
 

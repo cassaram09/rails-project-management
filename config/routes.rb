@@ -25,11 +25,13 @@ Rails.application.routes.draw do
   resources :responsibilities
 
   resources :tasks, only: [:index, :new, :create]
+  post "/tasks/new", to: 'tasks#create', as: "post_new_task"
 
   resources :projects do
     get :on_hold, on: :collection
     get :complete, on: :collection
     get :tasks, to: 'projects#tasks'
+    post "/tasks", to: 'tasks#create', as: "post_new_task"
     resources :tasks, only: [:show, :edit, :update, :destroy] do 
       get :complete, on: :collection
     end

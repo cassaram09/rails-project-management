@@ -1,9 +1,9 @@
 <% if tag.errors.any? %>
   <div id="error_explanation">
-    <h2>
+    <h3>
       <%= pluralize(tag.errors.count, "error") %>
       prohibited this tag from being saved:
-    </h2>
+    </h3>
  
     <ul>
     <% tag.errors.full_messages.each do |msg| %>
@@ -17,5 +17,4 @@
   <%= f.label :name %>
     <%= f.text_field :name %>
   <%= f.submit %>
-
 <% end %>

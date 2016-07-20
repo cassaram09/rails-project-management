@@ -1,9 +1,11 @@
+<h2>Add a New Task</h2>
+
 <% if task.errors.any? %>
   <div id="error_explanation">
-    <h2>
+    <h3>
       <%= pluralize(task.errors.count, "error") %>
       prohibited this task from being saved:
-    </h2>
+    </h3>
  
     <ul>
     <% task.errors.full_messages.each do |msg| %>
@@ -13,40 +15,37 @@
   </div>
 <% end %>
 
-<%= form_for [project, task] do |f| %>
+
+<div class="task-block">
+<%= form_for [project,task], {url: project_post_new_task_path(project), controller: "tasks", action: "create", method: "post", html: {class: "form-inline"}} do |f| %>
   <div class="form-group">
-    <%= f.label :name %>
+    <%= f.label :name, class: "label-block"%>
       <%= f.text_field :name, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :description %>
+    <%= f.label :description, class: "label-block" %>
       <%= f.text_field :description, class: "form-control"%>
   </div>
   <div class="form-group">
-    <%= f.label :due_date %>
+    <%= f.label :due_date, class: "label-block" %>
       <%= f.date_select(:due_date, :order => [:month, :day, :year]) %>
   </div>
   <div class="form-group">
-    <%= f.label :status %>
-      <% Task.statuses.each do |s,index| %>
-        <%= s.capitalize %>
-        <%= f.radio_button :status, s, class: "radio-inline" %>
-      <% end %>
+    <%= f.label :priority, class: "label-block" %>
+    <%= f.select(:priority) do %>
+      <% Task.priorities.each do |key,value| %>
+      <%= content_tag(:option, key.capitalize, value: key) %>
+        <% end %>
+    <% end %>
   </div>
   <div class="form-group">
-    <%= f.label :priority %>
-      <% Task.priorities.each do |p,index| %>
-        <%= p.capitalize %>
-        <%= f.radio_button :priority, p, class: "radio-inline" %>
-      <% end %>
-  </div>
-  <div class="form-group">
-    <%= f.label :tag_names, "Tags (Comma seperated)" %>
+    <%= f.label :tag_names, value: "Tags (Comma seperated)", class: "label-block" %>
       <%= f.text_field :tag_names, class: "form-control"%>
   </div>
-  <div class="form-group">
+  <div class="form-group button-align">
     <%= f.hidden_field :user_id, value: @user.id %>
     <%= f.hidden_field :project_id, value: @project.id %>
     <%= f.submit class: "btn btn-primary"%>
   </div>
 <% end %>
+</div>

@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, except: [:index, :new, :create]
-  before_action :set_project, except: [:index, :new, :create]
+  before_action :set_project, except: [:index, :new]
   # before_action :check_user
 
   def index
@@ -13,18 +13,22 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.create(task_params)
+    @task = Task.new(task_params)
     if @task.save
       redirect_to project_tasks_path(task_params[:project_id])
-    else
-      @tasks = @user.tasks
-      @task
-      render :index
+    elsif URI(request.referer).path == "/tasks/new"
+      render :new
+    elsif URI(request.referer).path == "/tasks"
+      @tasks = @user.all_user_tasks
+      render :index 
+    else 
+      @project = Project.find_by(id: params[:task][:project_id])
+      @tasks = @project.tasks
+      render 'projects/tasks'
     end
   end
 
   def show
-    binding.pry
     @comment = Comment.new
   end
 

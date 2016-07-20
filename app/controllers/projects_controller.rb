@@ -28,7 +28,6 @@ class ProjectsController < ApplicationController
   end
 
   def edit 
-    binding.pry
     redirect_to project_path(@project)
   end
 

@@ -9,7 +9,7 @@ class Task < ActiveRecord::Base
   enum status: [:active, :on_hold, :complete]
   enum priority: [:low, :medium, :high, :urgent]
 
-  validates :name, :description, :due_date, :status, :priority, presence: true
+  validates :name, :description, :due_date, :status, :priority, :project_id, presence: true
 
   scope :complete, -> { where(status: 2) }
   scope :on_hold, -> { where(status: 1) }

@@ -1,5 +1,30 @@
-<h1>All Comments</h1>
+<div class="comment-block">
+  <h2>All Comments</h2>
+  <div class="line-dark"></div>
 
-<% @user.comments.each do |comment| %>
-  <%= comment.content %> by <%= comment.user.email %>
+  <% @comments.each do |comment| %>
+  <div class="row">
+
+    <div class="col-md-6">
+      <p> Posted: <%= comment.friendly_created_at %></p>
+      <p><%= comment.content %></p>
+    </div>
+
+    <div class="col-md-3">
+      <p>On task: <%= link_to comment.task.name, project_task_path(comment.task.project, comment.task) %></p>
+      <p>From project: <%= link_to comment.task.project.name, project_path(comment.task.project) %></p>
+    </div>
+
+    <div class="col-md-3">
+      <div class="inline-button">
+        <%= link_to "Edit Comment", edit_comment_path(comment), class: "btn btn-sm btn-primary" %> 
+      </div>
+      <div class="inline-button">    
+        <%= button_to "Delete", comment_path(comment), method: :delete, class: "btn btn-sm btn-danger" %>
+      </div>
+    </div>
+
+  </div>
+  <div class="line-light"></div>
   <% end %>
+</div>

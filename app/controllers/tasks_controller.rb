@@ -31,6 +31,7 @@ class TasksController < ApplicationController
 
   def show
     @comment = Comment.new
+    @comments = @task.comments.reverse.each
   end
 
   def edit
@@ -39,7 +40,7 @@ class TasksController < ApplicationController
   def update
     @task.tags.clear
     @task.update(task_params)
-    redirect_to project_tasks_path
+    redirect_to project_task_path(@project, @task)
   end
 
   def destroy

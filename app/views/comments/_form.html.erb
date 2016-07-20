@@ -13,9 +13,16 @@
   </div>
 <% end %>
 
+
+<h3>New Comment</h3>
+<div class="line-dark"></div>
 <%= form_for(comment) do |f| %>
-  <%= f.text_area :content %>
+  <div class="form-group">  
+    <%= f.text_area :content, class: "comment-text-field form-control", rows: "3" %>
+  </div>  
   <%= f.hidden_field :user_id, value: @user.id %>
   <%= f.hidden_field :task_id, value: @task.id %>
-  <%= f.submit %>
+  <div class="form-group">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
 <% end %>

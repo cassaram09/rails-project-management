@@ -1,9 +1,9 @@
-<h2>New Task</h2>
+
 <% if task.errors.any? %>
   <div id="error_explanation">
     <h3>
       <%= pluralize(task.errors.count, "error") %>
-      pohibited this task from being saved:
+      prohibited this task from being saved:
     </h3>
  
     <ul>
@@ -14,38 +14,41 @@
   </div>
 <% end %>
 <div class="task-block">
-  <%= form_for(task, {url: post_new_task_path, controller: "tasks", action: "create", method: "post"}) do |f| %>
-    <div class="form-group">
-      <%= f.label :name %>
-        <%= f.text_field :name, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :description %>
-        <%= f.text_field :description, class: "form-control"%>
-    </div>
-    <div class="form-group">
-      <%= f.label :due_date %>
-        <%= f.date_select(:due_date, :order => [:month, :day, :year]) %>
-    </div>
-    <div class="form-group">
-      <%= f.label :priority, class: "label-block" %>
-      <%= f.select(:priority) do %>
-        <% Task.priorities.each do |key,value| %>
-        <%= content_tag(:option, key.capitalize, value: key) %>
-          <% end %>
-      <% end %>
-    </div>
-    <div class="form-group">
-      <%= f.label :tag_names, "Tags (Comma seperated)" %>
-        <%= f.text_field :tag_names, class: "form-control"%>
-    </div>
-    <div class="form-group project-select">
-      <%= f.label :project_id, "Project", class: "label-block"  %>
-      <%= collection_select(:task, :project_id, Project.all, :id, :name, { include_blank: true}) %>
-    </div>
-    <div class="form-group">
-      <%= f.hidden_field :user_id, value: @user.id %>
-      <%= f.submit class: "btn btn-primary"%>
-    </div>
-  <% end %>
+  <h2>New Task</h2>
+  <div class="line-dark"></div>
+    <%= form_for(task, {url: post_new_task_path, controller: "tasks", action: "create", method: "post"}) do |f| %>
+      <div class="form-group">
+        <%= f.label :name %>
+          <%= f.text_field :name, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :description %>
+          <%= f.text_field :description, class: "form-control"%>
+      </div>
+      <div class="form-group">
+        <%= f.label :due_date %>
+          <%= f.date_select(:due_date, :order => [:month, :day, :year]) %>
+      </div>
+      <div class="form-group">
+        <%= f.label :priority, class: "label-block" %>
+        <%= f.select(:priority) do %>
+          <% Task.priorities.each do |key,value| %>
+          <%= content_tag(:option, key.capitalize, value: key) %>
+            <% end %>
+        <% end %>
+      </div>
+      <div class="form-group">
+        <%= f.label :tag_names, "Tags (Comma seperated)" %>
+          <%= f.text_field :tag_names, class: "form-control"%>
+      </div>
+      <div class="form-group project-select">
+        <%= f.label :project_id, "Project", class: "label-block"  %>
+        <%= collection_select(:task, :project_id, Project.all, :id, :name, { include_blank: true}) %>
+      </div>
+      <div class="form-group">
+        <%= f.hidden_field :user_id, value: @user.id %>
+        <%= f.submit class: "btn btn-primary"%>
+      </div>
+    <% end %>
+  </div>
 </div>

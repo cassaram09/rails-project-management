@@ -16,6 +16,8 @@
           <h1>Login</h1>
         <% elsif params[:action] == "profile"%>
           <h1>Profile</h1>
+        <% elsif params[:controller] == "tasks" && params[:project_id] %>
+          <h1>Project Task</h1>
         <% else %>
           <h1><%= params[:controller].capitalize%></h1>
         <% end %>

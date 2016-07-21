@@ -24,4 +24,12 @@ $(document).ready(function(){
       $( "#show" ).val("Add a Task");
     }
   });
+  $( "#show" ).click(function() {
+    $( ".new-note-toggle" ).slideToggle( "slow", "linear" );
+    if ($( "#show" ).val() == "Create a new note"){
+      $( "#show" ).val("Hide");
+    } else {
+      $( "#show" ).val("Create a new note");
+    }
+  }); 
 });

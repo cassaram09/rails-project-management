@@ -1,8 +1,26 @@
-<h1>Notes</h1>
+
+<% if @note.errors.any? %>
+  <div id="error_explanation">
+    <h3>
+      <%= pluralize(@note.errors.count, "error") %>
+      prohibited this note from being saved:
+    </h3>
+ 
+    <ul>
+    <% @note.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div class="note-block">
-  <h2>Create a new note</h2>
-  <div class="line-dark"></div>
-  <%= render partial: "form", locals: {note: @note} %>
+  <input type="button" id="show" value="Create a new note" class="btn btn-primary">
+  <div class="new-note-toggle">
+    <h2>Create a new note</h2>
+    <div class="line-dark"></div>
+    <%= render partial: "form", locals: {note: @note} %>
+  </div>
 </div>
 
 <div class="note-block">

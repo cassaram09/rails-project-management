@@ -10,8 +10,10 @@
   <%= render "navs/nav_base"%>
     <div class="header">
       <div class="container">
-        <% if params[:controller] == "devise/registrations" %>
-          <h1>Sign Up</h1>
+        <% if params[:controller] == "devise/registrations" && params[:action] == "edit" %>
+          <h1>Profile</h1>
+        <% elsif params[:controller] == "devise/registrations" %>
+          <h1>Sign Up!</h1>
         <% elsif params[:controller] == "devise/sessions"%>
           <h1>Login</h1>
         <% elsif params[:action] == "profile"%>

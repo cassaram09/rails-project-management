@@ -17,7 +17,7 @@
 
 $(document).ready(function(){
   $( "#show" ).click(function() {
-    $( ".quick-add" ).slideToggle( "slow", "linear" );
+    $( ".quick-add" ).slideToggle( "fast", "linear" );
     if ($( "#show" ).val() == "Add a Task"){
       $( "#show" ).val("Hide");
     } else {
@@ -32,4 +32,12 @@ $(document).ready(function(){
       $( "#show" ).val("Create a new note");
     }
   }); 
+  $( "#show-profile-options" ).click(function() {
+    $( ".profile-options" ).slideToggle( "slow", "swing" );
+    if ($( "#show-profile-options" ).val() == "Edit Profile"){
+      $( "#show-profile-options" ).val("Hide Options");
+    } else {
+      $( "#show-profile-options" ).val("Edit Profile");
+    }
+  });
 });

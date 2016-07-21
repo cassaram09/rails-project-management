@@ -22,6 +22,8 @@ App Features
 
   Admin section / namespace?
 
+  fix flash alert on log in and sign up pages
+
   Projects are temporary endeavors to create something and have defined start and finish points.
 
   Responsibilities are recurring tasks that need to be completed.

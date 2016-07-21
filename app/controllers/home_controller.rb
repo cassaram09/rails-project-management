@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  layout "home_layout", except: [:profile]
+  layout "home_layout"
   
   def index
   end

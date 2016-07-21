@@ -1,27 +1,29 @@
-<h1>Tags</h1>
-
 <% if @tag.errors.any? %>
   <div id="error_explanation">
-    <h2>
+    <h3>
       <%= pluralize(@tag.errors.count, "error") %>
       prohibited this tag from being saved:
-    </h2>
- 
+    </h3>
     <ul>
-    <% @tag.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
+      <% @tag.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
     </ul>
   </div>
 <% end %>
 
-<% @tags.each do |tag| %>
+<div class="default-block">
+  <h2>Tag Quick Add</h2>
+  <div class="line-dark"></div>
+  <%= render partial: "quick_add_tag", locals: {tag: @tag} %>
+</div>
 
-  <%= form_for(tag) do |f| %>
-  <%= f.label :name %>
-    <%= f.text_field :name %>
-  <%= f.submit %>
+<div class="default-block">
+  <h2>Edit Tags</h2>
+  <div class="line-dark"></div>
+  <div class="row">
+  <% @tags.each do |tag| %>
+    <%= render partial: "form", locals: {tag: tag} %>
   <% end %>
-  <%= button_to "Delete", tag_path(tag), method: :delete %>
-
-<% end %>
+  
+</div>

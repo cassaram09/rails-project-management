@@ -1,20 +1,16 @@
-<% if tag.errors.any? %>
-  <div id="error_explanation">
-    <h3>
-      <%= pluralize(tag.errors.count, "error") %>
-      prohibited this tag from being saved:
-    </h3>
- 
-    <ul>
-    <% tag.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+<div class="col-xs-12 col-sm-4 col-md-3">
+  <div class="inline">
+    <%= form_for(tag, html: {class: "form-inline"}) do |f| %>
+    <div class="form-group mobile-tag-field">
+      <%= f.text_field :name, class: "form-control tiny-field" %>
+    </div>
+    <div class="form-group mobile-tag-field">
+      <%= f.submit "✓", class: "btn btn-sm btn-primary" %>
+      </div>
     <% end %>
-    </ul>
   </div>
-<% end %>
+    <div class="inline">
+      <%= link_to "X", tag_path(tag), method: :delete, class: "btn btn-sm btn-danger" %>
+    </div>
 
-<%= form_for(tag) do |f| %>
-  <%= f.label :name %>
-    <%= f.text_field :name %>
-  <%= f.submit %>
-<% end %>
+</div>

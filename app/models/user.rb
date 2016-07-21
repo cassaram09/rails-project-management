@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
   has_many :responsibilities
   has_many :comments
   has_many :tasks
-  has_many :notes  
+  has_many :notes
+  has_many :tags 
 
   enum role: [:user, :admin]
 
@@ -23,11 +24,11 @@ class User < ActiveRecord::Base
   end
 
   #collect all tags from all tasks owned by the user
-  def tags
-    tags = self.tasks.collect do |task|
-      task.tags.collect {|tag| tag}
-    end.flatten
-  end
+  # def tags
+  #   tags = self.tasks.collect do |task|
+  #     task.tags.collect {|tag| tag}
+  #   end.flatten
+  # end
 
   def active_projects
     self.projects.active 
@@ -54,13 +55,13 @@ class User < ActiveRecord::Base
   end
 
   # Tasks are nested under projects, so we need a custom method to find all of a user's tasks
-  def all_user_tasks
-    self.projects.map do |project|
-      project.tasks
-    end.flatten
-  end
+  # def all_user_tasks
+  #   self.projects.map do |project|
+  #     project.tasks
+  #   end.flatten
+  # end
 
-  def all_tasks_query
-    Task.where(project_id: self.project_ids).where("user_id = ?", self.id)
-  end
+  # def all_tasks_query
+  #   Task.where(project_id: self.project_ids).where("user_id = ?", self.id)
+  # end
 end

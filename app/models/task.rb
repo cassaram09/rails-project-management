@@ -22,6 +22,7 @@ class Task < ActiveRecord::Base
     tag_array.each do |tag|
       new_tag = Tag.find_or_create_by(name: tag)
       self.tags << new_tag
+      self.user.tags << new_tag
     end
   end
 

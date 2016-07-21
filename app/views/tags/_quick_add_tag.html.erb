@@ -1,0 +1,12 @@
+
+<div class="inline">
+  <%= form_for(tag, html: {class: "form-inline"}) do |f| %>
+  <div class="form-group mobile-tag-field">
+    <%= f.label :name, class: "mobile-tag-field"%>
+      <%= f.text_field :name, class: "form-control tiny-field" %>
+  </div>
+    <%= f.hidden_field :user_id, value: @user.id %>
+    <%= f.submit "Create Tag", class: "btn btn-sm btn-primary mobile-tag-field" %>
+  <% end %>
+</div>
+

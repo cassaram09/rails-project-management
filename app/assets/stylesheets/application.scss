@@ -26,6 +26,13 @@
   margin-bottom: 0px;
 }
 
+.inline {
+   display: inline-block;
+}
+
+.hidden {
+   display: none;
+}
 
 .navbar {
   margin-bottom: 0px;
@@ -34,6 +41,12 @@
   max-width: 400px;
 }
 
+.default-block {
+  background-color: #eee;
+  padding: 10px 25px;
+  margin: 10px 0px;
+  border: 2px solid #ddd;
+}
 
 
 .inline-button {

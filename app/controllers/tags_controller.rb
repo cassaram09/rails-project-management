@@ -6,17 +6,22 @@ class TagsController < ApplicationController
     @tag = Tag.new
   end
 
-  def create
-
+   def create
+    @tag = Tag.new(tag_params)
+    if @tag.save
+      redirect_to tags_path
+    else
+      @tags = @user.tags
+      render :index
+    end
   end
 
   def update
-    if @tag.update(name: params[:tag][:name])
+    if @tag.update(tag_params)
       redirect_to tags_path
     else
-      binding.pry
+    
       @tags = @user.tags
-      @tag
       render :index
     end
   end
@@ -34,6 +39,10 @@ class TagsController < ApplicationController
 
   def set_tag
     @tag = Tag.find_by(id: params[:id])
+  end
+
+  def tag_params
+    params.require(:tag).permit(:name, :user_id)
   end
 
 end

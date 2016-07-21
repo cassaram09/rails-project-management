@@ -1,18 +1,3 @@
-<% if project.errors.any? %>
-  <div id="error_explanation">
-    <h3>
-      <%= pluralize(project.errors.count, "error") %>
-      prohibited this project from being saved:
-    </h3>
- 
-    <ul>
-    <% project.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-
 <%= form_for(project) do |f| %>
   <div class="form-group">
   <%= f.label :name, class: "control-label"%>
@@ -25,13 +10,6 @@
   <div class="form-group">
   <%= f.label :due_date, class: "control-label"%>
     <%= f.date_select :due_date, :order => [:month, :day, :year], class: "form-control"%>
-  </div>
-  <div class="form-group">
-  <%= f.label :status, class: "control-label"%>
-    <% Project.statuses.each do |s,index| %>
-      <%= s.capitalize %>
-      <%= f.radio_button :status, s %>
-    <% end %>
   </div>
   <div class="form-group">
   <%= f.hidden_field :user_id, value: @user.id %>

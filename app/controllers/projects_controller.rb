@@ -6,12 +6,12 @@ class ProjectsController < ApplicationController
 
 
   def index
-    @projects = @user.active_projects.reverse
+    @projects =@user.active_projects.reverse
     @project = Project.new
   end
 
   def new
-
+    @project = Project.new
   end
 
   def create

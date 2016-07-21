@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   resources :tags
 
-  resources :responsibilities
+  # resources :responsibilities
 
   resources :tasks, only: [:index, :new, :create] do
     post "/tasks/new", to: 'tasks#create', as: "post_new_task"

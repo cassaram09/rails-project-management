@@ -1,0 +1,10 @@
+<div class="col-md-3">
+  <h2>collection</h2>
+  <% if collection.empty? %>
+    <p>No results matched your keyword query.</p>
+  <% else %>
+    <% collection.each do |collection-item| %>
+      <p><%= link_to task.name, project_task_path(task.project, task) %></p>
+    <% end %>
+  <% end %>
+</div>

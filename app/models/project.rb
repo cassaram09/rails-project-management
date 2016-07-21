@@ -13,8 +13,8 @@ class Project < ActiveRecord::Base
 
   validates :name, :description, :due_date, :status, presence: true
 
-  def self.search(search)
-    where("name LIKE ? OR description LIKE ? ", "%#{search}%", "%#{search}%") 
+  def self.search(search, current_user_id)
+     where("(name LIKE ? OR description LIKE ?) AND user_id = ?", "%#{search}%", "%#{search}%", current_user_id)
   end
 
   def active_tasks

@@ -31,17 +31,17 @@ class Task < ActiveRecord::Base
     tags.join(", ")
   end
 
-  def self.search(search)
-    where("name LIKE ? OR description LIKE ?", "%#{search}%", "%#{search}%") 
+  def self.search(search, current_user_id)
+    where("(name LIKE ? OR description LIKE ?) AND user_id = ?", "%#{search}%", "%#{search}%", current_user_id)
   end
 
-  def self.search_by_tags(tags)
+  def self.search_by_tags(tags, current_user_id)
     tag_array = tags.split(",").map{|tag| tag.strip}
     tasks = tag_array.collect do |tag|
-      tag_object = Tag.find_by(name: tag)
+      tag_object = Tag.find_by(name: tag, id: current_user_id)
       tag_object.try(:tasks)
     end
-    tasks.flatten.uniq
+    tasks.flatten.uniq.compact
   end
 
 

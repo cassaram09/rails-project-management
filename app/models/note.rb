@@ -4,8 +4,8 @@ class Note < ActiveRecord::Base
 
   validates :content, :title, presence: true
 
-  def self.search(search)
-    where("title LIKE ? or content LIKE ?", "%#{search}%", "%#{search}%") 
+  def self.search(search, current_user_id)
+     where("(title LIKE ? OR content LIKE ?) AND user_id = ?", "%#{search}%", "%#{search}%", current_user_id)
   end
 
 end

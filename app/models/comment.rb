@@ -5,7 +5,7 @@ class Comment < ActiveRecord::Base
 
   validates :content, presence: true
 
-  def self.search(search)
-     where("content LIKE ?", "%#{search}%") 
+  def self.search(search, current_user_id)
+     where("content LIKE ? AND user_id = ?", "%#{search}%", current_user_id)
   end
 end

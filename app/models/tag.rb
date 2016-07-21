@@ -4,4 +4,10 @@ class Tag < ActiveRecord::Base
   belongs_to :user
 
   validates :name, presence: true, uniqueness: true
+  def self.search(search)
+    where("name LIKE ?", "%#{search}%") 
+  end
+  def self.search(search)
+     where("name LIKE ? OR description LIKE ?", "%#{search}%", "%#{search}%") 
+  end
 end

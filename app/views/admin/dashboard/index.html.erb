@@ -17,9 +17,3 @@
 <h3> <%= @comments.count %> comments</h3>
 
 <h3> <%= @tags.count %> tags</h3>
-
-
-<%= form_tag(admin_search_path, method: "get") do %>
-  <%= text_field_tag :search, params[:search], placeholder: "Search Projects" %>
-  <%= submit_tag("Search", name: nil) %>
-<% end %>

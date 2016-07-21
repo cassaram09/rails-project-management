@@ -32,9 +32,20 @@ class Task < ActiveRecord::Base
   end
 
   def self.search(search)
-    where("name LIKE ?", "%#{search}%") 
+    where("name LIKE ? OR description LIKE ?", "%#{search}%", "%#{search}%") 
+  end
+
+  def self.search_by_tags(tags)
+    tag_array = tags.split(",").map{|tag| tag.strip}
+    tasks = tag_array.collect do |tag|
+      tag_object = Tag.find_by(name: tag)
+      tag_object.try(:tasks)
+    end
+    tasks.flatten.uniq
   end
 
 
 
 end
+
+# When a user inputs a list of tags, the form should return all tasks that have that tag. 

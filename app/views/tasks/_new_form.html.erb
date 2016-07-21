@@ -16,7 +16,7 @@
 <div class="task-block">
   <h2>New Task</h2>
   <div class="line-dark"></div>
-    <%= form_for(task, {url: post_new_task_path, controller: "tasks", action: "create", method: "post"}) do |f| %>
+    <%= form_for(task, {url: tasks_path, controller: "tasks", action: "create", method: "post"}) do |f| %>
       <div class="form-group">
         <%= f.label :name %>
           <%= f.text_field :name, class: "form-control" %>

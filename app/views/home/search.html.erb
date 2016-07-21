@@ -43,7 +43,7 @@
           <p>No notes matched your keyword query.</p>
         <% else %>
           <% @notes.each do |note| %>
-            <p><%= link_to note.title, note_path(note) %></p>
+            <p><%= link_to note.title, notes_path %></p>
           <% end %>
         <% end %>
       </div>

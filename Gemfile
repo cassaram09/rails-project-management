@@ -38,6 +38,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 # Use FriendlyId for user friendly URLs
 gem 'friendly_id', '~> 5.1.0'
 
+gem 'localtunnel'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

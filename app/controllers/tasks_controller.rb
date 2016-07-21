@@ -20,7 +20,7 @@ class TasksController < ApplicationController
     elsif URI(request.referer).path == "/tasks/new"
       render :new
     elsif URI(request.referer).path == "/tasks"
-      @tasks = @user.all_user_tasks
+      @tasks = @user.tasks
       render :index 
     else 
       @project = Project.find_by(id: params[:task][:project_id])

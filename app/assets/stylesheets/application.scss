@@ -137,16 +137,11 @@ select {
 // }
 
 .navbar-default .navbar-brand {
-    color: #3399ff;
-    transition: transform 0.3s;
+  color: #3399ff;
 }
 
 .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-    color: #2288ee;
-    background-color: transparent;
-    -ms-transform: scale(1.1); /* IE 9 */
-    -webkit-transform: scale(1.1); /* Chrome, Safari, Opera */
-    transform: scale(1.1);
+  color: #2288ee;
 }
 
 body {

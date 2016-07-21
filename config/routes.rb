@@ -27,8 +27,9 @@ Rails.application.routes.draw do
     get :complete, on: :collection
   end
 
+  post "/projects/new", to: "projects#create", as: "post_new_project"
+
   resources :projects do
-    get :on_hold, on: :collection
     get :complete, on: :collection
     get :tasks, to: 'projects#tasks'
     post "/tasks", to: 'tasks#create', as: "post_new_task"

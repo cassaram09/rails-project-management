@@ -17,11 +17,11 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     if @project.save
+      redirect_to project_tasks_path(@project)
+    elsif URI(request.referer).path == "/projects/new"
+      render :new
+    else 
       redirect_to projects_path
-    else
-      @projects = @user.projects
-      @project
-      render :index
     end
   end
 

@@ -1,5 +1,7 @@
 class Task < ActiveRecord::Base
   include DateTimeConverter
+  extend KeywordSearch
+  
   belongs_to :project
   belongs_to :user
   has_many :comments
@@ -15,6 +17,8 @@ class Task < ActiveRecord::Base
   scope :on_hold, -> { where(status: 1) }
   scope :active, -> { where(status: 0)}
 
+  scope :search, -> (search, user) { where("(name LIKE ? OR description LIKE ?) AND user_id = ?", "%#{search}%", "%#{search}%", user.id)}
+
   #custom writer and readers for Task for creating nested attributes
 
   def tag_names=(tags)
@@ -29,10 +33,6 @@ class Task < ActiveRecord::Base
   def tag_names
     tags = self.tags.collect {|tag| tag.name}
     tags.join(", ")
-  end
-
-  def self.search(search, current_user_id)
-    where("(name LIKE ? OR description LIKE ?) AND user_id = ?", "%#{search}%", "%#{search}%", current_user_id)
   end
 
   def self.search_by_tags(tags, current_user_id)

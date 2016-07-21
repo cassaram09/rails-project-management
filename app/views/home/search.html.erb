@@ -43,7 +43,7 @@
           <p>No notes matched your keyword query.</p>
         <% else %>
           <% @notes.each do |note| %>
-            <p><%= link_to note.name, note_path(note) %></p>
+            <p><%= link_to note.title, note_path(note) %></p>
           <% end %>
         <% end %>
       </div>
@@ -54,7 +54,7 @@
           <p>No comments matched your keyword query.</p>
         <% else %>
           <% @comments.each do |comment| %>
-            <p><%= link_to comment.name, comment_path(comment) %></p>
+            <p><%= link_to comment.content, project_task_path(comment.task.project, comment.task) %></p>
           <% end %>
         <% end %>
       </div>

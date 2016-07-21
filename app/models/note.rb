@@ -1,11 +1,11 @@
 class Note < ActiveRecord::Base
   include DateTimeConverter
+  extend KeywordSearch
+
   belongs_to :user
 
   validates :content, :title, presence: true
 
-  def self.search(search, current_user_id)
-     where("(title LIKE ? OR content LIKE ?) AND user_id = ?", "%#{search}%", "%#{search}%", current_user_id)
-  end
+  scope :search, -> (search, user) { where("(title LIKE ? OR content LIKE ? ) AND user_id = ?", "%#{search}%", "%#{search}%", user.id)}
 
 end

@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
   include DateTimeConverter
+  extend KeywordSearch
   
   belongs_to :user
   has_many :tasks
@@ -10,12 +11,9 @@ class Project < ActiveRecord::Base
   scope :complete, -> { where(status: 2) }
   scope :on_hold, -> { where(status: 1) }
   scope :active, -> { where(status: 0)}
+  scope :search, -> (search, user) { where("(name LIKE ? OR description LIKE ?) AND user_id = ?", "%#{search}%", "%#{search}%", user.id)}
 
-  validates :name, :description, :due_date, :status, presence: true
-
-  def self.search(search, current_user_id)
-     where("(name LIKE ? OR description LIKE ?) AND user_id = ?", "%#{search}%", "%#{search}%", current_user_id)
-  end
+  validates :name, :description, :due_date, :status, presence: true 
 
   def active_tasks
     self.tasks.active 

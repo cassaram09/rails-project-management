@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
+  get 'search' => 'home#search', :as => :search
+
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: 'users/registrations' }, skip: [:sessions] 
     as :user do
       get 'login' => 'devise/sessions#new', :as => :new_user_session
@@ -43,8 +45,6 @@ Rails.application.routes.draw do
     get 'tags' => 'dashboard#tags', :as => :tags
     get 'users' => 'dashboard#users', :as => :users
     get 'users/:id' => 'dashboard#user_edit', :as => :user_edit
-    get 'search' => 'dashboard#search', :as => :search
-
   end
 
 

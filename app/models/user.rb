@@ -47,6 +47,10 @@ class User < ActiveRecord::Base
     self.projects.complete
   end
 
+  def overdue_projects
+    self.projects.overdue
+  end
+
   def on_hold_projects
     self.projects.on_hold
   end

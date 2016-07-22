@@ -14,6 +14,7 @@ class Project < ActiveRecord::Base
   scope :complete, -> { where(status: 2) }
   scope :on_hold, -> { where(status: 1) }
   scope :active, -> { where(status: 0)}
+  scope :overdue, -> { where("due_date < ?", Date.today)}
   scope :search, -> (search, user) { where("(name LIKE ? OR description LIKE ?) AND owner_id = ?", "%#{search}%", "%#{search}%", user.id)}
 
 
@@ -36,6 +37,7 @@ class Project < ActiveRecord::Base
     emails = self.collaborators.collect {|collaborator| collaborator.email}
     emails.join(", ")
   end
+
   def active_tasks
     self.tasks.active 
   end

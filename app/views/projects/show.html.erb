@@ -1,11 +1,33 @@
-<div class="project-block">
-  <h3> <%= @project.name %> </h3>
-  <p> <%= @project.description %> </p>
-  <p> Created: <%= @project.friendly_created_at %> </p>
-  <p> Due: <%= @project.due_date %> </p>
-  <p> <%= @project.status %> </p>
+<div class="default-block">
+  <h2> <%= @project.name %> </h2>
+  <div class="line-dark"></div>
+  <div class="row">
+    <div class="col-md-4">
+      <h3> Info </h3>
+      <p> <%= @project.description %> </p>
+      <p> Created: <%= @project.friendly_created_at %> </p>
+      <p> Due: <%= @project.due_date %> </p>
+      <p> Status:<%= @project.status %> </p>
+    </div>
 
-  <%= render partial: "edit_form", locals: {project: @project} %>
+    <div class="col-md-4">
+      <h3> People </h3>
+      <p> <%= @project.owner.name %> (Owner) </p>
+      <% @project.collaborators.each do |person| %>
+        <p><%= person.name  %></p>
+      <% end %>
+    </div>
 
-  <%= button_to "Delete Project", project_path(@project), method: :delete, class: "btn btn-danger"%> 
+    <div class="col-md-4">
+      <h3> Items </h3>
+      <p> <%= link_to "#{@project.tasks.active.count} Open Tasks", project_tasks_path(@project) %></p>
+      <p> <%= link_to "#{@project.comments.count} Comments", project_tasks_path(@project) %></p>
+      <p> <%= link_to "#{@project.tasks.active.count} Notes", project_tasks_path(@project) %></p>
+
+    </div>
+    
+
+  </div>
+
+
 </div>

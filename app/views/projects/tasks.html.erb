@@ -1,73 +1,30 @@
 <%= render partial: "tasks/sub_nav", locals: {project: @project, task: @task} %>
 
-<%= render partial: "tasks/new_project_task", locals: {project: @project, task: @task} %>
-
 <div class="project-block">
   <h2>Active Tasks</h2>
   <h4><%= @tasks.count%> Tasks</h4>
 
   <div class="line-dark"></div>
-
-  <% @tasks.each do |task| %>
-    <div class="row">
-      <div class="col-md-12">
-        <h3><%= task.name %></h3>
-       
-      </div>
-      <div class="col-md-3">
-        <p> Created: <%= task.friendly_created_at %></p>
-        <p> Due: <%= task.due_date %> </p>
-        
-      </div>
-
-      <div class="col-md-3">
-        <p> Status: <%= task.status %></p>
-        <p> Priority: <%= task.priority %> </p>
-      </div>
-
-      <div class="col-md-3">
-        <p><%= task.description %></p>
-      </div>
-
-      <div class="col-md-3">
-        <div class="inline-button">
-          <%= link_to "View Task", project_task_path(task.project, task), class: "btn btn-sm btn-default td-button" %> 
-        </div>
-        <div class="inline-button">    
-          <%= link_to "Edit Task", edit_project_task_path(task.project, task), class: "btn btn-sm btn-primary td-button" %>
-        </div>
-      </div>
-
-    </div> <!-- Row end -->
-    <div class="line-light"></div>
-  <% end %>
-
-
-<table class="table">
-
-  <thead>
-    <td><h4>Name</h4></td>
-    <td class="mobile-hide"><h4>Description</h4></td>
-    <td class="mobile-hide"><h4>Due</h4></td>
-    <td class="mobile-hide"><h4>Status</h4></td>
-    <td class="mobile-hide"><h4>Priority</h4></td>
-    <td class="mobile-hide"><h4>Tags</h4></td>
-  </thead>
-    
-  <% @tasks.each do |task| %>
-    <tr>
-      <td> <%= task.name %> </td>
-      <td class="mobile-hide"> <%= task.description %> </td>
-      <td class="mobile-hide"> <%= task.due_date %> </td>
-      <td class="mobile-hide"> <%= task.status %> </td>
-      <td class="mobile-hide"> <%= task.priority %> </td>
-      <td class="mobile-hide"> <% task.tags.each do |tag| %> <%= tag.name%> <% end %> </td>
-      <td> <%= link_to "View Task", project_task_path(@project, task), class: "btn btn-sm btn-default" %> </td>
-      <td> <%= link_to "Edit Task", edit_project_task_path(@project, task), class: "btn btn-sm btn-primary"%> </td>
+  <div class="row">
+    <% @tasks.each do |task| %>
       
-    </tr>
-
-  <% end %>
-
-</table>
+        <div class="col-md-4">
+          <h3><%= task.name %></h3>
+          <p><%= task.description %></p>
+          <p> Owner: <%= task.user.name %></p>
+          <p> Created on:<%= task.friendly_created_at %></p>
+          <p> Due: <%= task.due_date %> </p>
+          <p> Status: <%= task.status %></p>
+          <p> Priority: <%= task.priority %> </p>
+          <div class="inline-button">
+            <%= link_to "View Task", project_task_path(task.project, task), class: "btn btn-sm btn-default td-button" %> 
+          </div>
+          <div class="inline-button">    
+            <%= link_to "Edit Task", edit_project_task_path(task.project, task), class: "btn btn-sm btn-primary td-button" %>
+          </div>
+          <div class="line-light"></div>
+        </div> <!-- column end -->
+      
+    <% end %>
+  </div> <!-- row end -->
 </div>

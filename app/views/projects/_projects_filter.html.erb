@@ -1,8 +1,11 @@
 <div class="default-block">
   <div class="inline-button">
-    <%= link_to "Active Projects", projects_path, class: "btn btn-warning" %> 
+    <%= link_to "Active Projects ( #{active} )", projects_path, class: "btn btn-warning" %> 
   </div>
   <div class="inline-button">
-    <%= link_to "Complete Projects", complete_projects_path, class: "btn btn-success" %>
+    <%= link_to "Complete Projects ( #{complete} )", complete_projects_path, class: "btn btn-success" %>
+  </div>
+  <div class="inline-button">
+    <%= link_to "Overdue Projects ( #{overdue} )", overdue_projects_path, class: "btn btn-danger" %>
   </div>
 </div>

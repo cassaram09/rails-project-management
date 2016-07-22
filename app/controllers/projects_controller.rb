@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   layout "projects_layout"
   before_action :set_project, except: [:index, :new, :create]
+  before_action :project_statuses_count, only: [:index, :complete, :overdue]
   
   #before_action :check_user, except: [:index, :create, :complete, :tasks, :new, :complete_tasks]
 
@@ -24,10 +25,11 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @project = Project.find_by(id: params[:id])
   end
 
   def edit 
-    redirect_to project_path(@project)
+    @project = Project.find_by(id: params[:id])
   end
 
   def update
@@ -60,6 +62,10 @@ class ProjectsController < ApplicationController
     @projects = @user.complete_projects.reverse
   end
 
+  def overdue
+    @projects = @user.projects.overdue + @user.collaboration_projects.overdue
+  end
+
   private
 
   def check_user
@@ -75,6 +81,12 @@ class ProjectsController < ApplicationController
     else
       @project = Project.find_by(id: params[:project_id])
     end
+  end
+
+  def project_statuses_count
+    @overdue = current_user.overdue_projects.count
+    @active = current_user.active_projects.count
+    @complete = current_user.complete_projects.count
   end
 
   def project_params

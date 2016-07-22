@@ -16,10 +16,6 @@ Rails.application.routes.draw do
     get "/profile" => 'users/registrations#edit'
   end
 
-  resources :comments
-  
-  resources :notes
-
   resources :tags
 
   # resources :responsibilities
@@ -32,12 +28,14 @@ Rails.application.routes.draw do
   post "/projects/new", to: "projects#create", as: "post_new_project"
 
   resources :projects do
+    get :overdue, on: :collection
     get :complete, on: :collection
     get :tasks, to: 'projects#tasks'
     post "/tasks", to: 'tasks#create', as: "post_new_task"
     resources :tasks, only: [:show, :edit, :update, :destroy] do 
       get :complete, on: :collection, to: "projects#complete_tasks"
     end
+    resources :comments, :notes, shallow: true
   end
 
   namespace :admin do 

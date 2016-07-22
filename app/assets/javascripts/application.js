@@ -16,12 +16,12 @@
 //= require_tree .
 
 $(document).ready(function(){
-  $( "#show" ).click(function() {
+  $( "#show-task" ).click(function() {
     $( ".quick-add" ).slideToggle( "fast", "linear" );
-    if ($( "#show" ).val() == "Add a Task"){
-      $( "#show" ).val("Hide");
+    if ($( "#show-task" ).val() == "Add a Task"){
+      $( "#show-task" ).val("Hide");
     } else {
-      $( "#show" ).val("Add a Task");
+      $( "#show-task" ).val("Add a Task");
     }
   });
   $( "#show" ).click(function() {

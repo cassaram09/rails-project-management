@@ -13,11 +13,9 @@
   </div>
 <% end %>
 
-
-<div class="task-block">
+<div class="quick-add">
+  <div class="default-block">
   <h2>Add a New Task</h2>
-  <input type="button" id="show" value="Add a Task" class="btn btn-primary">
-  <div class="quick-add">
     <div class="line-dark"></div>
       <%= form_for [project,task], {url: project_post_new_task_path(project), controller: "tasks", action: "create", method: "post", html: {class: "form-inline"}} do |f| %>
         <div class="form-group">

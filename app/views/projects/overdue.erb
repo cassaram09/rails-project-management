@@ -2,10 +2,10 @@
 
 
 <div class="default-block">
-  <h2>Complete Projects</h2>
+  <h2>Overdue Projects</h2>
   <div class="line-dark"></div>
   <% if @projects.empty? %>
-    <h4><%= "You haven't completed any projects yet." %></h4>
+    <h4><%= "You don't have any late projects. Good job!" %></h4>
   <% else %>
     <%= render @projects %>
   <% end %>

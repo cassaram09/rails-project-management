@@ -202,3 +202,5 @@ USer Feedback Notes
 
  Active Projects and Complete Projects. Each Project Card should list if its owner or collaborator
 
+
+ nest comments and notes under projects

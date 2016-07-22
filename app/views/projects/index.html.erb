@@ -1,4 +1,4 @@
-<%= render "projects_filter" %>
+<%= render partial: "projects_filter", locals:{overdue: @overdue, active: @active, complete: @complete} %>
 
 
 <div class="project-block">

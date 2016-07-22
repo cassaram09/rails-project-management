@@ -54,11 +54,11 @@ class TasksController < ApplicationController
   ## ADDITIONAL ROUTES
 
   def complete
-    @tasks = Task.complete
+    @tasks = @project.complete_tasks
   end
 
   def overdue
-    @tasks = Task.complete
+    @tasks = @project.overdue_tasks
   end
 
   def all_tasks

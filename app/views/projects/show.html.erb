@@ -28,7 +28,7 @@
       <h3> Items </h3>
       <p> <%= link_to "#{@project.tasks.active.count} Open Tasks", project_tasks_path(@project), class: "btn btn-warning" %></p>
       <p> <%= link_to "#{@project.tasks.complete.count} Complete Tasks", complete_project_tasks_path(@project), class: "btn btn-success" %></p>
-      <p> <%= link_to "#{@project.tasks.complete.count} Overdue Tasks", complete_project_tasks_path(@project), class: "btn btn-danger" %></p>
+      <p> <%= link_to "#{@project.tasks.overdue.count} Overdue Tasks", overdue_project_tasks_path(@project), class: "btn btn-danger" %></p>
       <p> <%= link_to "#{@project.comments.count} Comments", project_tasks_path(@project), class: "btn btn-default" %></p>
       <p> <%= link_to "#{@project.tasks.active.count} Notes", project_tasks_path(@project), class: "btn btn-default" %></p>
     </div>

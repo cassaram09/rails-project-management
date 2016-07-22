@@ -1,5 +1,7 @@
-<div class="project-block">
-<h2>Complete Projects</h2>
+<%= render "projects_filter" %>
+
+<div class="default-block">
+  <h2>Complete Projects</h2>
   <div class="line-dark"></div>
   <% if @projects.empty? %>
     <h4><%= "You haven't completed any projects yet." %></h4>

@@ -4,11 +4,8 @@ class ProjectsController < ApplicationController
   
   #before_action :check_user, except: [:index, :create, :complete, :tasks, :new, :complete_tasks]
 
-
   def index
-    @projects = @user.active_projects.reverse
-    @collab_projects = @user.collaboration_projects
-    @project = Project.new
+    @projects = @user.active_projects + @user.collaboration_projects
   end
 
   def new

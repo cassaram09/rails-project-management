@@ -2,14 +2,15 @@ class Project < ActiveRecord::Base
   include DateTimeConverter
   extend KeywordSearch
   
-  belongs_to :user
+  #belongs_to :user
   has_many :tasks
   has_many :tags, through: :tasks
   has_many :comments, through: :tasks
   enum status: [:active, :on_hold, :complete]
 
-  has_many :users, through: :user_projects
-  has_many :user_projects
+  has_many :user_projects, foreign_key: "collaboration_project_id"
+  has_many :collaborators, through: :user_projects
+  belongs_to :owner, class_name: "User"
 
 
   scope :complete, -> { where(status: 2) }

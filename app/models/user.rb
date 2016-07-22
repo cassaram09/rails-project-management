@@ -13,8 +13,9 @@ class User < ActiveRecord::Base
   has_many :notes
   has_many :tags 
 
-  has_many :user_projects
-  
+  has_many :user_projects, foreign_key: "collaborator_id"
+  has_many :projects, foreign_key: "owner_id"
+  has_many :collaboration_projects, through: :user_projects
 
   enum role: [:user, :admin]
 

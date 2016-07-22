@@ -31,7 +31,10 @@ App Features
     - checkboxes should automatically update the date every day
     - clicking on a responsibility should show the statistics for that, frequency, streaks, days completed, etc.
 
-  Add 
+  SocialMedia
+   t.string :name
+   t.string :url
+
 
   UserProjects
   - how to add other users to people's projects
@@ -40,6 +43,38 @@ App Features
     user_id
     project_id
     permission - read, write, manage 
+
+  Two types of Users:
+
+   owners: Own a project / created it
+    has_many :projects , a project belongs to an owner
+
+   collaborators: invited to collaborate on a project 
+    has_many :collaboration_projects, class: "Project"
+    a collaborator can have many projects and a project can have many collaborators
+
+    CollaborateProjects
+      t.belongs_to :collaborator class: "User"
+      t.belongs_to :collaboration_project, class: "Project"
+      t.integer :permission   
+
+      permission enum :permission [:view, :edit]
+
+    Users
+      has_many :collaboration_projects, foreign_key: "collaborator_id"
+      has_many :projects, foreign_key: "owner_id"
+      has_many :invited_projects, through: :collaboration_projects
+
+    Projects
+      has_many :collaboration_projects, foreign_key: "collaboration_project_id"
+      has_many :collaborators, through: :collaboration_projects
+      belongs_to :owner, class_name: "User"
+
+
+
+
+
+
 
   Notes are general musings.
 

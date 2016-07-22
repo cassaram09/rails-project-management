@@ -49,4 +49,8 @@ class Project < ActiveRecord::Base
     self.tasks.overdue
   end
 
+  def tasks_complete?
+    tasks.any? { |task| task.status == "active"} ? false : true
+  end
+
 end

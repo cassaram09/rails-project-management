@@ -33,15 +33,23 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    if (@project.status == "complete" && project_params[:status] == "active")
+    if @project.tasks_complete? && project_params[:status] == complete
       @project.update(project_params)
       redirect_to project_path(@project)
-    elsif @project.status == "complete"
-      render :show
     else
-      @project.update(project_params)
-      redirect_to project_path(@project)
+      flash[:notice] = "You need to complete all tasks before you can complete the project!"
+      render :show
     end
+
+    # if ( @project.status == "complete" && project_params[:status] == "active")
+    #   @project.update(project_params)
+    #   redirect_to project_path(@project)
+    # elsif @project.status == "complete"
+    #   render :show
+    # else
+    #   @project.update(project_params)
+    #   redirect_to project_path(@project)
+    # end
   end
 
   def destroy

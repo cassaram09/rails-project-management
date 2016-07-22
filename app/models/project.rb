@@ -8,6 +8,10 @@ class Project < ActiveRecord::Base
   has_many :comments, through: :tasks
   enum status: [:active, :on_hold, :complete]
 
+  has_many :users, through: :user_projects
+  has_many :user_projects
+
+
   scope :complete, -> { where(status: 2) }
   scope :on_hold, -> { where(status: 1) }
   scope :active, -> { where(status: 0)}

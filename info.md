@@ -31,6 +31,16 @@ App Features
     - checkboxes should automatically update the date every day
     - clicking on a responsibility should show the statistics for that, frequency, streaks, days completed, etc.
 
+  Add 
+
+  UserProjects
+  - how to add other users to people's projects
+
+  UserProjects
+    user_id
+    project_id
+    permission - read, write, manage 
+
   Notes are general musings.
 
   Comments are on tasks during a project. 

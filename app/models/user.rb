@@ -6,12 +6,15 @@ class User < ActiveRecord::Base
 
   devise :omniauthable, :omniauth_providers => [:facebook]
 
-  has_many :projects
+  has_many :projects #foreing_key user_id
   has_many :responsibilities
   has_many :comments
   has_many :tasks
   has_many :notes
   has_many :tags 
+
+  has_many :user_projects
+  
 
   enum role: [:user, :admin]
 

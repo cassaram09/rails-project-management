@@ -8,7 +8,6 @@ class HomeController < ApplicationController
     if params[:search].blank?
       redirect_to(request.referrer)
     end
-    binding.pry
     @projects = Project.keyword_search(params[:search], current_user)
     @comments = Comment.keyword_search(params[:search], current_user)
     @notes = Note.keyword_search(params[:search], current_user)

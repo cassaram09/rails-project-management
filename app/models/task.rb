@@ -16,7 +16,7 @@ class Task < ActiveRecord::Base
 
   scope :complete, -> { where(status: 1) }
   scope :active, -> { where(status: 0)}
-  scope :overdue, -> { where("due_date < ?", Date.today)}
+  scope :overdue, -> { where("due_date < ? AND status = ?", Date.today, 0)}
   scope :search, -> (search, user) { where("(name LIKE ? OR description LIKE ?) AND user_id = ?", "%#{search}%", "%#{search}%", user.id)}
 
   #Custom writer and readers for Task for creating nested attributes

@@ -1,5 +1,11 @@
 <div class="col-xs-12 col-sm-6 col-md-4">
   <h3> <%= link_to project.name, project_tasks_path(project) %> </h3>
+  <p> <% if project.owner == current_user %>
+        <p> You're an owner </p>
+      <% else %>
+        <p> You're a collaborator'</p>
+        <% end %>
+  </p>
   <p> <%= project.description %> </p>
   <p> Created: <%= project.friendly_created_at %> </p>
   <p> Due: <%= project.due_date %> </p>

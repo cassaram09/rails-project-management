@@ -193,3 +193,12 @@ Models
 
 
 
+USer Feedback Notes
+ add project show page, have user redirected there after project creation
+
+
+ adjust headers
+
+
+ Active Projects and Complete Projects. Each Project Card should list if its owner or collaborator
+

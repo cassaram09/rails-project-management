@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
   scope "/tasks" do
     get'/new', to: 'tasks#quick_new_task', as: "quick_new_task"
+    post'/', to: 'tasks#create', as: "post_quick_new_task"
     get'/all', to: 'tasks#all_tasks', as: "all_tasks"
   end
 

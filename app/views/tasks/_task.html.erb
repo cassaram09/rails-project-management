@@ -12,6 +12,9 @@
   <div class="inline-button">
     <%= link_to "Edit task", edit_task_path(task), class: "btn btn-default" %>
   </div>
+  <div class="inline-button">
+    <%= link_to "View project", project_path(task.project), class: "btn btn-default" %>
+  </div>
  <div class="line-light"> </div>
 </div>
 <% if task.index_check(index) %>

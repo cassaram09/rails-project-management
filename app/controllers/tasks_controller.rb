@@ -67,6 +67,7 @@ class TasksController < ApplicationController
 
   def quick_new_task
    @task = Task.new
+   @projects = @user.active_projects + @user.collaboration_projects.active
   end
 
   ## PRIVATE METHODS

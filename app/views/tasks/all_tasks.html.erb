@@ -1,0 +1,19 @@
+<%= render partial: "all_task_options", locals:{overdue: @overdue, active: @active, complete: @complete} %>
+
+<div class="task-block">
+  <h2>All Active Tasks</h2>
+  <div class="line-dark"></div>
+  <% if @tasks.empty? %>
+    <h4>It looks like you don't have any tasks. Why not create new one?</h4>
+  <% else %>
+    <div class="row">
+      <% @tasks.each_with_index do |task, index| %>
+        <%= render partial: "task", locals: {task: task, index: index } %>
+      <%end %>
+    </div>
+  <% end %>
+</div>
+
+
+
+

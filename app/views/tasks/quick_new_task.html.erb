@@ -1,11 +1,9 @@
 <%= render partial: "errors", locals: {task: @task} %>
 
-<div class="task-block">
+<div class="default-block">
   <h2>Quick Add Task</h2>
-  <input type="button" id="show" value="Add a Task" class="btn btn-primary">
-  <div class="quick-add">
     <div class="line-dark"></div>
-    <%= form_for(@task, {url: quick_new_task_path, controller: "tasks", action: "quick_new_task_path", method: "post", html: {class: "form-inline"}}) do |f| %>
+    <%= form_for(@task, {url: post_quick_new_task_path, controller: "tasks", action: "create", method: "post", html: {class: "form-inline"}}) do |f| %>
       <div class="form-group">
         <%= f.label :name, class: "label-block"%>
           <%= f.text_field :name, class: "form-control" %>
@@ -32,9 +30,9 @@
       </div>
       <div class="form-group project-select">
         <%= f.label :project_id, "Project", class: "label-block"  %>
-          <%= collection_select(:task, :project_id, Project.all, :id, :name, { include_blank: true }) %>
+          <%= collection_select(:task, :project_id, @projects, :id, :name, { include_blank: true }) %>
       </div>
-      <div class="form-group button-align">
+      <div class="form-group">
         <%= f.hidden_field :user_id, value: @user.id %>
         <%= f.submit class: "btn btn-primary"%>
       </div>

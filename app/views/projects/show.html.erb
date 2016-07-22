@@ -5,7 +5,7 @@
   <p> Due: <%= @project.due_date %> </p>
   <p> <%= @project.status %> </p>
 
-  <%= render partial: "form", locals: {project: @project} %>
+  <%= render partial: "edit_form", locals: {project: @project} %>
 
   <%= button_to "Delete Project", project_path(@project), method: :delete, class: "btn btn-danger"%> 
 </div>

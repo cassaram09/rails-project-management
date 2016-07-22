@@ -7,7 +7,11 @@
     <h4><%= "You don't have any projects yet. Why not start by creating a new one?" %></h4>
   <% else %>
     <div class="row">
-      <%= render @projects %>
+      <div class="row">
+      <% @projects.each_with_index do |project, index| %>
+        <%= render partial: "project", locals: {project: project, index: index} %>
+      <%end %>
+    </div>
     </div>
   <% end %>
 </div>

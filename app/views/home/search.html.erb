@@ -13,7 +13,7 @@
           <p>No tasks matched your tag query.</p>
         <% else %>
           <% @tasks1.each do |task| %>
-            <p><%= link_to task.name, project_task_path(task.project, task) %></p>
+            <p><%= link_to task.name, task_path(task.project, task) %></p>
           <% end %>
         <% end %>
 
@@ -21,7 +21,7 @@
           <p>No tasks matched your keyword query.</p>
         <% else %>
           <% @tasks2.each do |task| %>
-            <p><%= link_to task.name, project_task_path(task.project, task) %></p>
+            <p><%= link_to task.name, task_path(task.project, task) %></p>
           <% end %>
         <% end %>
       </div>
@@ -54,7 +54,7 @@
           <p>No comments matched your keyword query.</p>
         <% else %>
           <% @comments.each do |comment| %>
-            <p><%= link_to comment.content, project_task_path(comment.task.project, comment.task) %></p>
+            <p><%= link_to comment.content, "#{task_path(comment.task)}##{comment.id}" %></p>
           <% end %>
         <% end %>
       </div>

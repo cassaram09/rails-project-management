@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
   include DateTimeConverter
+  include IndexCheck
   extend KeywordSearch
   
   has_many :tasks

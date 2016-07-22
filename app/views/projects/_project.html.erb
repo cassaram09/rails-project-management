@@ -1,4 +1,4 @@
-<div class="col-xs-12 col-sm-6 col-md-4">
+<div class="col-md-4">
   <h3> <%= link_to project.name, project_path(project) %> </h3>
   <% if project.owner == current_user %>
     <p class="owner-text"> You're an owner </p>
@@ -10,6 +10,7 @@
   <p> Due: <%= project.due_date %> </p>
   <p> Status: <%= project.status.capitalize %> </p>
   <p> Collaborators: <% project.collaborators.each do |person| %> <%= person.name %> <%end%> </p>
+  <p> <%= link_to "#{project.comments.count} Comments", project_comments_path(project)%> </p>
   <div class="inline-button">
     <%= link_to "View Project", project_path(project), class: "btn btn-default" %>
   </div>
@@ -21,4 +22,7 @@
   </div>
  <div class="line-light"> </div>
 </div>
+<% if project.index_check(index) %>
+  <div class="clearfix"></div>
+<% end %>
 

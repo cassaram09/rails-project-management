@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
-  get 'search' => 'home#search', :as => :search
+  get 'search', to: 'home#search', as: 'search'
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: 'users/registrations' }, skip: [:sessions] 
     as :user do
@@ -20,22 +20,30 @@ Rails.application.routes.draw do
 
   # resources :responsibilities
 
-  resources :tasks, only: [:index, :new, :create] do
-    post "/tasks/new", to: 'tasks#create', as: "post_new_task"
-    get :complete, on: :collection
+  # post "/tasks/new", to: 'tasks#create', as: "post_new_task"
+  # get "/tasks/new", to: 'tasks#create', as: "create_new_task"
+  # get "/tasks/complete", to: 'tasks#complete', as: "complete_tasks"
+  # get "/tasks/all", to: 'tasks#all', as: 'all_tasks'
+
+  scope "/tasks" do
+    get'/new', to: 'tasks#new_quick_task', as: "new_quick_task"
+    get'/all', to: 'tasks#all_tasks', as: "all_tasks"
+
   end
 
-  post "/projects/new", to: "projects#create", as: "post_new_project"
+  # post "/projects/new", to: "projects#create", as: "post_new_project"
 
   resources :projects do
     get :overdue, on: :collection
     get :complete, on: :collection
-    get :tasks, to: 'projects#tasks'
-    post "/tasks", to: 'tasks#create', as: "post_new_task"
-    resources :tasks, only: [:show, :edit, :update, :destroy] do 
-      get :complete, on: :collection, to: "projects#complete_tasks"
-    end
+
     resources :comments, :notes, shallow: true
+
+    resources :tasks, shallow: true do 
+      get :complete, on: :collection, to: "tasks#complete"
+      get :overdue, on: :collection, to: "tasks#overdue"
+    end
+    
   end
 
   namespace :admin do 
@@ -45,59 +53,4 @@ Rails.application.routes.draw do
     get 'users/:id' => 'dashboard#user_edit', :as => :user_edit
   end
 
-
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 end

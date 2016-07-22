@@ -42,14 +42,25 @@
 
 footer {
   height: 50px;
-  background-color: #ddd;
+  background-color: #333;
+  color: #eee;
   text-align: center;
 }
 
 footer p {
+  
   padding-top: 15px;
 }
 
+.home-block-dark {
+  background-color: #3399ff;
+  padding: 30px 25px;
+  color: #eee;
+}
 
+.home-block-light {
+  background-color: #ddd;
+  padding: 30px 25px;
+}
 
 

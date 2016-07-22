@@ -1,4 +1,4 @@
-<%= form_for(comment, url: project_comments_path(@project)) do |f| %>
+<%= form_for(comment) do |f| %>
   <div class="form-group">  
     <%= f.text_area :content, class: "comment-text-field form-control", rows: "3" %>
   </div>  

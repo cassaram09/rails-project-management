@@ -1,21 +1,20 @@
 class CommentsController < ApplicationController
-  layout "comments_layout"
+  layout "tasks_layout"
   before_action :set_project
   before_action :set_comment, only: [:edit, :update, :destroy]
 
   def index
-    @comments = @user.comments.reverse
+    @comments = @project.comments
   end
 
   def create
     @comment = Comment.new(comment_params)
-    if @comment.valid?
-      @comment.save
-      redirect_to project_task_path(find_project, find_task)
+    if @comment.save
+      redirect_to task_path(@comment.task)
     else
-      @task = Task.find_by(id: params[:comment][:task_id])
-      @comment = Comment.new(comment_params)
-      redirect_to project_task_path(find_project, find_task)
+      @task = @comment.task
+      @comments = @task.comments
+      render 'tasks/show'
     end
   end
 
@@ -25,14 +24,13 @@ class CommentsController < ApplicationController
 
   def update
     @comment.update(comment_params)
-    redirect_to project_task_path(find_project, find_task)
+    redirect_to task_path(@comment.task)
   end
 
   def destroy
     @comment.destroy
     redirect_to project_task_path(find_project, find_task)
   end
-
 
   private
   def set_user

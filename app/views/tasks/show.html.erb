@@ -35,18 +35,21 @@
     </div> <!-- Row end -->
 </div>
 
-<div class="comment-block">
+<div class="default-block">
+  <%= render partial: "comments/errors", locals: {comment: @comment} %>
   <div class="row">
   
     <div class="col-md-4">
-      <% #render partial: "comments/form", locals: {comment: @comment} %>
+      <h3>New Comment</h3>
+      <div class="line-dark"></div>
+      <%= render partial: "comments/form", locals: {comment: @comment} %>
     </div>
 
     <div class="col-md-8">
-      <h3>Comments</h3>
+      <h3>Task Comments</h3>
       <div class="line-dark"></div>
       <% @comments.each do |comment| %>
-        <p> Posted: <%= comment.friendly_created_at %></p>
+        <p> Posted: <%= comment.friendly_created_at %> by <%= comment.user.name %></p>
         <p> <%= comment.content %></p>
         <div class="inline-button">
           <%= link_to "Edit", edit_comment_path(comment), class: "btn btn-sm btn-primary" %> 

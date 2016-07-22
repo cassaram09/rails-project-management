@@ -16,11 +16,9 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     if @project.save
-      redirect_to project_tasks_path(@project)
-    elsif URI(request.referer).path == "/projects/new"
+      redirect_to project_path(@project)
+    else
       render :new
-    else 
-      redirect_to projects_path
     end
   end
 
@@ -33,23 +31,11 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    if @project.tasks_complete? && project_params[:status] == complete
-      @project.update(project_params)
+    if @project.update(project_params)
       redirect_to project_path(@project)
     else
-      flash[:notice] = "You need to complete all tasks before you can complete the project!"
       render :show
     end
-
-    # if ( @project.status == "complete" && project_params[:status] == "active")
-    #   @project.update(project_params)
-    #   redirect_to project_path(@project)
-    # elsif @project.status == "complete"
-    #   render :show
-    # else
-    #   @project.update(project_params)
-    #   redirect_to project_path(@project)
-    # end
   end
 
   def destroy

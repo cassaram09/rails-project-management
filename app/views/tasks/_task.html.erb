@@ -5,7 +5,8 @@
   <p> Created: <%= task.friendly_created_at %> </p>
   <p> Due: <%= task.due_date %>  </p>
   <p> Status: <%= task.status.capitalize %> </p>
-  <p> Belongs to: <%= task.project.id %> </p>
+  <p> <%= link_to "#{task.comments.count} Comments", task_path(task) %> </p>
+  <p> Belongs to: <%= link_to task.project.name, project_path(task.project) %> </p>
   <div class="inline-button">
     <%= link_to "View task", task_path(task), class: "btn btn-default" %>
   </div>
@@ -13,7 +14,7 @@
     <%= link_to "Edit task", edit_task_path(task), class: "btn btn-default" %>
   </div>
   <div class="inline-button">
-    <%= link_to "View project", project_path(task.project), class: "btn btn-default" %>
+    <%= render partial: "quick_complete_form", locals: {task: task} unless task.status == "complete" %>
   </div>
  <div class="line-light"> </div>
 </div>

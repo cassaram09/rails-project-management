@@ -1,4 +1,4 @@
 <h3>Edit Comment</h3>
 <div class="line-dark"></div>
-
+<%= render partial: "messages/errors", locals: {resource: @comment} %>
 <%= render partial: "comments/edit_form", locals: {comment: @comment} %>

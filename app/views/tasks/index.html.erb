@@ -1,6 +1,6 @@
 <%= render partial: "task_options", locals:{overdue: @overdue, active: @active, complete: @complete} %>
 
-<div class="task-block">
+<div class="default-block">
   <h2>Active Tasks</h2>
   <div class="line-dark"></div>
   <% if @tasks.empty? %>

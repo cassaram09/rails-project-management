@@ -14,7 +14,7 @@
         <h1>Projects</h1>
       </div>
     </div>
-    <%= render "navs/projects_sub_nav" unless @project.nil? %>
+    <%= render "navs/projects_sub_nav" unless @project.nil? || @project.id.nil? %>
     <div class="container">
       <div class="notice"><%= notice %></div>
       <div class="alert"><%= alert %></div>

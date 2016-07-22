@@ -1,18 +1,4 @@
-<% if @project.errors.any? %>
-  <div id="error_explanation">
-    <h3>
-      <%= pluralize(@project.errors.count, "error") %>
-      prohibited this project from being saved:
-    </h3>
- 
-    <ul>
-    <% @project.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-
 <div class="default-block">
+  <%= render partial: "messages/errors", locals: {resource: @project} %>
   <%= render partial: "form", locals: {project: @project, task: @task} %>
 </div>

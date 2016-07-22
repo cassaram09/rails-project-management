@@ -1,6 +1,5 @@
-<%= render partial: "errors", locals: {task: @task} %>
-
 <div class="default-block">
+  <%= render partial: "messages/errors", locals: {resource: @task} %>
   <h2>Quick Add Task</h2>
     <div class="line-dark"></div>
     <%= form_for(@task, {url: post_quick_new_task_path, controller: "tasks", action: "create", method: "post", html: {class: "form-inline"}}) do |f| %>
@@ -20,7 +19,7 @@
         <%= f.label :priority, class: "label-block" %>
         <%= f.select(:priority) do %>
           <% Task.priorities.each do |key,value| %>
-          <%= content_tag(:option, key.capitalize, value: key) %>
+            <%= content_tag(:option, key.capitalize, value: key) %>
             <% end %>
         <% end %>
       </div>

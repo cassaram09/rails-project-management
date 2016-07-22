@@ -1,6 +1,5 @@
-<%= render partial: "errors", locals: {task: @task} %>
-
-<div class="task-block">
+<div class="default-block">
+  <%= render partial: "messages/errors", locals: {resource: @task} %>
   <h2>New Task</h2>
   <div class="line-dark"></div>
     <%= form_for [@project, @task] do |f| %>

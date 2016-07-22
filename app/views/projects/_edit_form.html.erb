@@ -15,17 +15,30 @@
     <%= f.label :collaborators, "Collaborators (Email address, comma seperated)" %>
       <%= f.text_field :collaborator_emails, class: "form-control"%>
   </div>
-  <div class="form-group">
-    <%= f.label :status, class: "label-block" %>
-    <%= f.select(:status) do %>
-      <% Project.statuses.each do |key,value| %>
-      <%= content_tag(:option, key.capitalize, value: key) %>
-        <% end %>
-    <% end %>
-  </div>
+  <% if project.tasks_complete? %>
+    <div class="form-group">
+      <%= f.label :status, class: "label-block" %>
+      <%= f.select(:status) do %>
+        <% Project.statuses.each do |key,value| %>
+        <%= content_tag(:option, key.capitalize, value: key) %>
+          <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="form-group">
+      <%= f.label :status, class: "label-block" %>
+      <%= f.select(:status) do %>
+        <% Project.statuses.each do |key,value| %>
+        <%= content_tag(:option, key.capitalize, value: key, disabled: "disabled") %>
+          <% end %>
+      <% end %>
+    </div>
+    <p> You can mark a project complete after you've completed all tasks!</p>
+  <% end %>
   <div class="form-group">
   <%= f.hidden_field :project_id, value: project.id %>
   <%= f.hidden_field :owner_id, value: @user.id %>
   <%= f.submit class: "btn btn-primary"%>
   </div>
 <% end %>
+

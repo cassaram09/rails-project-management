@@ -1,10 +1,15 @@
 class HomeController < ApplicationController
   layout "home_layout"
-  
+
   def index
-    @overdue = current_user.overdue_projects.count
-    @active = current_user.active_projects.count
-    @complete = current_user.complete_projects.count
+    if current_user
+      @overdue_projects = current_user.overdue_projects.count
+      @active_projects = current_user.active_projects.count
+      @complete_projects = current_user.complete_projects.count
+      @overdue_tasks = current_user.overdue_tasks.count
+      @active_tasks = current_user.active_tasks.count
+      @complete_tasks = current_user.complete_tasks.count
+    end
   end
   
   def search

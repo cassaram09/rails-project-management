@@ -59,4 +59,8 @@ class User < ActiveRecord::Base
     self.tasks.complete
   end
 
+  def overdue_tasks
+    self.tasks.overdue
+  end
+
 end

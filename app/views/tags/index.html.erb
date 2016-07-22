@@ -1,18 +1,5 @@
-<% if @tag.errors.any? %>
-  <div id="error_explanation">
-    <h3>
-      <%= pluralize(@tag.errors.count, "error") %>
-      prohibited this tag from being saved:
-    </h3>
-    <ul>
-      <% @tag.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
 <div class="default-block">
+  <%= render partial: "messages/errors", locals: {resource: @tag} %>
   <h2>Tag Quick Add</h2>
   <div class="line-dark"></div>
   <%= render partial: "quick_add_tag", locals: {tag: @tag} %>

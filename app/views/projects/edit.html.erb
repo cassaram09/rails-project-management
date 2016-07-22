@@ -1,3 +1,4 @@
 <div class="project-block">
+  <%= render partial: "messages/errors", locals: {resource: @project} %>
   <%= render partial: "edit_form", locals: {project: @project} %>
 </div>

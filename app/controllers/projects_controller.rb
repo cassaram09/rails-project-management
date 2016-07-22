@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   layout "projects_layout"
   before_action :set_project, except: [:index, :new, :create]
   
-  before_action :check_user, except: [:index, :create, :complete, :tasks, :new, :complete_tasks]
+  #before_action :check_user, except: [:index, :create, :complete, :tasks, :new, :complete_tasks]
 
 
   def index
@@ -15,6 +15,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    binding.pry
     @project = Project.new(project_params)
     if @project.save
       redirect_to project_tasks_path(@project)
@@ -33,6 +34,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    binding.pry
     if (@project.status == "complete" && project_params[:status] == "active")
       @project.update(project_params)
       redirect_to project_path(@project)
@@ -80,6 +82,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name, :description, :owner_id, :due_date, :status)
+    params.require(:project).permit(:name, :description, :collaborator_emails, :owner_id, :due_date, :status)
   end
 end

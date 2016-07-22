@@ -19,7 +19,21 @@ class Project < ActiveRecord::Base
   scope :search, -> (search, user) { where("(name LIKE ? OR description LIKE ?) AND user_id = ?", "%#{search}%", "%#{search}%", user.id)}
 
   validates :name, :description, :due_date, :status, presence: true 
+  def collaborator_emails=(emails)
+    binding.pry
+    email_array = emails.split(",").map{|email| email.strip}
+    email_array.each do |email|
+      collaborator = User.find_by(email: email)
+      self.collaborators << collaborator
+      self.save
+    end
+    binding.pry
+  end
 
+  def collaborator_emails
+    emails = self.collaborators.collect {|collaborator| collaborator.email}
+    emails.join(", ")
+  end
   def active_tasks
     self.tasks.active 
   end

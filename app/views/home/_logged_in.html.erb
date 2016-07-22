@@ -11,24 +11,22 @@
     
     <h2>Your Stats</h2>
     <div class="row">
-      <div class="col-sm-4 col-md-2">
+      <div class="col-sm-4 col-md-3">
         <h3> <%= link_to "#{@user.projects.count} projects", projects_path %></h3>
-          <h5> <%= @user.projects.active.count %> active</h5>
-          <h5> <%= @user.projects.complete.count %> complete</h5>
+        <%= link_to "Active Projects ( #{@active} )", projects_path, class: "btn btn-warning btn-margin" %> 
+        <%= link_to "Complete Projects ( #{@complete} )", complete_projects_path, class: "btn btn-success btn-margin" %>
+        <%= link_to "Overdue Projects ( #{@overdue} )", overdue_projects_path, class: "btn btn-danger btn-margin" %>
       </div>
-        <div class="col-sm-4 col-md-2">
+        <div class="col-sm-4 col-md-3">
         <h3> <%= link_to "#{@user.tasks.count} tasks", tasks_path %></h3>
+        <%= link_to "Active Projects ( #{@active} )", projects_path, class: "btn btn-warning btn-margin" %> 
+        <%= link_to "Complete Projects ( #{@complete} )", complete_projects_path, class: "btn btn-success btn-margin" %>
+        <%= link_to "Overdue Projects ( #{@overdue} )", overdue_projects_path, class: "btn btn-danger btn-margin" %>
+      </div>
+      <div class="col-sm-4 col-md-6">
+        <h3> Recent Comments </h3>
           <h5> <%= @user.tasks.active.count %> active</h5>
           <h5> <%= @user.tasks.complete.count %> complete</h5>
-      </div>
-      <div class="col-sm-4 col-md-2">
-        <h3> <%= link_to "#{@user.notes.count} notes", notes_path %></h3>
-      </div>
-      <div class="col-sm-4 col-md-2">
-        <h3> <%= link_to "#{@user.tags.count} tags", tags_path %></h3>
-      </div>
-      <div class="col-sm-4 col-md-3">
-        <h3> <%= link_to "#{@user.comments.count} comments", comments_path %></h3>
       </div>
     </div>
   </div>

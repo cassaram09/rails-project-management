@@ -2,6 +2,9 @@ class HomeController < ApplicationController
   layout "home_layout"
   
   def index
+    @overdue = current_user.overdue_projects.count
+    @active = current_user.active_projects.count
+    @complete = current_user.complete_projects.count
   end
   
   def search

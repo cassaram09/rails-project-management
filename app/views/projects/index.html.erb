@@ -31,3 +31,16 @@
   <% end %>
 </div>
 
+<div class="project-block">
+  <h2>Collaboration Projects</h2>
+  <div class="line-dark"> </div>
+  <% if @collab_projects.empty? %>
+    <h4><%= "You don't have any projects yet. Why not start by creating a new one?" %></h4>
+  <% else %>
+    <div class="row">
+      <%= render @collab_projects %>
+    </div>
+    
+  <% end %>
+</div>
+

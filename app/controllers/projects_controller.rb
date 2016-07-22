@@ -6,7 +6,8 @@ class ProjectsController < ApplicationController
 
 
   def index
-    @projects =@user.active_projects.reverse
+    @projects = @user.active_projects.reverse
+    @collab_projects = @user.collaboration_projects
     @project = Project.new
   end
 

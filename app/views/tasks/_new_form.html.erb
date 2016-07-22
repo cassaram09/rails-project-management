@@ -13,6 +13,7 @@
     </ul>
   </div>
 <% end %>
+
 <div class="task-block">
   <h2>New Task</h2>
   <div class="line-dark"></div>
@@ -43,7 +44,7 @@
       </div>
       <div class="form-group project-select">
         <%= f.label :project_id, "Project", class: "label-block"  %>
-        <%= collection_select(:task, :project_id, Project.all, :id, :name, { include_blank: true}) %>
+        <%= collection_select(:task, :project_id, @user.all_active_projects, :id, :name, { include_blank: true}) %>
       </div>
       <div class="form-group">
         <%= f.hidden_field :user_id, value: @user.id %>

@@ -2,7 +2,6 @@ class Project < ActiveRecord::Base
   include DateTimeConverter
   extend KeywordSearch
   
-  #belongs_to :user
   has_many :tasks
   has_many :tags, through: :tasks
   has_many :comments, through: :tasks
@@ -12,11 +11,12 @@ class Project < ActiveRecord::Base
   has_many :collaborators, through: :user_projects
   belongs_to :owner, class_name: "User"
 
-
   scope :complete, -> { where(status: 2) }
   scope :on_hold, -> { where(status: 1) }
   scope :active, -> { where(status: 0)}
-  scope :search, -> (search, user) { where("(name LIKE ? OR description LIKE ?) AND user_id = ?", "%#{search}%", "%#{search}%", user.id)}
+  scope :search, -> (search, user) { where("(name LIKE ? OR description LIKE ?) AND owner_id = ?", "%#{search}%", "%#{search}%", user.id)}
+
+
 
   validates :name, :description, :due_date, :status, presence: true 
   def collaborator_emails=(emails)

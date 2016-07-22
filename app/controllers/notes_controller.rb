@@ -35,7 +35,7 @@ class NotesController < ApplicationController
 
   def destroy
     @note.destroy
-    redirect_to notes_path
+    redirect_to project_notes_path(@project)
   end
 
   private

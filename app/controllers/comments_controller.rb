@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    redirect_to project_task_path(find_project, find_task)
+    redirect_to task_path(@comment.task)
   end
 
   private

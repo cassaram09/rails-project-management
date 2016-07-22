@@ -1,14 +1,15 @@
 class TasksController < ApplicationController
-  layout "projects_layout", only: [:show, :edit]
+  layout "tasks_layout"
   before_action :set_task
   before_action :set_project, except: [:edit, :show, :update, :destroy]
+  before_action :project_task_statuses_count, only: [:index, :complete, :overdue]
   # before_action :check_user
 
   ## STANDARD RESTFUL ROUTES
 
   def index
     @task = Task.new
-    @tasks = @user.tasks.active
+    @tasks = @user.active_tasks
   end
 
   def new
@@ -18,16 +19,16 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     if @task.save
-      redirect_to project_tasks_path(task_params[:project_id])
-    elsif URI(request.referer).path == "/tasks/new"
-      render :new
-    elsif URI(request.referer).path == "/tasks"
-      @tasks = @user.tasks
-      render :index 
+      redirect_to task_path(@task)
+    # elsif URI(request.referer).path == "/tasks/new"
+    #   render :new
+    # elsif URI(request.referer).path == "/tasks"
+    #   @tasks = @user.tasks
+    #   render :index 
     else 
-      @project = Project.find_by(id: params[:task][:project_id])
-      @tasks = @project.tasks
-      render 'projects/tasks'
+    #   @project = Project.find_by(id: params[:task][:project_id])
+    #   @tasks = @project.tasks
+      render :new
     end
   end
 
@@ -67,6 +68,7 @@ class TasksController < ApplicationController
   def quick_new_task
    @task = Task.new
   end
+
   ## PRIVATE METHODS
 
   private
@@ -87,6 +89,12 @@ class TasksController < ApplicationController
 
   def set_project
     @project = Project.find_by(id: params[:project_id])
+  end
+
+  def project_task_statuses_count
+    @overdue = @project.overdue_tasks.count
+    @active = @project.active_tasks.count
+    @complete = @project.complete_tasks.count
   end
 
   def task_params

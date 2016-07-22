@@ -1,0 +1,15 @@
+<div class="col-xs-12 col-sm-6 col-md-4">
+  <h3> <%= link_to task.name, task_path(task) %> </h3>
+  <p> <%= task.description %> </p>
+  <p> Created: <%= task.friendly_created_at %> </p>
+  <p> Due: <%= task.due_date %> </p>
+  <p> Status: <%= task.status.capitalize %> </p>
+  <div class="inline-button">
+    <%= link_to "View task", task_path(task), class: "btn btn-default" %>
+  </div>
+  <div class="inline-button">
+    <%= link_to "Edit task", edit_task_path(task), class: "btn btn-default" %>
+  </div>
+ <div class="line-light"> </div>
+</div>
+

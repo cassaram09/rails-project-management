@@ -44,4 +44,10 @@ class Project < ActiveRecord::Base
   def complete_tasks
     self.tasks.complete
   end
+
+  def overdue_tasks
+    self.tasks.overdue
+  end
+
+
 end

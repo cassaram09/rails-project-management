@@ -1,33 +1,21 @@
-
-<% if task.errors.any? %>
-  <div id="error_explanation">
-    <h3>
-      <%= pluralize(task.errors.count, "error") %>
-      prohibited this task from being saved:
-    </h3>
- 
-    <ul>
-    <% task.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= render partial: "errors", locals: {task: @task} %>
 
 <div class="task-block">
-  <h2>New Task</h2>
-  <div class="line-dark"></div>
-    <%= form_for(task, {url: tasks_path, controller: "tasks", action: "create", method: "post"}) do |f| %>
+  <h2>Quick Add Task</h2>
+  <input type="button" id="show" value="Add a Task" class="btn btn-primary">
+  <div class="quick-add">
+    <div class="line-dark"></div>
+    <%= form_for(@task, {url: quick_new_task_path, controller: "tasks", action: "quick_new_task_path", method: "post", html: {class: "form-inline"}}) do |f| %>
       <div class="form-group">
-        <%= f.label :name %>
+        <%= f.label :name, class: "label-block"%>
           <%= f.text_field :name, class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= f.label :description %>
+        <%= f.label :description, class: "label-block" %>
           <%= f.text_field :description, class: "form-control"%>
       </div>
       <div class="form-group">
-        <%= f.label :due_date %>
+        <%= f.label :due_date, class: "label-block" %>
           <%= f.date_select(:due_date, :order => [:month, :day, :year]) %>
       </div>
       <div class="form-group">
@@ -39,17 +27,21 @@
         <% end %>
       </div>
       <div class="form-group">
-        <%= f.label :tag_names, "Tags (Comma seperated)" %>
+        <%= f.label :tag_names, value: "Tags (Comma seperated)", class: "label-block" %>
           <%= f.text_field :tag_names, class: "form-control"%>
       </div>
       <div class="form-group project-select">
         <%= f.label :project_id, "Project", class: "label-block"  %>
-        <%= collection_select(:task, :project_id, @user.all_active_projects, :id, :name, { include_blank: true}) %>
+          <%= collection_select(:task, :project_id, Project.all, :id, :name, { include_blank: true }) %>
       </div>
-      <div class="form-group">
+      <div class="form-group button-align">
         <%= f.hidden_field :user_id, value: @user.id %>
         <%= f.submit class: "btn btn-primary"%>
       </div>
     <% end %>
   </div>
 </div>
+
+
+
+

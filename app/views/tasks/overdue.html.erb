@@ -1,16 +1,11 @@
 <%= render partial: "tasks/sub_nav", locals: {project: @project, task: @task} %>
 
 <div class="task-block">
-
-  <h2>Completed Tasks</h2>
+  <h2>Overdue Tasks</h2>
   <div class="line-dark"></div>
-
   <% if @tasks.empty? %>
-
-    <h4>It looks like you haven't completed any tasks yet. </h4>
-
+    <h4><%= "You don't have any late projects. Good job!" %></h4>
   <% else %>
-
     <% @tasks.each do |task| %>
       <div class="row">
         <div class="col-md-12">

@@ -1,8 +1,10 @@
 class TasksController < ApplicationController
   layout "projects_layout", only: [:show, :edit]
-  before_action :set_task, except: [:index, :new, :create]
-  before_action :set_project, except: [:index, :new]
+  before_action :set_task
+  before_action :set_project, except: [:edit, :show, :update, :destroy]
   # before_action :check_user
+
+  ## STANDARD RESTFUL ROUTES
 
   def index
     @task = Task.new
@@ -40,7 +42,7 @@ class TasksController < ApplicationController
   def update
     @task.tags.clear
     @task.update(task_params)
-    redirect_to project_task_path(@project, @task)
+    redirect_to task_path(@task)
   end
 
   def destroy
@@ -48,9 +50,24 @@ class TasksController < ApplicationController
     redirect_to project_tasks_path
   end
 
+  ## ADDITIONAL ROUTES
+
   def complete
     @tasks = Task.complete
   end
+
+  def overdue
+    @tasks = Task.complete
+  end
+
+  def all_tasks
+    @tasks = @user.tasks
+  end
+
+  def quick_new_task
+   @task = Task.new
+  end
+  ## PRIVATE METHODS
 
   private
   def set_user

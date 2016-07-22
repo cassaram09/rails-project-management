@@ -25,10 +25,10 @@
 
       <div class="col-md-3">
         <div class="inline-button">
-          <%= link_to "View Task", project_task_path(@task.project, @task), class: "btn btn-sm btn-default td-button" %> 
+          <%= link_to "View Task", task_path(@task), class: "btn btn-sm btn-default td-button" %>
         </div>
         <div class="inline-button">    
-          <%= link_to "Edit Task", edit_project_task_path(@task.project, @task), class: "btn btn-sm btn-primary td-button" %>
+          <%= link_to "Edit Task", edit_task_path(@task), class: "btn btn-sm btn-primary td-button" %>
         </div>
       </div>
 
@@ -39,7 +39,7 @@
   <div class="row">
   
     <div class="col-md-4">
-      <%= render partial: "comments/form", locals: {comment: @comment} %>
+      <% #render partial: "comments/form", locals: {comment: @comment} %>
     </div>
 
     <div class="col-md-8">

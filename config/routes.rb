@@ -26,9 +26,8 @@ Rails.application.routes.draw do
   # get "/tasks/all", to: 'tasks#all', as: 'all_tasks'
 
   scope "/tasks" do
-    get'/new', to: 'tasks#new_quick_task', as: "new_quick_task"
+    get'/new', to: 'tasks#quick_new_task', as: "quick_new_task"
     get'/all', to: 'tasks#all_tasks', as: "all_tasks"
-
   end
 
   # post "/projects/new", to: "projects#create", as: "post_new_project"
@@ -38,12 +37,12 @@ Rails.application.routes.draw do
     get :complete, on: :collection
 
     resources :comments, :notes, shallow: true
-
-    resources :tasks, shallow: true do 
-      get :complete, on: :collection, to: "tasks#complete"
-      get :overdue, on: :collection, to: "tasks#overdue"
+    scope shallow_path: "projects" do
+      resources :tasks, shallow: true do 
+        get :complete, on: :collection, to: "tasks#complete"
+        get :overdue, on: :collection, to: "tasks#overdue"
+      end
     end
-    
   end
 
   namespace :admin do 

@@ -3,7 +3,7 @@
 <div class="task-block">
   <h2>New Task</h2>
   <div class="line-dark"></div>
-    <%= form_for(@task) do |f| %>
+    <%= form_for [@project, @task] do |f| %>
       <div class="form-group">
         <%= f.label :name %>
           <%= f.text_field :name, class: "form-control" %>

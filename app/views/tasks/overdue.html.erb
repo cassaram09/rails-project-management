@@ -1,5 +1,4 @@
-<%= render partial: "tasks/sub_nav", locals: {project: @project, task: @task} %>
-
+<%= render partial: "task_options", locals:{overdue: @overdue, active: @active, complete: @complete} %>
 <div class="task-block">
   <h2>Overdue Tasks</h2>
   <div class="line-dark"></div>

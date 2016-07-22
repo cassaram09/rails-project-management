@@ -49,5 +49,4 @@ class Project < ActiveRecord::Base
     self.tasks.overdue
   end
 
-
 end

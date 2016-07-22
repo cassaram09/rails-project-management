@@ -16,10 +16,9 @@ class Task < ActiveRecord::Base
   scope :complete, -> { where(status: 1) }
   scope :active, -> { where(status: 0)}
   scope :overdue, -> { where("due_date < ?", Date.today)}
-
   scope :search, -> (search, user) { where("(name LIKE ? OR description LIKE ?) AND user_id = ?", "%#{search}%", "%#{search}%", user.id)}
 
-  #custom writer and readers for Task for creating nested attributes
+  #Custom writer and readers for Task for creating nested attributes
 
   def tag_names=(tags)
     tag_array = tags.split(",").map{|tag| tag.strip}
@@ -44,8 +43,17 @@ class Task < ActiveRecord::Base
     tasks.flatten.uniq.compact
   end
 
+  def overdue?
+    self.due_date < Date.today ? true : false
+  end
+
+  def index_check(index)
+    if (index + 1) % 3 == 0 && index != 0
+      true
+    end
+  end
 
 
-end
 
-# When a user inputs a list of tags, the form should return all tasks that have that tag. 
+
+end 

@@ -1,5 +1,11 @@
 <div class="default-block">
   <div class="inline-button">
+    <%= link_to "Back to Project", project_path(@project), class: "btn btn-default td-button" %>
+  </div>
+  <div class="inline-button">
+    <%= link_to "New Task", new_project_task_path(@project), class: "btn btn-default td-button" %>
+  </div>
+  <div class="inline-button">
     <%= link_to "Active tasks ( #{active} )", project_tasks_path(@project), class: "btn btn-warning" %> 
   </div>
   <div class="inline-button">

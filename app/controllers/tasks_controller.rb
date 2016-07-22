@@ -9,7 +9,7 @@ class TasksController < ApplicationController
 
   def index
     @task = Task.new
-    @tasks = @user.active_tasks
+    @tasks = @project.active_tasks
   end
 
   def new

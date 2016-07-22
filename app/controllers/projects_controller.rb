@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   layout "projects_layout"
-  before_action :set_project, except: [:index, :new, :create]
+  before_action :set_project, except: [:create]
   before_action :project_statuses_count, only: [:index, :complete, :overdue]
   
   #before_action :check_user, except: [:index, :create, :complete, :tasks, :new, :complete_tasks]

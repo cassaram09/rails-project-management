@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
   include DateTimeConverter
+  include IndexCheck
   extend KeywordSearch
   
   belongs_to :project
@@ -46,14 +47,5 @@ class Task < ActiveRecord::Base
   def overdue?
     self.due_date < Date.today ? true : false
   end
-
-  def index_check(index)
-    if (index + 1) % 3 == 0 && index != 0
-      true
-    end
-  end
-
-
-
 
 end 

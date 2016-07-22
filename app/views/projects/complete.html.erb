@@ -1,4 +1,4 @@
-<%= render partial: "projects_filter", locals:{overdue: @overdue, active: @active, complete: @complete} %>
+<%= render partial: "projects_status_filter", locals:{overdue: @overdue, active: @active, complete: @complete} %>
 
 
 <div class="default-block">
@@ -7,6 +7,8 @@
   <% if @projects.empty? %>
     <h4><%= "You haven't completed any projects yet." %></h4>
   <% else %>
-    <%= render @projects %>
+    <div class="row">
+      <%= render @projects %>
+    </div>
   <% end %>
 </div>

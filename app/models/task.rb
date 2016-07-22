@@ -8,13 +8,12 @@ class Task < ActiveRecord::Base
   has_many :task_tags
   has_many :tags, through: :task_tags
 
-  enum status: [:active, :on_hold, :complete]
+  enum status: [:active, :complete]
   enum priority: [:low, :medium, :high, :urgent]
 
   validates :name, :description, :due_date, :status, :priority, :project_id, presence: true
 
-  scope :complete, -> { where(status: 2) }
-  scope :on_hold, -> { where(status: 1) }
+  scope :complete, -> { where(status: 1) }
   scope :active, -> { where(status: 0)}
 
   scope :search, -> (search, user) { where("(name LIKE ? OR description LIKE ?) AND user_id = ?", "%#{search}%", "%#{search}%", user.id)}

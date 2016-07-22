@@ -1,18 +1,20 @@
 <div class="col-xs-12 col-sm-6 col-md-4">
   <h3> <%= link_to project.name, project_path(project) %> </h3>
-  <p> <% if project.owner == current_user %>
-        <p> You're an owner </p>
-      <% else %>
-        <p> You're a collaborator'</p>
-        <% end %>
-  </p>
+  <% if project.owner == current_user %>
+    <p class="owner-text"> You're an owner </p>
+  <% else %>
+    <p class="collaborator-text"> You're a collaborator</p>
+  <% end %>
   <p> <%= project.description %> </p>
   <p> Created: <%= project.friendly_created_at %> </p>
   <p> Due: <%= project.due_date %> </p>
   <p> Status: <%= project.status.capitalize %> </p>
   <p> Collaborators: <% project.collaborators.each do |person| %> <%= person.name %> <%end%> </p>
   <div class="inline-button">
-    <%= link_to "Edit Project", edit_project_path(project), class: "btn btn-primary" %>
+    <%= link_to "View Project", project_path(project), class: "btn btn-default" %>
+  </div>
+  <div class="inline-button">
+    <%= link_to "Edit Project", edit_project_path(project), class: "btn btn-default" %>
   </div>
   <div class="inline-button">
     <%= link_to "View Tasks", project_tasks_path(project), class: "btn btn-default" %>

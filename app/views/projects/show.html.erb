@@ -1,5 +1,8 @@
 <div class="default-block">
-  <h2> <%= @project.name %> </h2>
+  <h2> <%= @project.name %> <%= "✓" if @project.complete? %></h2>
+  <div class="inline-button">
+    <%= link_to "Edit Project", edit_project_path(@project), class: "btn btn-primary" %>
+  </div>
   <div class="line-dark"></div>
   <div class="row">
     <div class="col-md-4">
@@ -20,13 +23,12 @@
 
     <div class="col-md-4">
       <h3> Items </h3>
-      <p> <%= link_to "#{@project.tasks.active.count} Open Tasks", project_tasks_path(@project) %></p>
-      <p> <%= link_to "#{@project.comments.count} Comments", project_tasks_path(@project) %></p>
-      <p> <%= link_to "#{@project.tasks.active.count} Notes", project_tasks_path(@project) %></p>
-
+      <p> <%= link_to "#{@project.tasks.active.count} Open Tasks", project_tasks_path(@project), class: "btn btn-warning" %></p>
+      <p> <%= link_to "#{@project.tasks.complete.count} Complete Tasks", complete_project_tasks_path(@project), class: "btn btn-success" %></p>
+      <p> <%= link_to "#{@project.tasks.complete.count} Overdue Tasks", complete_project_tasks_path(@project), class: "btn btn-danger" %></p>
+      <p> <%= link_to "#{@project.comments.count} Comments", project_tasks_path(@project), class: "btn btn-default" %></p>
+      <p> <%= link_to "#{@project.tasks.active.count} Notes", project_tasks_path(@project), class: "btn btn-default" %></p>
     </div>
-    
-
   </div>
 
 

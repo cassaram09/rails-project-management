@@ -51,10 +51,6 @@ class User < ActiveRecord::Base
     self.projects.overdue
   end
 
-  def on_hold_projects
-    self.projects.on_hold
-  end
-
   def active_tasks
     self.tasks.active 
   end
@@ -63,18 +59,4 @@ class User < ActiveRecord::Base
     self.tasks.complete
   end
 
-  def on_hold_tasks
-    self.tasks.on_hold
-  end
-
-  # Tasks are nested under projects, so we need a custom method to find all of a user's tasks
-  # def all_user_tasks
-  #   self.projects.map do |project|
-  #     project.tasks
-  #   end.flatten
-  # end
-
-  # def all_tasks_query
-  #   Task.where(project_id: self.project_ids).where("user_id = ?", self.id)
-  # end
 end

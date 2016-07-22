@@ -5,14 +5,13 @@ class Project < ActiveRecord::Base
   has_many :tasks
   has_many :tags, through: :tasks
   has_many :comments, through: :tasks
-  enum status: [:active, :on_hold, :complete]
+  enum status: [:active, :complete]
 
   has_many :user_projects, foreign_key: "collaboration_project_id"
   has_many :collaborators, through: :user_projects
   belongs_to :owner, class_name: "User"
 
-  scope :complete, -> { where(status: 2) }
-  scope :on_hold, -> { where(status: 1) }
+  scope :complete, -> { where(status: 1) }
   scope :active, -> { where(status: 0)}
   scope :overdue, -> { where("due_date < ?", Date.today)}
   scope :search, -> (search, user) { where("(name LIKE ? OR description LIKE ?) AND owner_id = ?", "%#{search}%", "%#{search}%", user.id)}
@@ -44,9 +43,5 @@ class Project < ActiveRecord::Base
 
   def complete_tasks
     self.tasks.complete
-  end
-
-  def on_hold_tasks
-    self.tasks.on_hold
   end
 end

@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
   extend KeywordSearch
   
   has_many :tasks
+  has_many :notes
   has_many :tags, through: :tasks
   has_many :comments, through: :tasks
   enum status: [:active, :complete]

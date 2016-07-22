@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   layout "tasks_layout"
   before_action :set_task
-  before_action :set_project, except: [:edit, :show, :update, :destroy]
+  before_action :set_project, except: [:update, :destroy]
   before_action :project_task_statuses_count, only: [:index, :complete, :overdue]
   # before_action :check_user
 
@@ -33,6 +33,7 @@ class TasksController < ApplicationController
   end
 
   def show
+    @project = @task.project
     @comment = Comment.new
     @comments = @task.comments.reverse.each
   end

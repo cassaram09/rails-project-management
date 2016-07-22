@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  layout "comments_layout"
+  before_action :set_project
   before_action :set_comment, only: [:edit, :update, :destroy]
 
   def index
@@ -47,6 +49,14 @@ class CommentsController < ApplicationController
 
   def find_project
     Project.find_by(id: find_task.project_id)
+  end
+
+  def set_project
+    if params[:id]
+       @project = Project.find_by(id: params[:id])
+    else
+      @project = Project.find_by(id: params[:project_id])
+    end
   end
 
   def comment_params

@@ -1,30 +1,31 @@
 class NotesController < ApplicationController
+  layout "notes_layout"
+  before_action :set_project, except: [:show, :edit]
   before_action :set_note, except: [:index, :new, :create]
 
   def index
-    @notes = @user.notes.reverse
-    @note = Note.new
+    @notes = @project.notes.reverse
   end
 
   def new
-
+    @note = Note.new
   end
 
   def create
     @note = Note.new(note_params)
     if @note.save
-      redirect_to notes_path
+      redirect_to note_path(@note)
     else
-      @notes = @user.notes
-      @note
       render :index
     end
   end
 
   def show
+    @project = @note.project
   end
 
   def edit 
+    @project = @note.project
   end
 
   def update
@@ -43,6 +44,15 @@ class NotesController < ApplicationController
   end
 
   def note_params
-    params.require(:note).permit(:title, :content, :user_id)
+    params.require(:note).permit(:title, :content, :user_id, :project_id)
   end
+
+  def set_project
+    if params[:id]
+       @project = Project.find_by(id: params[:id])
+    else
+      @project = Project.find_by(id: params[:project_id])
+    end
+  end
+
 end

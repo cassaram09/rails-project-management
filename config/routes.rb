@@ -38,11 +38,9 @@ Rails.application.routes.draw do
     get :complete, on: :collection
 
     resources :comments, :notes, shallow: true
-    scope shallow_path: "projects" do
-      resources :tasks, shallow: true do 
-        get :complete, on: :collection, to: "tasks#complete"
-        get :overdue, on: :collection, to: "tasks#overdue"
-      end
+    resources :tasks, shallow: true do 
+      get :complete, on: :collection, to: "tasks#complete"
+      get :overdue, on: :collection, to: "tasks#overdue"
     end
   end
 

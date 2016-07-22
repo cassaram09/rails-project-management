@@ -17,6 +17,9 @@
 
       <div class="col-md-3">
         <div class="inline-button">
+          <%= link_to "View Comment", "#{task_path(comment.task)}##{comment.id}", class: "btn btn-sm btn-primary" %> 
+        </div>
+        <div class="inline-button">
           <%= link_to "Edit Comment", edit_comment_path(comment), class: "btn btn-sm btn-primary" %> 
         </div>
         <div class="inline-button">    
@@ -28,3 +31,4 @@
     <div class="line-light"></div>
   <% end %>
 </div>
+

@@ -20,20 +20,12 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     if @task.save
       redirect_to task_path(@task)
-    # elsif URI(request.referer).path == "/tasks/new"
-    #   render :new
-    # elsif URI(request.referer).path == "/tasks"
-    #   @tasks = @user.tasks
-    #   render :index 
-    else 
-    #   @project = Project.find_by(id: params[:task][:project_id])
-    #   @tasks = @project.tasks
+    else
       render :new
     end
   end
 
   def show
-    binding.pry
     @project = @task.project
     @comment = Comment.new
     @comments = @task.comments.reverse

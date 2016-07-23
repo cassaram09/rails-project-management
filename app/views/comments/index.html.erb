@@ -6,8 +6,7 @@
     <div class="row">
 
       <div class="col-md-6">
-        <p> Posted: <%= comment.friendly_created_at %></p>
-        <p><%= comment.content %></p>
+        <%= render partial: "comments/comment", collection: @comments%>
       </div>
 
       <div class="col-md-3">

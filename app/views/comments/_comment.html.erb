@@ -1,0 +1,11 @@
+<div id="<%= comment.id%>">
+  <p> Posted: <%= comment.friendly_created_at %> by <%= comment.user.name %></p>
+  <p> <%= comment.content %></p>
+  <div class="inline-button">
+    <%= link_to "Edit", edit_comment_path(comment), class: "btn btn-sm btn-primary" %> 
+  </div>
+  <div class="inline-button">    
+    <%= button_to "Delete", comment_path(comment), method: :delete, class: "btn btn-sm btn-danger" %>
+  </div>
+  <div class="line-light"></div>
+</div>

@@ -15,14 +15,9 @@
 
         
         <% @collaborators.each do |collaborator, index| %>
-          <div class="row">
-            <div class="col-xs-6">
+          
               <%= render partial: "edit_collaborators", locals: {collaborator: collaborator, index: index} %>
-            </div>
-            <div class="col-xs-6">
-              
-            </div>
-          </div>
+   
         <%end %>
           
 

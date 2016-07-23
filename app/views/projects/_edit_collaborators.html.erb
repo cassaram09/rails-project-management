@@ -1,0 +1,7 @@
+<div class="inline"><p><%= collaborator.name  %></p></div>
+  <div class="inline">
+  <%= form_for(collaborator, url: project_delete_collaborator_path(@project), method: :post) do |f|%>
+    <%= f.hidden_field :id %>
+    <%= f.submit "x", class: "btn btn-xs btn-danger inline" %>
+  <% end %>
+</div>

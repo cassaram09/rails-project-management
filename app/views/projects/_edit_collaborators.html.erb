@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xs-5">
     <div class="inline">
-      <%= form_for(collaborator, url: project_delete_collaborator_path(@project), method: :post) do |f|%>
+      <%= form_for(collaborator, url: project_delete_collaborator_path(project), method: :post) do |f|%>
         <%= f.hidden_field :id %>
         <%= f.submit "x", class: "btn btn-xs btn-danger inline" %>
       <% end %>
@@ -11,7 +11,13 @@
   <div class="col-xs-7">
     <div class="inline"><p>Permission:</p></div>
     <div class="inline">
-
+        <%= UserProject.find_by(collaborator_id: collaborator.id, collaboration_project_id: project.id) %>
+        <%= form_for(UserProject.find_by(collaborator_id: collaborator.id, collaboration_project_id: project.id), url: edit_user_project_permission_path ) do |f| %>
+          <%= f.text_field :permission %>
+          <%= f.hidden_field :project_id, value: project.id %>
+          <%= f.hidden_field :id, value: UserProject.find_by(collaborator_id: collaborator.id, collaboration_project_id: project.id).id %>
+          <%= f.submit %>
+        <% end %>
     </div>
   </div>  
 </div>

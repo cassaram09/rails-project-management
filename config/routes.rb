@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  patch '/edit_user_project_permission', to: 'user_projects#edit_user_project_permission'
+
   root to: 'home#index'
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: 'users/registrations' }, skip: [:sessions] 

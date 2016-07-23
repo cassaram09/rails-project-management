@@ -13,7 +13,7 @@
         <h3>Edit Collaborators</h3>
         <div class="line-dark"></div>
         <% @collaborators.each do |collaborator, index| %>
-          <%= render partial: "edit_collaborators", locals: {collaborator: collaborator, index: index} %>
+          <%= render partial: "edit_collaborators", locals: {collaborator: collaborator, project: @project, index: index} %>
         <%end %>
       </div>
     </div>

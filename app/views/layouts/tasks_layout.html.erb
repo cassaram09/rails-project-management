@@ -11,7 +11,11 @@
     <%= render "navs/nav_base"%>
     <div class="header">
       <div class="container">
-        <h1> Tasks </h1> 
+        <% if params[:controller] == "comments" && params[:action] == "index" %>
+          <h1> Comments</h1> 
+        <% else %>
+          <h1> Tasks </h1> 
+        <% end %>
       </div>
     </div>
     <%= render "navs/projects_sub_nav" unless @project.nil? %>

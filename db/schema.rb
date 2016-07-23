@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20160722194409) do
   create_table "user_projects", force: :cascade do |t|
     t.integer "collaborator_id"
     t.integer "collaboration_project_id"
-    t.integer "permission"
+    t.integer "permission",               default: 0
   end
 
   create_table "users", force: :cascade do |t|

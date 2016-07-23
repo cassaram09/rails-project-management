@@ -27,10 +27,12 @@ class ProjectsController < ApplicationController
   end
 
   def edit 
+
     @project = Project.find_by(id: params[:id])
   end
 
   def update
+    authorize @project
     if @project.update(project_params)
       redirect_to project_path(@project)
     else

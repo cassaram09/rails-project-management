@@ -12,11 +12,8 @@
       <div class="default-block">
         <h3>Edit Collaborators</h3>
         <div class="line-dark"></div>
-        <% @collaborators.each do |collaborator, index| %>
-          <%= render partial: "edit_collaborators", locals: {collaborator: collaborator, project: @project, index: index} %>
-        <%end %>
         <% @user_projects.each do |user_project, index| %>
-          <%= render partial: "edit_collaborators", locals: {user_project: user_project, project: @project, index: index} %>
+          <%= render partial: "edit_collaborators_and_permissions_form", locals: {user_project: user_project, project: @project, index: index} %>
         <%end %>
       </div>
     </div>

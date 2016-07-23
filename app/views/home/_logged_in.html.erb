@@ -12,7 +12,7 @@
     <h2>Your Stats</h2>
     <div class="row">
       <div class="col-sm-4 col-md-3">
-        <h3> <%= link_to "#{@user.projects.count} projects", projects_path %></h3>
+        <h3> <%= link_to "#{@user.all_active_projects.count} projects", projects_path %></h3>
         <%= link_to "Active Projects ( #{@active_projects} )", projects_path, class: "btn btn-warning btn-margin" %> 
         <%= link_to "Complete Projects ( #{@complete_projects} )", complete_projects_path, class: "btn btn-success btn-margin" %>
         <%= link_to "Overdue Projects ( #{@overdue_projects} )", overdue_projects_path, class: "btn btn-danger btn-margin" %>

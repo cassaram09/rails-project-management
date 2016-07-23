@@ -6,7 +6,6 @@ class ProjectsController < ApplicationController
   #before_action :check_user, except: [:index, :create, :complete, :tasks, :new, :complete_tasks]
 
   def index
-    binding.pry
     @projects = @user.active_projects + @user.collaboration_projects
   end
 

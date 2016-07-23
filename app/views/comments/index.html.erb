@@ -3,7 +3,7 @@
   <div class="line-dark"></div>
   <div class="row">
     <% @comments.each_with_index do |comment, index| %>
-      <%= render partial: "comments/comment", locals: {comment: comment, index: index} %>
+      <%= render partial: "comments/comment", locals: {comment: comment, index: index, col: "col-md-4"} %>
     <%end %>
   </div>
 </div>

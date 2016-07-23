@@ -19,7 +19,6 @@ class Project < ActiveRecord::Base
   validates :name, :description, :due_date, :status, presence: true 
 
   def collaborator_emails=(emails)
-    self.collaborators.clear
     email_array = emails.split(",").map{|email| email.strip}
     email_array.each do |email|
       collaborator = User.find_by(email: email)

@@ -4,6 +4,7 @@
 
     <div class="default-block">
       <h2><%= @task.name %></h2>
+      <div class="line-dark"></div>
       <p> Created: <%= @task.friendly_created_at %></p>
       <p> Due: <%= @task.due_date %> </p>
       <p> Status: <%= @task.status %></p>
@@ -12,7 +13,6 @@
           <% end %>
       </p>
       <p><%= @task.description %></p>
-
       <div class="inline-button">    
         <%= link_to "Edit Task", edit_task_path(@task), class: "btn btn-sm btn-primary td-button" %>
       </div>
@@ -32,7 +32,7 @@
 
   <div class="col-md-8">
     <div class="default-block">
-      <h3>Task Comments</h3>
+      <h3>Comments</h3>
       <div class="line-dark"></div>
       <%= render partial: "comments/comment", collection: @comments%>
     </div> <!-- default block end  -->

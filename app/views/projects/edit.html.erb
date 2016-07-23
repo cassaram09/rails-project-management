@@ -12,9 +12,20 @@
       <div class="default-block">
         <h3>Edit Collaborators</h3>
         <div class="line-dark"></div>
+
+        
         <% @collaborators.each do |collaborator, index| %>
-          <%= render partial: "edit_collaborators", locals: {collaborator: collaborator, index: index} %>
+          <div class="row">
+            <div class="col-xs-6">
+              <%= render partial: "edit_collaborators", locals: {collaborator: collaborator, index: index} %>
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
         <%end %>
+          
+
       </div>
     </div>
   </div>

@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
   #before_action :check_user, except: [:index, :create, :complete, :tasks, :new, :complete_tasks]
 
   def index
+    binding.pry
     @projects = @user.active_projects + @user.collaboration_projects
   end
 
@@ -89,9 +90,9 @@ class ProjectsController < ApplicationController
   end
 
   def project_statuses_count
-    @overdue = current_user.overdue_projects.count
-    @active = current_user.active_projects.count
-    @complete = current_user.complete_projects.count
+    @overdue = current_user.overdue_projects.count + current_user.collaboration_projects.active.count
+    @active = current_user.active_projects.count + current_user.collaboration_projects.active.count
+    @complete = current_user.complete_projects.count + current_user.collaboration_projects.active.count
   end
 
   def project_params

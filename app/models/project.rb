@@ -1,7 +1,6 @@
 class Project < ActiveRecord::Base
   include DateTimeConverter
   include IndexCheck
-  extend KeywordSearch
   
   has_many :tasks
   has_many :notes
@@ -16,11 +15,9 @@ class Project < ActiveRecord::Base
   scope :complete, -> { where(status: 1) }
   scope :active, -> { where(status: 0)}
   scope :overdue, -> { where("due_date < ? AND status = ?", Date.today, 0)}
-  scope :search, -> (search, user) { where("(name LIKE ? OR description LIKE ?) AND owner_id = ?", "%#{search}%", "%#{search}%", user.id)}
-
-
-
+  
   validates :name, :description, :due_date, :status, presence: true 
+
   def collaborator_emails=(emails)
     self.collaborators.clear
     email_array = emails.split(",").map{|email| email.strip}

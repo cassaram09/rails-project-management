@@ -7,6 +7,4 @@ class Note < ActiveRecord::Base
 
   validates :content, :title, presence: true
 
-  scope :search, -> (search, user) { where("(title LIKE ? OR content LIKE ? ) AND user_id = ?", "%#{search}%", "%#{search}%", user.id)}
-
 end

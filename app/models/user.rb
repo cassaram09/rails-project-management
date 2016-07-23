@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   devise :omniauthable, :omniauth_providers => [:facebook]
 
-  has_many :projects #foreing_key user_id
+  has_many :projects
   has_many :responsibilities
   has_many :comments
   has_many :tasks
@@ -26,13 +26,6 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0,20]
     end    
   end
-
-  #collect all tags from all tasks owned by the user
-  # def tags
-  #   tags = self.tasks.collect do |task|
-  #     task.tags.collect {|tag| tag}
-  #   end.flatten
-  # end
 
   def all_active_projects
     self.projects.active + self.collaboration_projects

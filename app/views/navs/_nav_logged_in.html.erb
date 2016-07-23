@@ -22,10 +22,3 @@
     <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
   </ul>
 </li>
-<%= form_tag(search_path, method: "get", class: "form-inline navbar-form navbar-left", role: "search") do %>
-  <div class="form-group">
-    <%= text_field_tag :search, params[:search], placeholder: "Search tag or keyword", class: "form-control navbar-form-custom"%>
-      
-  </div>
-  <%= submit_tag("Go", name: nil, class: "btn btn-default") %>
-<% end %>

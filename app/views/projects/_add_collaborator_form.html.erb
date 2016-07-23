@@ -1,0 +1,11 @@
+<%= form_for(project) do |f| %>
+  <div class="form-group">
+    <%= f.label :collaborators, "Invite collaborators by email, comma seperated" %>
+      <%= f.text_field :collaborator_emails, class: "form-control"%>
+  </div>
+  <div class="form-group">
+  <%= f.hidden_field :project_id, value: project.id %>
+  <%= f.hidden_field :owner_id, value: @user.id %>
+  <%= f.submit class: "btn btn-primary"%>
+  </div>
+<% end %>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tasks - Rails PTM</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <%= render "navs/nav_base"%>
+    <div class="header">
+      <div class="container">
+        <h1> Admin </h1> 
+      </div>
+    </div>
+    <div class="container">
+      <div class="notice"><%= notice %></div>
+      <div class="alert"><%= alert %></div>
+      <%= yield %>
+    </div>
+  </body>
+</html>
+
+

@@ -1,6 +1,6 @@
 class Admin::DashboardController < ApplicationController
-  # Controller for users with role: admin
-  before_action :authenticate_user!
+  layout "admin_layout"
+  before_action :authenticate_user
 
   def index
     @projects = Project.all
@@ -11,16 +11,11 @@ class Admin::DashboardController < ApplicationController
     @tags = Tag.all
   end
 
-  def tags
-    @tags = Tag.all
-  end
-
   def users
     @users = User.all
   end
 
   private
-
   def authenticate_user
     unless @user.admin?
       redirect_to root_path

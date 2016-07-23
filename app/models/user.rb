@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:facebook]
 
   has_many :projects
-  has_many :responsibilities
   has_many :comments
   has_many :tasks
   has_many :notes

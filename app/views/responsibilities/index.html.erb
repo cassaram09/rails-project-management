@@ -1,7 +1,0 @@
-<h1>Responsibilities Index</h1>
-
-<%= render partial: "quick_add_form", locals: {responsibility: @responsibility} %>
-
-<% @responsibilities.reverse.each do|responsibility| %>
-  <h3> <%= link_to responsibility.name, responsibility_path(responsibility) %> </h3>
-<% end %>

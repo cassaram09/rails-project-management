@@ -17,9 +17,6 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <% if current_user && user_signed_in? %>
-          <% if current_user.admin? %>
-            <%= render "navs/nav_admin" %>
-          <% end %>
           <%= render "navs/nav_logged_in" %>
         <% else %>
           <li><%= link_to "Sign Up", signup_path %></li>

@@ -7,7 +7,9 @@
     <h4><%= "You don't have any late projects. Good job!" %></h4>
   <% else %>
     <div class="row">
-      <%= render @projects %>
+      <% @projects.each_with_index do |project, index| %>
+        <%= render partial: "project", locals: {project: project, index: index} %>
+      <%end %>
     </div>
   <% end %>
 </div>

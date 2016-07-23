@@ -33,9 +33,10 @@ class TasksController < ApplicationController
   end
 
   def show
+    binding.pry
     @project = @task.project
     @comment = Comment.new
-    @comments = @task.comments.reverse.each
+    @comments = @task.comments.reverse
   end
 
   def edit

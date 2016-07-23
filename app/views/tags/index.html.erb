@@ -1,8 +1,8 @@
 <div class="default-block">
   <%= render partial: "messages/errors", locals: {resource: @tag} %>
-  <h2>Tag Quick Add</h2>
+  <h2>New Tag</h2>
   <div class="line-dark"></div>
-  <%= render partial: "quick_add_tag", locals: {tag: @tag} %>
+  <%= render partial: "new_form", locals: {tag: @tag} %>
 </div>
 
 <div class="default-block">
@@ -10,7 +10,6 @@
   <div class="line-dark"></div>
   <div class="row">
   <% @tags.each do |tag| %>
-    <%= render partial: "form", locals: {tag: tag} %>
+    <%= render partial: "edit_form", locals: {tag: tag} %>
   <% end %>
-  
 </div>

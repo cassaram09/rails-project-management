@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   layout "tasks_layout"
+  layout "comments_layout", only: [:index]
   before_action :set_project
   before_action :set_comment, only: [:edit, :update, :destroy]
 

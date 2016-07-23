@@ -9,9 +9,8 @@ class Task < ActiveRecord::Base
   has_many :tags, through: :task_tags
 
   enum status: [:active, :complete]
-  enum priority: [:low, :medium, :high, :urgent]
 
-  validates :name, :description, :due_date, :status, :priority, :project_id, presence: true
+  validates :name, :description, :due_date, :status, :project_id, presence: true
 
   scope :complete, -> { where(status: 1) }
   scope :active, -> { where(status: 0)}

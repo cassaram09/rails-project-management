@@ -61,7 +61,6 @@ ActiveRecord::Schema.define(version: 20160722194409) do
     t.string   "description"
     t.date     "due_date"
     t.integer  "status",      default: 0
-    t.integer  "priority",    default: 0
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end

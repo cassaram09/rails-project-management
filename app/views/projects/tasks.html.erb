@@ -15,7 +15,6 @@
           <p> Created on:<%= task.friendly_created_at %></p>
           <p> Due: <%= task.due_date %> </p>
           <p> Status: <%= task.status %></p>
-          <p> Priority: <%= task.priority %> </p>
           <div class="inline-button">
             <%= link_to "View Task", project_task_path(task.project, task), class: "btn btn-sm btn-default td-button" %> 
           </div>

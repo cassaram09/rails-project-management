@@ -1,52 +1,40 @@
-<div class="task-block">
-  <div class="row">
-      <div class="col-md-12">
-        <h2><%= @task.name %></h2>
-       
-      </div>
-      <div class="col-md-3">
-        <p> Created: <%= @task.friendly_created_at %></p>
-        <p> Due: <%= @task.due_date %> </p>
-        
-      </div>
+<div class="row">
 
-      <div class="col-md-3">
-        <p> Status: <%= @task.status %></p>
-        <p> Tags: <%@task.tags.each do |tag| %> 
-            <%= tag.name %>,
-            <% end %>
-        </p>
+  <div class="col-md-4">
+
+    <div class="default-block">
+      <h2><%= @task.name %></h2>
+      <p> Created: <%= @task.friendly_created_at %></p>
+      <p> Due: <%= @task.due_date %> </p>
+      <p> Status: <%= @task.status %></p>
+      <p> Tags: <%@task.tags.each do |tag| %> 
+          <%= tag.name %>,
+          <% end %>
+      </p>
+      <p><%= @task.description %></p>
+
+      <div class="inline-button">    
+        <%= link_to "Edit Task", edit_task_path(@task), class: "btn btn-sm btn-primary td-button" %>
       </div>
-
-      <div class="col-md-3">
-        <p><%= @task.description %></p>
+      <div class="inline-button">
+        <%= render partial: "task_complete_form", locals: {task: @task} unless @task.status == "complete" %>
       </div>
+    </div> <!-- default block end  -->
 
-      <div class="col-md-3">
-        <div class="inline-button">    
-          <%= link_to "Edit Task", edit_task_path(@task), class: "btn btn-sm btn-primary td-button" %>
-        </div>
-        <div class="inline-button">
-          <%= render partial: "task_complete_form", locals: {task: @task} unless @task.status == "complete" %>
-        </div>
-      </div>
-
-    </div> <!-- Row end -->
-</div>
-
-<div class="default-block">
-  <%= render partial: "messages/errors", locals: {resource: @comment} %>
-  <div class="row">
-  
-    <div class="col-md-4">
+    <div class="default-block">
+      <%= render partial: "messages/errors", locals: {resource: @comment} %>
       <h3>New Comment</h3>
       <div class="line-dark"></div>
       <%= render partial: "comments/form", locals: {comment: @comment} %>
-    </div>
+    </div> <!-- default block end  -->
 
-    <div class="col-md-8">
+  </div> <!-- col-md-4 end -->
+
+  <div class="col-md-8">
+    <div class="default-block">
       <h3>Task Comments</h3>
       <div class="line-dark"></div>
+      
       <% @comments.each do |comment| %>
         <div id="<%= comment.id%>"><p> Posted: <%= comment.friendly_created_at %> by <%= comment.user.name %></p>
           <p> <%= comment.content %></p>
@@ -59,7 +47,8 @@
           <div class="line-light"></div>
         </div>
       <% end %>
-    </div>
 
-  </div>
-</div>
+    </div> <!-- default block end  -->
+  </div> <!-- col-md-8 end -->
+
+</div> <!-- Row end -->

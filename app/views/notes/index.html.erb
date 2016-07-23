@@ -2,21 +2,13 @@
   <h2>Your Notes</h2>
   <%= link_to "New Note", new_project_note_path, class: "btn btn-primary" %>
   <div class="line-dark"></div>
-  <% if !@notes.empty? %>
+  <% if @notes.empty? %>
+     <h4><%= "You don't have any notes yet. Why not start by writing a new one?" %></h4>
+  <% else %>
     <% @notes.each do |note| %>
         <h3><%= note.title %></h3>
-
-        <p>Created: <%= note.friendly_created_at %></p>
-        <p><%= note.content %></p>
-        <div class="inline-button">
-          <%= link_to "Edit", edit_note_path(note), class: "btn btn-primary" %>
-          </div>
-        <div class="inline-button">
-          <%= button_to "Delete", note_path(note), method: :delete, class: "btn btn-danger" %>
-        </div>
-        <div class="line-light"></div>
+        <p>Created: <%= note.friendly_created_at %> by <%= note.user.name %></p>
+        <%= link_to "View", note_path(note), class: "btn btn-primary" %>
     <% end %>
-  <% else %>
-    <h4><%= "You don't have any notes yet. Why not start by writing a new one?" %></h4>
   <% end %>
 </div>

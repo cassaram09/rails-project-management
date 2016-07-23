@@ -15,6 +15,9 @@
         <% @collaborators.each do |collaborator, index| %>
           <%= render partial: "edit_collaborators", locals: {collaborator: collaborator, project: @project, index: index} %>
         <%end %>
+        <% @user_projects.each do |user_project, index| %>
+          <%= render partial: "edit_collaborators", locals: {user_project: user_project, project: @project, index: index} %>
+        <%end %>
       </div>
     </div>
   </div>

@@ -31,6 +31,7 @@ class ProjectsController < ApplicationController
     authorize @project
     @project = Project.find_by(id: params[:id])
     @collaborators = @project.collaborators
+    @user_projects = UserProject.projects(@project.id)
   end
 
   def update

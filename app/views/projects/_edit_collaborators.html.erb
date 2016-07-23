@@ -6,11 +6,11 @@
         <%= f.submit "x", class: "btn btn-xs btn-danger inline" %>
       <% end %>
     </div>
-    <div class="inline"><p><%= collaborator.name  %> <%= UserProject.find_by(collaborator_id: collaborator.id, collaboration_project_id: project.id).permission%> </p></div>
+    <div class="inline"><p><%= collaborator.name %> <%= user_project.permission %> </p></div>
   </div>  
   <div class="col-xs-7">
     <div class="inline">
-        <%= form_for(UserProject.find_by(collaborator_id: collaborator.id, collaboration_project_id: project.id), url: edit_user_project_permission_path ) do |f| %>
+        <%= form_for(user_project, url: edit_user_project_permission_path ) do |f| %>
           <%= f.label :permission, class: "label-block" %>
             <%= f.select(:permission) do %>
               <% UserProject.permissions.each do |key,value| %>
@@ -18,7 +18,7 @@
                 <% end %>
             <% end %>
           <%= f.hidden_field :project_id, value: project.id %>
-          <%= f.hidden_field :id, value: UserProject.find_by(collaborator_id: collaborator.id, collaboration_project_id: project.id).id %>
+          <%= f.hidden_field :id, value: user_project.id %>
           <%= f.submit class: "form-control" %>
         <% end %>
     </div>

@@ -39,7 +39,6 @@ class ProjectsController < ApplicationController
   end
 
   def delete_collaborator
-    binding.pry
     user = User.find_by(id: params[:user][:id])
     @project.collaborators.delete(user)
     @project.save

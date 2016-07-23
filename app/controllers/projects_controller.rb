@@ -31,12 +31,19 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    binding.pry
     if @project.update(project_params)
       redirect_to project_path(@project)
     else
       render :show
     end
+  end
+
+  def delete_collaborator
+    binding.pry
+    user = User.find_by(id: params[:user][:id])
+    @project.collaborators.delete(user)
+    @project.save
+    redirect_to project_path(@project)
   end
 
   def destroy

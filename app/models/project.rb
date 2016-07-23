@@ -22,7 +22,7 @@ class Project < ActiveRecord::Base
     email_array = emails.split(",").map{|email| email.strip}
     email_array.each do |email|
       collaborator = User.find_by(email: email)
-      if collaborator == nil || collaborator == self.owner
+      if collaborator == nil || collaborator == self.owner || self.collaborators.include?(collaborator)
         next
       end
       self.collaborators << collaborator

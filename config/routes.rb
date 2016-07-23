@@ -26,6 +26,8 @@ Rails.application.routes.draw do
     get :overdue, on: :collection
     get :complete, on: :collection
 
+    post '/delete_collaborator', to: 'projects#delete_collaborator'
+
     resources :comments, :notes, shallow: true
 
     resources :tasks, shallow: true do 

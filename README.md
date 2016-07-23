@@ -1,2 +1,3 @@
-# rails-task-manager
-Basic RoR task manager application
+# rails-project-management
+
+Rails Project Management Application

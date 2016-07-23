@@ -12,15 +12,9 @@
       <div class="default-block">
         <h3>Edit Collaborators</h3>
         <div class="line-dark"></div>
-        <% @project.collaborators.each do |person| %>
-          <div class="inline"><p><%= person.name  %></p></div>
-            <div class="inline">
-            <%= form_for(person, url: project_delete_collaborator_path(@project), method: :post) do |f|%>
-              <%= f.hidden_field :id %>
-              <%= f.submit "x", class: "btn btn-xs btn-danger inline" %>
-            <% end %>
-          </div>
-        <% end %>
+        <% @collaborators.each do |collaborator, index| %>
+          <%= render partial: "edit_collaborators", locals: {collaborator: collaborator, index: index} %>
+        <%end %>
       </div>
     </div>
   </div>

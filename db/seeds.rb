@@ -12,9 +12,9 @@
 @ollie = User.create(name: "Ollie", email: "ollie@thewall.westeros", password: "hello123")
 
 @project = Project.create(id: 1, owner_id: 1, name: "Defend the Wall", description: "defend the wall from the wildings", due_date: "2016-07-23", status: 0)
-@task = Task.create(id:1, user_id: 1, name: "Secure the tunnel", description: "flood the tunnel so it can't be be breached by the wildings", due_date: "2016-07-23" )
+@task = Task.create(id:1, project_id: 1, user_id: 1, name: "Secure the tunnel", description: "flood the tunnel so it can't be be breached by the wildings", due_date: "2016-07-23" )
 @comment = Comment.create(id: 1, user_id: 2, task_id: 1, content: "This is a comment by Ramsay Bolton. Why am I even here?")
 
 @note = Note.create(id: 1, user_id: 1, project_id: 1, title: "Watch out for climbers", content: "If the climbers start to come up the wall, drop the scythe on them. That should hold them off, for a little while anyways.")
-@project.collaborators << @ramsay, @tyrion, @ollie
+@project.collaborators << [@ramsay, @tyrion, @ollie]
 @project.save

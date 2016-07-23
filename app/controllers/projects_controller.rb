@@ -23,11 +23,12 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    authorize @project
     @project = Project.find_by(id: params[:id])
   end
 
   def edit 
-
+    authorize @project
     @project = Project.find_by(id: params[:id])
   end
 
@@ -48,6 +49,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
+    authorize @project
     @project.destroy
     redirect_to projects_path
   end

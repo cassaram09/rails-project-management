@@ -1,19 +1,6 @@
-<% if @note.errors.any? %>
-  <div id="error_explanation">
-    <h3>
-      <%= pluralize(@note.errors.count, "error") %>
-      prohibited this note from being saved:
-    </h3>
- 
-    <ul>
-    <% @note.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= render partial: "messages/errors", locals: {resource: @note} %>
 
-<div class="note-block">
+<div class="default-block">
   <h2>Edit Note</h2>
   </div class="line-dark"></div>
   <%= render partial: "form", locals: {note: @note} %>

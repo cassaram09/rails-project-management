@@ -1,3 +1,7 @@
-<%= render partial: "errors", locals: {note: @note} %>
+<%= render partial: "messages/errors", locals: {resource: @note} %>
 
-<%= render partial: "form", locals: {note: @note} %>
+<div class="default-block">
+  <h2>Edit Note</h2>
+  </div class="line-dark"></div>
+  <%= render partial: "form", locals: {note: @note} %>
+</div>

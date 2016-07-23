@@ -1,4 +1,4 @@
-<div id="<%= comment.id%>">
+<div class="col-md-4" id="<%= comment.id%>">
   <p> Posted: <%= comment.friendly_created_at %> by <%= comment.user.name %></p>
   <p>On <%= link_to comment.task.name, task_path(comment.task) %> in <%= link_to comment.task.project.name, project_path(comment.task.project) %></p>
   <p> <%= comment.content %></p>
@@ -8,6 +8,9 @@
   <div class="inline-button">    
     <%= button_to "Delete", comment_path(comment), method: :delete, class: "btn btn-sm btn-danger" %>
   </div>
-  
   <div class="line-light"></div>
 </div>
+<% if comment.index_check(index) %>
+  <div class="clearfix"></div>
+<% end %>
+

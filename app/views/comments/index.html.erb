@@ -1,9 +1,10 @@
-<div class="comment-block">
+<div class="default-block">
   <h2>All Project Comments</h2>
   <div class="line-dark"></div>
   <div class="row">
-    <div class="col-md-6">
-      <%= render partial: "comments/comment", collection: @comments%>
+    <% @comments.each_with_index do |comment, index| %>
+      <%= render partial: "comments/comment", locals: {comment: comment, index: index} %>
+    <%end %>
   </div>
 </div>
 

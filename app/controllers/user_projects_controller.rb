@@ -1,6 +1,7 @@
 class UserProjectsController < ApplicationController
   def edit_user_project_permission
-    up = UserProject.find_by(params[:user_project][:id])
+    up = UserProject.find_by(id: params[:user_project][:id])
+    binding.pry
     up.permission = params[:user_project][:permission]
     binding.pry
     up.save

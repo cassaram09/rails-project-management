@@ -1,10 +1,11 @@
-<h3><%= @note.title %></h3>
-
-<p>Created: <%= @note.friendly_created_at %></p>
-<p><%= @note.content %></p>
-<div class="inline-button">
-<%= link_to "Edit", edit_note_path(@note), class: "btn btn-primary" %>
-</div>
-<div class="inline-button">
-<%= button_to "Delete", note_path(@note), method: :delete, class: "btn btn-danger" %>
+<div class="default-block">
+  <h2><%= @note.title %></h2>
+  <p>Created: <%= @note.friendly_created_at %> by <%= @note.user.name %></p>
+  <p><%= @note.content %></p>
+  <div class="inline-button">
+  <%= link_to "Edit", edit_note_path(@note), class: "btn btn-primary" %>
+  </div>
+  <div class="inline-button">
+  <%= button_to "Delete", note_path(@note), method: :delete, class: "btn btn-danger" %>
+  </div>
 </div>

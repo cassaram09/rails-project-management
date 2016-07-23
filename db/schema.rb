@@ -40,16 +40,6 @@ ActiveRecord::Schema.define(version: 20160722194409) do
     t.datetime "updated_at",              null: false
   end
 
-  create_table "responsibilities", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.string   "description"
-    t.integer  "status",        default: 0
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "days_complete", default: 0
-  end
-
   create_table "tags", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"

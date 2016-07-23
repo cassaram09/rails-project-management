@@ -1,0 +1,15 @@
+<%= form_for(note, html: {class: "note-form"}) do |f| %>
+  <div class="form-group">
+    <%= f.label :title %>
+      <%= f.text_field :title, placeholder: "Title", class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :content %>
+      <%= f.text_area :content, placeholder: "Write your note here...", class: "form-control note-text-area", rows: "5"%>
+  </div>
+  <div class="form-group">
+    <%= f.hidden_field :user_id, value: @user.id %>
+     <%= f.hidden_field :project_id, value: @project.id %>
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

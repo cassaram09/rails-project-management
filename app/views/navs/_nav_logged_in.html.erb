@@ -23,3 +23,4 @@
     <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
   </ul>
 </li>
+<li><%=link_to "Logged in as: #{current_user.email}", profile_path %></li>

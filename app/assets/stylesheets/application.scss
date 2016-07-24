@@ -21,10 +21,21 @@
   padding: 0px;
 }
 
-.alert, .notice {
-  padding: 0px;
-  margin-bottom: 0px;
+.alert-block {
+  background-color:  #ff4d4d;
+  padding: 20px 25px;
+  margin: 10px 0px 10px;
+  border: 2px solid #ddd;
+  color: #eee;
+  font-size: 16px
+}
 
+.notice-block {
+  background-color: #eee;
+  padding: 20px 25px;
+  margin: 10px 0px 10px;
+  border: 2px solid #ddd;
+  font-size: 16px;
 }
 
 .inline {

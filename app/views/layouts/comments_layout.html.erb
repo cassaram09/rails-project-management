@@ -16,8 +16,7 @@
     </div>
     <%= render "navs/projects_sub_nav" unless @project.nil? %>
     <div class="container">
-      <div class="notice"><%= notice %></div>
-      <div class="alert"><%= alert %></div>
+      <%= render "layouts/flash_block" %>
       <%= yield %>
     </div>
   </body>

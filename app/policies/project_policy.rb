@@ -19,4 +19,8 @@ class ProjectPolicy < ApplicationPolicy
     user.admin? || record.owner == user
   end
 
+  def delete_collaborator?
+    user.admin? || record.owner == user
+  end
+
 end

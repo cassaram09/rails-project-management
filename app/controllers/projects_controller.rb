@@ -53,6 +53,7 @@ class ProjectsController < ApplicationController
   ## ADDITIONAL ACTIONS
   
   def delete_collaborator
+    authorize @project
     user = User.find_by(id: params[:user][:id])
     @project.collaborators.delete(user)
     @project.save

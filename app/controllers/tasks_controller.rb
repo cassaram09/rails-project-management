@@ -1,9 +1,8 @@
 class TasksController < ApplicationController
   layout "tasks_layout"
   before_action :set_task
-  before_action :set_project, except: [:update, :destroy]
+  before_action :set_project
   before_action :project_task_statuses_count, only: [:index, :complete, :overdue]
-  # before_action :check_user
 
   ## STANDARD RESTFUL ROUTES
 
@@ -45,7 +44,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to project_tasks_path
+    redirect_to project_tasks_path(@project)
   end
 
   ## ADDITIONAL ROUTES
@@ -73,13 +72,6 @@ class TasksController < ApplicationController
   def set_user
     @user = current_user
   end
-
-  # def check_user
-  #   if !@user.project_ids.include?(params[:project_id].to_i)
-  #     flash[:alert] = "You are not authorized to perform that action."
-  #     redirect_to projects_path
-  #   end
-  # end
 
   def set_task
     @task = Task.find_by(id: params[:id])

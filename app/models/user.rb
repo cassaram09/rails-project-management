@@ -30,7 +30,6 @@ class User < ActiveRecord::Base
     self.projects.active + self.collaboration_projects
   end
 
-
   def active_projects
     self.projects.active 
   end

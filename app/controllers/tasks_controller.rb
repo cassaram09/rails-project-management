@@ -7,16 +7,18 @@ class TasksController < ApplicationController
   ## STANDARD RESTFUL ACTIONS
 
   def index
-    @task = Task.new
+    @task = Task.new(project_id: @project.id)
     @tasks = @project.active_tasks
   end
 
   def new
-    @task = Task.new
+    @task = Task.new(project_id: @project.id)
+    authorize @task
   end
 
   def create
     @task = Task.new(task_params)
+    authorize @task
     if @task.save
       redirect_to task_path(@task)
     else
@@ -36,7 +38,6 @@ class TasksController < ApplicationController
   end
 
   def update
-    binding.pry
     authorize @task
     @task.tags.clear
     @task.update(task_params)
@@ -44,6 +45,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    authorize @task
     @task.destroy
     redirect_to project_tasks_path(@project)
   end

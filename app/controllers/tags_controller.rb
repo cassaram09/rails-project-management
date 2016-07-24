@@ -1,6 +1,8 @@
 class TagsController < ApplicationController
   before_action :set_tag, only: [:update, :destroy]
 
+  ## STANDARD RESTFUL ACTIONS
+
   def index
     @tags = @user.tags
     @tag = Tag.new
@@ -30,13 +32,18 @@ class TagsController < ApplicationController
     redirect_to tags_path
   end
 
+  def edit
+    redirect_to tags_path
+  end
+
   def destroy
     @tag.destroy
     redirect_to tags_path
   end
 
-  private
+  ## PRIVATE METHODS
 
+  private
   def set_tag
     @tag = Tag.find_by(id: params[:id])
   end

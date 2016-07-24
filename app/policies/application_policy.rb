@@ -55,4 +55,10 @@ class ApplicationPolicy
   def find_user_project
     up = UserProject.find_by(collaborator_id: user.id, collaboration_project_id: record.project.id )
   end
+
+  def project_owner?
+  if record.project.owner == user 
+      return true
+    end
+  end
 end

@@ -1,0 +1,4 @@
+<%= form_for(person, url: project_delete_collaborator_path(@project), method: :post) do |f|%>
+  <%= f.hidden_field :id %>
+  <%= f.submit "Remove", class: "btn btn-xs btn-danger inline" %>
+<% end %>

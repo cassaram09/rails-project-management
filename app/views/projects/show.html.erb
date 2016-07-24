@@ -60,10 +60,7 @@
         <% @project.collaborators.each do |person| %>
           <div class="inline"><p><%= person.name  %></p></div>
             <div class="inline">
-            <%= form_for(person, url: project_delete_collaborator_path(@project), method: :post) do |f|%>
-              <%= f.hidden_field :id %>
-              <%= f.submit "x", class: "btn btn-xs btn-danger inline" %>
-            <% end %>
+            <%= render partial: "delete_collaborator_form", locals: {person: person} %>
           </div>
         <% end %>
           <%= render partial: "add_collaborator_form", locals: {project: @project} %>

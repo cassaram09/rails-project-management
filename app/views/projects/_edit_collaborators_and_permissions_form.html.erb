@@ -3,10 +3,7 @@
     <div class="inline">
       <dvi class="inline"><%= User.find_by(id: user_project.collaborator_id).name %></p></dvi>
       <div class="inline">
-      <%= form_for(user_project.collaborator, url: project_delete_collaborator_path(project), method: :post) do |f|%>
-        <%= f.hidden_field :id %>
-        <%= f.submit "Remove", class: "btn btn-xs btn-danger inline" %>
-      <% end %>
+      <%= render partial: "delete_collaborator_form", locals: {person: user_project.collaborator} %>
     </div>
       <p> Permission: <%= user_project.permission %></p>
     </div>

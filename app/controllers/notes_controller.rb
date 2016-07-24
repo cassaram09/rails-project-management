@@ -10,11 +10,13 @@ class NotesController < ApplicationController
   end
 
   def new
-    @note = Note.new
+    @note = Note.new(project_id: @project.id)
+    authorize @note
   end
 
   def create
     @note = Note.new(note_params)
+    authorize @note
     if @note.save
       redirect_to note_path(@note)
     else
@@ -24,18 +26,22 @@ class NotesController < ApplicationController
 
   def show
     @project = @note.project
+    authorize @note
   end
 
   def edit 
     @project = @note.project
+    authorize @note
   end
 
   def update
+    authorize @note
     @note.update(note_params)
     redirect_to note_path(@note)
   end
 
   def destroy
+    authorize @note
     @note.destroy
     redirect_to project_notes_path(@project)
   end

@@ -17,11 +17,7 @@
     </div>
     <div class="form-group">
       <%= f.label :status, class: "label-block" %>
-      <%= f.select(:status) do %>
-        <% Task.statuses.each do |key,value| %>
-        <%= content_tag(:option, key.capitalize, value: key) %>
-          <% end %>
-      <% end %>
+        <%= f.select :status, Task.statuses.collect {|k,v| k}, selected: @task.status %>
     </div>
     <div class="form-group">
       <%= f.label :tag_names, "Tags (Comma seperated)" %>

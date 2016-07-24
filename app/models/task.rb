@@ -8,7 +8,7 @@ class Task < ActiveRecord::Base
   has_many :task_tags
   has_many :tags, through: :task_tags
 
-  enum status: [:active, :complete]
+  enum status: [:Active, :Complete]
 
   validates :name, :description, :due_date, :status, :project_id, presence: true
 

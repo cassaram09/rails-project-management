@@ -50,4 +50,9 @@ class ApplicationPolicy
       scope
     end
   end
+
+  private
+  def find_user_project
+    up = UserProject.find_by(collaborator_id: user.id, collaboration_project_id: record.project.id )
+  end
 end

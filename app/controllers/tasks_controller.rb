@@ -32,10 +32,12 @@ class TasksController < ApplicationController
   end
 
   def edit
+    authorize @task
     @project = @task.project
   end
 
   def update
+    authorize @task
     @task.tags.clear
     @task.update(task_params)
     redirect_to task_path(@task)

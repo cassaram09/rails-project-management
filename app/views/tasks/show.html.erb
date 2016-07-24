@@ -5,7 +5,7 @@
     <div class="default-block">
       <h2><%= @task.name %></h2>
       <div class="line-dark"></div>
-      <p> Created: <%= @task.friendly_created_at %></p>
+      <p> Created: <%= @task.friendly_created_at %> by <%= @task.user.name %></p>
       <p> Due: <%= @task.due_date %> </p>
       <p> Status: <%= @task.status %></p>
       <p> Tags: <%@task.tags.each do |tag| %> 
@@ -19,6 +19,9 @@
       <div class="inline-button">
         <%= render partial: "tasks/task_complete_form", locals: {task: @task} unless @task.status == "complete" %>
       </div>
+      <div class="inline-button">
+        <%= button_to "Delete Task", task_path(@task), method: :delete, class: "btn btn-sm btn-danger" %>
+        </div>
     </div> <!-- default block end  -->
 
     <div class="default-block">

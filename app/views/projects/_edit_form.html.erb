@@ -18,12 +18,12 @@
   <% if project.tasks_complete? %>
     <div class="form-group">
       <%= f.label :status, class: "label-block" %>
-        <%= f.select :status, Project.statuses.collect {|k,v| k}, selected: project.status %>
+      <%= f.select :status, Project.statuses.collect {|k,v| [k.capitalize, k]}, selected: project.status %>
     </div>
   <% else %>
     <div class="form-group">
       <%= f.label :status, class: "label-block" %>
-        <%= f.select :status, Project.statuses.collect {|k,v| k}, selected: project.status %>
+      <%= f.select :status, Project.statuses.collect {|k,v| [k.capitalize, k]}, selected: project.status %>
     </div>
     <p> You can mark a project complete after you've completed all tasks!</p>
   <% end %>

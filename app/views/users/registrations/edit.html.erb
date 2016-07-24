@@ -4,8 +4,6 @@
 
   <p><%= @user.email%></p>
 
-  <p><%= @user.role %></p>
-
   <input type="button" class="btn btn-primary" id="show-profile-options" value="Edit Profile">
 
   <div class="profile-options">
@@ -30,11 +28,7 @@
           
           <div class="form-group">
             <%= f.label :role, class: "label-block" %>
-            <%= f.select(:role) do %>
-              <% User.roles.each do |key,value| %>
-              <%= content_tag(:option, key.capitalize, value: key) %>
-                <% end %>
-            <% end %>
+            <%= f.select :role, User.roles.collect {|k,v| [k.capitalize, k]}, selected: resource.role %>
           </div>
         </div>
 

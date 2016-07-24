@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-4">
-    <%= User.find_by(id: user_project.collaborator_id).name %>
+    <p><%= user_project.collaborator.name %> (<%= user_project.permission %>)</p>
     <%= render partial: "delete_collaborator_form", locals: {person: user_project.collaborator} %>
   </div>
 

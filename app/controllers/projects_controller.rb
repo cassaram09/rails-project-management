@@ -25,6 +25,7 @@ class ProjectsController < ApplicationController
   def show
     authorize @project
     @project = Project.find_by(id: params[:id])
+    @user_projects = UserProject.projects(@project.id)
   end
 
   def edit 

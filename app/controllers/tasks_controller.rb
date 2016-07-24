@@ -36,6 +36,7 @@ class TasksController < ApplicationController
   end
 
   def update
+    binding.pry
     authorize @task
     @task.tags.clear
     @task.update(task_params)

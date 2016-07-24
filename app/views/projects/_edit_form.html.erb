@@ -18,20 +18,12 @@
   <% if project.tasks_complete? %>
     <div class="form-group">
       <%= f.label :status, class: "label-block" %>
-      <%= f.select(:status) do %>
-        <% Project.statuses.each do |key,value| %>
-        <%= content_tag(:option, key.capitalize, value: key) %>
-          <% end %>
-      <% end %>
+        <%= f.select :status, Project.statuses.collect {|k,v| k}, selected: project.status %>
     </div>
   <% else %>
     <div class="form-group">
       <%= f.label :status, class: "label-block" %>
-      <%= f.select(:status) do %>
-        <% Project.statuses.each do |key,value| %>
-        <%= content_tag(:option, key.capitalize, value: key, disabled: "disabled") %>
-          <% end %>
-      <% end %>
+        <%= f.select :status, Project.statuses.collect {|k,v| k}, selected: project.status %>
     </div>
     <p> You can mark a project complete after you've completed all tasks!</p>
   <% end %>

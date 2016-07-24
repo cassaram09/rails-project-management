@@ -6,7 +6,7 @@ class Project < ActiveRecord::Base
   has_many :notes
   has_many :tags, through: :tasks
   has_many :comments, through: :tasks
-  enum status: [:active, :complete]
+  enum status: [:Active, :Complete]
 
   has_many :user_projects, foreign_key: "collaboration_project_id"
   has_many :collaborators, through: :user_projects

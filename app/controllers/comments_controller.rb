@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   layout "comments_layout", only: [:index]
   layout "tasks_layout"
   before_action :set_comment, only: [:edit, :update, :destroy]
-  before_action :set_task
+  before_action :set_task, only: [:edit, :update, :destroy]
   before_action :set_project
   
   ## STANDARD RESTFUL ROUTES

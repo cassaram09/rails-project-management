@@ -1,18 +1,18 @@
 class ProjectPolicy < ApplicationPolicy
 
-  def update?
-    up = UserProject.find_by(collaborator_id: user.id, collaboration_project_id: record.id )
-    user.admin? || record.owner == user || (up.collaborator_id == user.id && up.permission == "edit")
-  end
-
   def show?
-    up = UserProject.find_by(collaborator_id: user.id, collaboration_project_id: record.id )
+    up = find_user_project
     user.admin? || record.owner == user || !up.nil?
   end
 
   def edit?
-    up = UserProject.find_by(collaborator_id: user.id, collaboration_project_id: record.id )
-    user.admin? || record.owner == user || !up.nil?
+    up = find_user_project
+   user.admin? || record.owner == user || (up.collaborator_id == user.id && up.permission == "edit")
+  end
+
+  def update?
+    up = find_user_project
+    user.admin? || record.owner == user || (up.collaborator_id == user.id && up.permission == "edit")
   end
 
   def destroy?

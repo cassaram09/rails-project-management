@@ -53,7 +53,11 @@ class ApplicationPolicy
 
   private
   def find_user_project
-    up = UserProject.find_by(collaborator_id: user.id, collaboration_project_id: record.project.id )
+    if record.class.name == "Project"
+      UserProject.find_by(collaborator_id: user.id, collaboration_project_id: record.id )
+    else
+      UserProject.find_by(collaborator_id: user.id, collaboration_project_id: record.project.id )
+    end
   end
 
   def project_owner?

@@ -1,9 +1,11 @@
 class CommentsController < ApplicationController
   layout "comments_layout", only: [:index]
   layout "tasks_layout"
-  
-  before_action :set_project
   before_action :set_comment, only: [:edit, :update, :destroy]
+  before_action :set_task
+  before_action :set_project
+  
+  ## STANDARD RESTFUL ROUTES
 
   def index
     @comments = @project.comments
@@ -12,43 +14,35 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     if @comment.save
-      redirect_to task_path(@comment.task)
+      redirect_to task_path(@task)
     else
-      @task = @comment.task
       @comments = @task.comments
       render 'tasks/show'
     end
   end
 
   def edit
-    @task = @comment.task
   end
 
   def update
     @comment.update(comment_params)
-    redirect_to task_path(@comment.task)
+    redirect_to task_path(@task)
   end
 
   def destroy
     @comment.destroy
-    redirect_to task_path(@comment.task)
+    redirect_to task_path(@task)
   end
+
+  ## PRIVATE METHODS
 
   private
-  def set_user
-    @user = current_user
-  end
-
   def set_comment
     @comment = Comment.find_by(id: params[:id])
   end
 
-  def find_task
-    Task.find_by(id: @comment.task_id)
-  end
-
-  def find_project
-    Project.find_by(id: find_task.project_id)
+  def set_task
+    @task = set_comment.task
   end
 
   def set_project

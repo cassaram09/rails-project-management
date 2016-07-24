@@ -2,8 +2,8 @@ class ProjectsController < ApplicationController
   layout "projects_layout"
   before_action :set_project, except: [:create]
   before_action :project_statuses_count, only: [:index, :complete, :overdue]
-  
-  #before_action :check_user, except: [:index, :create, :complete, :tasks, :new, :complete_tasks]
+
+  ## STANDARD RESTFUL ACTIONS
 
   def index
     @projects = @user.active_projects + @user.collaboration_projects
@@ -44,22 +44,19 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def delete_collaborator
-    user = User.find_by(id: params[:user][:id])
-    @project.collaborators.delete(user)
-    @project.save
-    redirect_to project_path(@project)
-  end
-
   def destroy
     authorize @project
     @project.destroy
     redirect_to projects_path
   end
 
-  def tasks
-    @task = Task.new
-    @tasks = @project.tasks
+  ## ADDITIONAL ACTIONS
+  
+  def delete_collaborator
+    user = User.find_by(id: params[:user][:id])
+    @project.collaborators.delete(user)
+    @project.save
+    redirect_to project_path(@project)
   end
 
   def complete_tasks
@@ -74,15 +71,9 @@ class ProjectsController < ApplicationController
     @projects = @user.projects.overdue + @user.collaboration_projects.overdue
   end
 
+  ## PRIVATE METHODS
+
   private
-
-  def check_user
-    unless @user.project_ids.include?(params[:id].to_i) || @user.admin?
-      flash[:alert] = "You are not cleared to perform that action."
-      redirect_to projects_path
-    end
-  end
-
   def set_project
     if params[:id]
        @project = Project.find_by(id: params[:id])

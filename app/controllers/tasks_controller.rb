@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   before_action :set_project
   before_action :project_task_statuses_count, only: [:index, :complete, :overdue]
 
-  ## STANDARD RESTFUL ROUTES
+  ## STANDARD RESTFUL ACTIONS
 
   def index
     @task = Task.new
@@ -47,7 +47,7 @@ class TasksController < ApplicationController
     redirect_to project_tasks_path(@project)
   end
 
-  ## ADDITIONAL ROUTES
+  ## ADDITIONAL ACTIONS
 
   def complete
     @tasks = @project.complete_tasks

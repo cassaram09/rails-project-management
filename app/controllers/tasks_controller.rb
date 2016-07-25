@@ -15,6 +15,7 @@ class TasksController < ApplicationController
   def new
     @task = Task.new(project_id: @project.id)
     authorize @task
+    @task_users = task_users
   end
 
   def create
@@ -38,6 +39,7 @@ class TasksController < ApplicationController
   def edit
     authorize @task
     @project = @task.project
+     @task_users = task_users
   end
 
   def update
@@ -96,5 +98,12 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:name, :description, :project_id, :owner_id, :due_date, :status, :tag_names, assigned_user_ids: [])
+  end
+
+  def task_users
+    task_users = []
+    task_users << @task.project.collaborators
+    task_users << @user
+    task_users.flatten
   end
 end

@@ -69,7 +69,11 @@ class ApplicationPolicy
   end
 
   def record_owner?
-    record.user == user
+    if record.class.name == "Project"
+      record.owner == user
+    else
+      record.user == user
+    end
   end
 
   def comment_project_owner?

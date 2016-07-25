@@ -1,7 +1,6 @@
 class ProjectPolicy < ApplicationPolicy
-
   def show?
-    admin_owner_check || !up.nil?
+    admin_owner_check || !find_user_project.nil?
   end
 
   def edit?
@@ -29,5 +28,4 @@ class ProjectPolicy < ApplicationPolicy
     up = find_user_project
     (up.collaborator_id == user.id && up.permission == "edit")
   end
-
 end

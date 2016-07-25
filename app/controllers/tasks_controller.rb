@@ -8,6 +8,7 @@ class TasksController < ApplicationController
 
   def index
     @task = Task.new(project_id: @project.id)
+    authorize @task
     @tasks = @project.active_tasks
   end
 

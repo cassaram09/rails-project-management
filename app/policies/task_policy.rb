@@ -1,4 +1,8 @@
 class TaskPolicy < ApplicationPolicy
+  def index?
+    user.admin? || project_owner? || !find_user_project.nil?
+  end
+
   def new?
     admin_owner_check ||collaborator_permission_check
   end

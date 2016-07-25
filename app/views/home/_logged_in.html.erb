@@ -11,7 +11,7 @@
     <h2>Your Stats</h2>
     <div class="row">
       <div class="col-sm-4 col-md-3">
-        <h3> <%= link_to "#{@user.all_active_projects.count} projects", projects_path %></h3>
+        <h3> <%= link_to "#{@projects} projects", projects_path %></h3>
         <%= link_to "Active Projects ( #{@active_projects} )", projects_path, class: "btn btn-warning btn-margin" %> 
         <%= link_to "Complete Projects ( #{@complete_projects} )", complete_projects_path, class: "btn btn-success btn-margin" %>
         <%= link_to "Overdue Projects ( #{@overdue_projects} )", overdue_projects_path, class: "btn btn-danger btn-margin" %>
@@ -19,14 +19,14 @@
       <div class="col-sm-4 col-md-3">
         <h3> <%= link_to "#{@user.tasks.count} created tasks", all_active_tasks_path %></h3>
         <%= link_to "Active Tasks ( #{@active_tasks} )", all_active_tasks_path, class: "btn btn-warning btn-margin" %> 
-        <%= link_to "Complete Tasks ( #{@complete_tasks} )", "#", class: "btn btn-success btn-margin" %>
-        <%= link_to "Overdue Tasks ( #{@overdue_tasks} )"," all_active_tasks_path", class: "btn btn-danger btn-margin" %>
+        <%= link_to "Complete Tasks ( #{@complete_tasks} )", all_complete_tasks_path, class: "btn btn-success btn-margin" %>
+        <%= link_to "Overdue Tasks ( #{@overdue_tasks} )", all_overdue_tasks_path, class: "btn btn-danger btn-margin" %>
       </div>
       <div class="col-sm-4 col-md-3">
         <h3> <%= link_to "#{@user.assigned_tasks.count} assigned tasks", all_active_tasks_path %></h3>
         <%= link_to "Active Tasks ( #{@active_assigned_tasks} )", all_active_tasks_path, class: "btn btn-warning btn-margin" %> 
-        <%= link_to "Complete Tasks ( #{@complete_assigned_tasks} )", "#", class: "btn btn-success btn-margin" %>
-        <%= link_to "Overdue Tasks ( #{@overdue_assigned_tasks} )"," all_active_tasks_path", class: "btn btn-danger btn-margin" %>
+        <%= link_to "Complete Tasks ( #{@complete_assigned_tasks} )", all_complete_tasks_path, class: "btn btn-success btn-margin" %>
+        <%= link_to "Overdue Tasks ( #{@overdue_assigned_tasks} )", all_overdue_tasks_path, class: "btn btn-danger btn-margin" %>
       </div>
     </div> <!-- row end -->
   </div> <!-- block end -->

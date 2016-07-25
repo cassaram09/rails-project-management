@@ -1,6 +1,6 @@
 <div class="col-md-4">
   <h3> <%= link_to project.name, project_path(project) %> </h3>
-  <span class="overdue"> <%= "Overdue" if project.overdue? %></span>
+  <span class="overdue"> <%= "Overdue" if project.overdue? && !project.complete?%></span>
   <% if project.owner == current_user %>
     <p class="owner-text"> You're an owner </p>
   <% else %>

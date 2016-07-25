@@ -3,6 +3,7 @@ class TasksController < ApplicationController
   before_action :set_task
   before_action :set_project
   before_action :project_task_statuses_count, only: [:index, :complete, :overdue]
+  before_action :all_task_statuses_count, only: [:all_active_tasks, :all_complete_tasks, :all_overdue_tasks]
 
   ## STANDARD RESTFUL ACTIONS
 
@@ -106,6 +107,12 @@ class TasksController < ApplicationController
     @overdue = @project.overdue_tasks.count
     @active = @project.active_tasks.count
     @complete = @project.complete_tasks.count
+  end
+
+  def all_task_statuses_count
+    @overdue = current_user.overdue_tasks.count + current_user.overdue_assigned_tasks.count
+    @active = current_user.active_tasks.count + current_user.active_assigned_tasks.count
+    @complete= current_user.complete_tasks.count + current_user.complete_assigned_tasks.count
   end
 
   def task_params

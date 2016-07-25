@@ -3,6 +3,7 @@ class HomeController < ApplicationController
 
   def index
     if current_user
+      @projects = (current_user.projects + current_user.collaboration_projects).uniq.count
       @overdue_projects = current_user.overdue_projects.count + current_user.collaboration_projects.active.count
       @active_projects = current_user.active_projects.count + current_user.collaboration_projects.active.count
       @complete_projects = current_user.complete_projects.count + current_user.collaboration_projects.active.count

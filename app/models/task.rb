@@ -8,6 +8,9 @@ class Task < ActiveRecord::Base
   has_many :task_tags
   has_many :tags, through: :task_tags
 
+  has_many :user_tasks, foreign_key: "assigned_task_id"
+  has_many :assigned_users, through: :user_tasks, class_name: "User"
+
   enum status: [:active, :complete]
 
   validates :name, :description, :due_date, :status, :project_id, presence: true

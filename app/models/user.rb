@@ -16,6 +16,9 @@ class User < ActiveRecord::Base
   has_many :projects, foreign_key: "owner_id"
   has_many :collaboration_projects, through: :user_projects
 
+  has_many :assigned_tasks, through: :user_tasks
+  has_many :user_tasks, foreign_key: "assigned_user_id"
+  
   enum role: [:user, :admin]
 
   def self.from_omniauth(auth)

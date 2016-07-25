@@ -8,7 +8,13 @@ class CommentsController < ApplicationController
   ## STANDARD RESTFUL ROUTES
 
   def index
-    @comments = @project.comments
+    binding.pry
+    if @project.owner == @user || @user.admin? || @project.collaborators.include?(@user)
+      @comments = @project.comments
+    else
+      flash[:alert] = "You are not authorized to perform that action."
+      redirect_to root_path
+    end
   end
 
   def create

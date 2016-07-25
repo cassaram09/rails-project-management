@@ -14,6 +14,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     if @comment.save
+      @task = @comment.task
       redirect_to task_path(@task)
     else
       @comments = @task.comments

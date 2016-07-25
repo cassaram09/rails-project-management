@@ -25,6 +25,9 @@ class Task < ActiveRecord::Base
     tag_array = tags.split(",").map{|tag| tag.strip}
     tag_array.each do |tag|
       new_tag = Tag.find_or_create_by(name: tag)
+      if self.tags.include?(new_tag)
+        next
+      end
       self.tags << new_tag
       self.owner.tags << new_tag
     end
@@ -33,15 +36,6 @@ class Task < ActiveRecord::Base
   def tag_names
     tags = self.tags.collect {|tag| tag.name}
     tags.join(", ")
-  end
-
-  def self.search_by_tags(tags, current_user_id)
-    tag_array = tags.split(" ").map{|tag| tag.strip}
-    tasks = tag_array.collect do |tag|
-      tag_object = Tag.find_by(name: tag, user_id: current_user_id)
-      tag_object.try(:tasks)
-    end
-    tasks.flatten.uniq.compact
   end
 
   def overdue?

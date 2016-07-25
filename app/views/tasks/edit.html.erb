@@ -24,8 +24,14 @@
       <%= f.select :status, Task.statuses.collect {|k,v| [k.capitalize, k]}, selected: @task.status %>
     </div>
     <div class="form-group">
-      <%= f.label :tag_names, "Tags (Comma seperated)" %>
-        <%= f.text_field :tag_names, class: "form-control"%>
+      <% if !@task.tags.empty? %>
+      <%= f.label :tags, value: "Manage Tags", class: "label-block" %>
+        <%= f.collection_check_boxes(:tag_ids, @task.tags, :id, :name, html: {class: "form-control"})%>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <%= f.label :tag_names, "Add tags" %>
+        <%= f.text_field :tag_names, value: "", class: "form-control"%>
     </div>
     <div class="form-group">
       <%= f.hidden_field :owner_id, value: @user.id %>

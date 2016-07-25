@@ -40,13 +40,13 @@ class TasksController < ApplicationController
   def edit
     authorize @task
     @project = @task.project
-     @task_users = task_users
+    @task_users = task_users
   end
 
   def update
     authorize @task
-    @task.tags.clear
     @task.update(task_params)
+    @task.update(tag_names: task_params[:tag_names])
     redirect_to task_path(@task)
   end
 
@@ -116,7 +116,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :description, :project_id, :owner_id, :due_date, :status, :tag_names, assigned_user_ids: [])
+    params.require(:task).permit(:name, :description, :project_id, :owner_id, :due_date, :status, :tag_names, assigned_user_ids: [], tag_ids: [])
   end
 
   def task_users

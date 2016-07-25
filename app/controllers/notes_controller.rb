@@ -6,7 +6,12 @@ class NotesController < ApplicationController
    ## STANDARD RESTFUL ROUTES
 
   def index
-    @notes = @project.notes.reverse
+    if @project.owner == @user || @user.admin? || @project.collaborators.include?(@user)
+      @@notes = @project.notes.reverse
+    else
+      flash[:alert] = "You are not authorized to perform that action."
+      redirect_to root_path
+    end
   end
 
   def new

@@ -71,4 +71,8 @@ class ApplicationPolicy
   def record_owner?
     record.user == user
   end
+
+  def comment_project_owner?
+    record.task.project.owner == user 
+  end
 end

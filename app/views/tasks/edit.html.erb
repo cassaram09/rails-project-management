@@ -16,9 +16,8 @@
         <%= f.date_select(:due_date, :order => [:month, :day, :year]) %>
     </div>
     <div class="form-group">
-      <%= f.label :assigned_users, class: "label-block" %>
+      <%= f.label :assigned_users, value: "Assign Users", class: "label-block" %>
         <%= f.collection_check_boxes(:assigned_user_ids, @task.project.collaborators, :id, :name, html: {class: "form-control"})%>
-
     </div>
     <div class="form-group">
       <%= f.label :status, class: "label-block" %>

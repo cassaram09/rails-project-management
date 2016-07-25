@@ -1,6 +1,7 @@
 <div class="col-md-4">
   <h3> <%= link_to task.name, task_path(task) %> </h3>
-  <span class="overdue"> <%= "Overdue" if task.overdue? %></span>
+  <span class="overdue"> <%= "Overdue" if task.overdue? && !task.complete? %></span>
+  <span class="complete"> <%= "Complete" if task.complete? %></span>
   <% if task.assigned_users.include?(current_user) %>
     <p class="collaborator-text"> Assigned to you </p>
   <% end %>

@@ -45,7 +45,6 @@ class TasksController < ApplicationController
   def update
     authorize @task
     @task.tags.clear
-    @task.assigned_users.clear
     @task.update(task_params)
     redirect_to task_path(@task)
   end

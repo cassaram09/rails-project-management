@@ -1,5 +1,5 @@
 <div class="default-block">
-  <h2> <%= @project.name %> <%= "✓" if @project.complete? %></h2>
+  <h2> <%= @project.name %> <%= "✓" if @project.complete? %> <span class="overdue"> <%= "Overdue" if @project.overdue? && !@project.complete? %></span> </h2>
   <div class="line-dark"></div>
   <div class="inline-button">
     <%= link_to "Edit Project", edit_project_path(@project), class: "btn btn-primary" %>
@@ -15,63 +15,60 @@
   </div>
 </div>
 
-  <div class="row">
+<div class="row">
 
-    <div class="col-sm-4">
-      <div class="default-block">
-        <h3> Task Details </h3>
-        <div class="line-dark"></div>
-        <div class="inline-button"> 
-          <%= link_to "#{@project.tasks.active.count} Open Tasks", project_tasks_path(@project), class: "btn btn-warning" %>
-        </div>
-        <div class="inline-button"> 
-          <%= link_to "#{@project.tasks.complete.count} Complete Tasks", complete_project_tasks_path(@project), class: "btn btn-success" %>
-        </div>
-        <div class="inline-button"> 
-          <%= link_to "#{@project.tasks.overdue.count} Overdue Tasks", overdue_project_tasks_path(@project), class: "btn btn-danger" %>
-        </div>
-        <div class="line-light"></div>
+  <div class="col-sm-4">
+    <div class="default-block">
+      <h3> Task Details </h3>
+      <div class="line-dark"></div>
+      <div class="inline-button"> 
+        <%= link_to "#{@project.tasks.active.count} Open Tasks", project_tasks_path(@project), class: "btn btn-warning" %>
       </div>
-    </div>
-
-    <div class="col-sm-4">
-      <div class="default-block">
-        <h3> Project Details </h3>
-        <div class="line-dark"></div>
-        <p> <%= @project.description %> </p>
-        <p> Created: <%= @project.friendly_created_at %> </p>
-        <p> Due: <%= @project.due_date %> </p>
-        <p> Status: <%= @project.status %> </p>
-        <div class="inline-button">
-        <%= link_to "#{@project.comments.count} Comments", project_comments_path(@project), class: "btn btn-default" %>
-        </div>
-        <div class="inline-button">
-          <%= link_to "#{@project.tasks.active.count} Notes", project_notes_path(@project), class: "btn btn-default" %>
-        </div>
-        <div class="line-light"></div>
+      <div class="inline-button"> 
+        <%= link_to "#{@project.tasks.complete.count} Complete Tasks", complete_project_tasks_path(@project), class: "btn btn-success" %>
       </div>
-    </div>
-
-    <div class="col-sm-4">
-      <div class="default-block">
-        <h3> People </h3>
-        <div class="line-dark"></div>
-        <p> <%= @project.owner.name %> (Owner) </p>
-        <% @user_projects.each do |up| %>
-          <div class="row">
-            <div class="col-xs-12">
-              <div class="inline"> <p> <%= up.collaborator.name  %> (<%= up.permission  %>)</p> </div>
-              <div class="inline"> <%= render partial: "delete_collaborator_form", locals: {person: up.collaborator} %> </div>
-            </div>
-          </div>
-        <% end %>
-          <%= render partial: "add_collaborator_form", locals: {project: @project} %>
-        <div class="line-light"></div>
+      <div class="inline-button"> 
+        <%= link_to "#{@project.tasks.overdue.count} Overdue Tasks", overdue_project_tasks_path(@project), class: "btn btn-danger" %>
       </div>
+      <div class="line-light"></div>
     </div>
-
-
-
   </div>
 
-</div>
+  <div class="col-sm-4">
+    <div class="default-block">
+      <h3> Project Details </h3>
+      <div class="line-dark"></div>
+      <span class="overdue"> <%= "Overdue" if @project.overdue? && !@project.complete? %></span>
+      <p> <%= @project.description %> </p>
+      <p> Created: <%= @project.friendly_created_at %> </p>
+      <p> Due: <%= @project.due_date %> </p>
+      <p> Status: <%= @project.status %> </p>
+      <div class="inline-button">
+      <%= link_to "#{@project.comments.count} Comments", project_comments_path(@project), class: "btn btn-default" %>
+      </div>
+      <div class="inline-button">
+        <%= link_to "#{@project.tasks.active.count} Notes", project_notes_path(@project), class: "btn btn-default" %>
+      </div>
+      <div class="line-light"></div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="default-block">
+      <h3> People </h3>
+      <div class="line-dark"></div>
+      <p> <%= @project.owner.name %> (Owner) </p>
+      <% @user_projects.each do |up| %>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="inline"> <p> <%= up.collaborator.name  %> (<%= up.permission  %>)</p> </div>
+            <div class="inline"> <%= render partial: "delete_collaborator_form", locals: {person: up.collaborator} %> </div>
+          </div>
+        </div>
+      <% end %>
+        <%= render partial: "add_collaborator_form", locals: {project: @project} %>
+      <div class="line-light"></div>
+    </div>
+  </div>
+
+</div> <!-- end row -->

@@ -5,6 +5,10 @@
   <p> Created: <%= task.friendly_created_at %> </p>
   <p> Owner: <%= task.owner.name %> </p>
   <p> Due: <%= task.due_date %>  </p>
+  <p> Assigned to: <% task.assigned_users.each do |user| %>
+        <%= user.name %>,
+          <% end %>
+    </p>
   <p> Status: <%= task.status.capitalize %> </p>
   <p> <%= link_to "#{task.comments.count} Comments", task_path(task) %> </p>
   <p> Belongs to: <%= link_to task.project.name, project_path(task.project) %> </p>

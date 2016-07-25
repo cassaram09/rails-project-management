@@ -51,4 +51,8 @@ class Project < ActiveRecord::Base
     tasks.any? { |task| task.status == "active"} ? false : true
   end
 
+  def overdue?
+    self.due_date < Date.today ? true : false
+  end
+
 end

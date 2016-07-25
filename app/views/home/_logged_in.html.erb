@@ -24,9 +24,9 @@
       </div>
       <div class="col-sm-4 col-md-3">
         <h3> <%= link_to "#{@user.assigned_tasks.count} assigned tasks", all_tasks_path %></h3>
-        <%= link_to "Active Tasks ( )", all_tasks_path, class: "btn btn-warning btn-margin" %> 
-        <%= link_to "Complete Tasks (  )", "#", class: "btn btn-success btn-margin" %>
-        <%= link_to "Overdue Tasks (  )"," all_tasks_path", class: "btn btn-danger btn-margin" %>
+        <%= link_to "Active Tasks ( #{@active_assigned_tasks} )", all_tasks_path, class: "btn btn-warning btn-margin" %> 
+        <%= link_to "Complete Tasks ( #{@complete_assigned_tasks} )", "#", class: "btn btn-success btn-margin" %>
+        <%= link_to "Overdue Tasks ( #{@overdue_assigned_tasks} )"," all_tasks_path", class: "btn btn-danger btn-margin" %>
       </div>
     </div> <!-- row end -->
   </div> <!-- block end -->

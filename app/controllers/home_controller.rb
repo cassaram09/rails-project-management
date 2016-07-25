@@ -9,6 +9,9 @@ class HomeController < ApplicationController
       @overdue_tasks = current_user.overdue_tasks.count
       @active_tasks = current_user.active_tasks.count
       @complete_tasks = current_user.complete_tasks.count
+      @overdue_assigned_tasks = current_user.overdue_assigned_tasks.count
+      @active_assigned_tasks = current_user.active_assigned_tasks.count
+      @complete_assigned_tasks = current_user.complete_assigned_tasks.count
     end
   end
 

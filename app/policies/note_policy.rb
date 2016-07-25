@@ -1,36 +1,35 @@
 class NotePolicy < ApplicationPolicy
   def new?
-    project_owner?
-    up = find_user_project
-    user.admin? || (up.collaborator_id == user.id && up.permission == "edit")
+    admin_owner_check || collaborator_permission_check
   end
 
   def create?
-    project_owner?
-    up = find_user_project
-    user.admin? || (up.collaborator_id == user.id && up.permission == "edit")
+    admin_owner_check || collaborator_permission_check
   end
 
   def show?
-    project_owner?
-    up = find_user_project
-    user.admin? || record.user == user || !up.nil?
+    admin_owner_check || !find_user_project.nil?
   end
 
   def edit?
-    project_owner?
-    up = find_user_project
-    user.admin? || record.user == user
+    admin_owner_check
   end
 
   def update?
-    project_owner?
-    up = find_user_project
-    user.admin? || record.user == user 
+    admin_owner_check
   end
 
   def destroy?
-    project_owner?
-    user.admin? || record.user == user
+    admin_owner_check
+  end
+
+  private
+  def admin_owner_check
+    user.admin? || project_owner? || record_owner?
+  end
+
+  def collaborator_permission_check
+    up = find_user_project
+    (up.collaborator_id == user.id && up.permission == "edit")
   end
 end

@@ -6,7 +6,7 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def edit?
-    up = find_user_project
+  up = find_user_project
    user.admin? || record.owner == user || (up.collaborator_id == user.id && up.permission == "edit")
   end
 

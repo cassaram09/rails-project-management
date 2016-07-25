@@ -27,11 +27,13 @@ class CommentsController < ApplicationController
   end
 
   def update
+    authorize @comment
     @comment.update(comment_params)
     redirect_to task_path(@task)
   end
 
   def destroy
+    authorize @comment
     @comment.destroy
     redirect_to task_path(@task)
   end

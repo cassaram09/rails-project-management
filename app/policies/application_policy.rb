@@ -61,8 +61,14 @@ class ApplicationPolicy
   end
 
   def project_owner?
-  if record.project.owner == user 
-      return true
-    end
+    record.project.owner == user 
+  end
+
+  def task_owner?
+    record.task.user == user
+  end
+
+  def record_owner?
+    record.user == user
   end
 end

@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20160725142428) do
 
   create_table "tasks", force: :cascade do |t|
     t.integer  "project_id"
-    t.integer  "user_id"
+    t.integer  "owner_id"
     t.string   "name"
     t.string   "description"
     t.date     "due_date"

@@ -1,7 +1,7 @@
 <%= render partial: "project_task_options", locals:{overdue: @overdue, active: @active, complete: @complete} %>
 
 <div class="default-block">
-  <h2>Active Tasks</h2>
+  <h2>Your Tasks</h2>
   <div class="line-dark"></div>
   <% if @tasks.empty? %>
     <h4>It looks like you don't have any tasks. Why not create new one?</h4>

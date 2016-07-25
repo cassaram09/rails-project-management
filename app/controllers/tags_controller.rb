@@ -10,7 +10,11 @@ class TagsController < ApplicationController
 
    def create
     @tag = Tag.new(tag_params)
-    if @tag.save
+    if @user.tags.collect {|t| t.name}.include?(@tag.name)
+      flash[:alert] = "You already made that tag!"
+      redirect_to tags_path
+    elsif 
+      @tag.save
       redirect_to tags_path
     else
       @tags = @user.tags

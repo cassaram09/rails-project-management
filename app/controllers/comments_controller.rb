@@ -8,7 +8,6 @@ class CommentsController < ApplicationController
   ## STANDARD RESTFUL ROUTES
 
   def index
-    binding.pry
     if @project.owner == @user || @user.admin? || @project.collaborators.include?(@user)
       @comments = @project.comments
     else

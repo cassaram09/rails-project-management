@@ -54,4 +54,8 @@ class User < ActiveRecord::Base
     self.tasks.overdue
   end
 
+  def collaboration_tags
+    self.collaboration_projects.collect {|task| task.tags.collect {|tag| tag}}
+  end
+
 end

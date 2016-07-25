@@ -31,6 +31,8 @@ class TasksController < ApplicationController
     @project = @task.project
     @comment = Comment.new
     @comments = @task.comments.reverse
+    @assigned_users = @task.assigned_users
+    @tags = @task.tags
   end
 
   def edit

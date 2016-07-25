@@ -65,11 +65,11 @@ class ApplicationPolicy
   end
 
   def task_owner?
-    record.task.user == user
+    record.task.owner == user
   end
 
   def record_owner?
-    if record.class.name == "Project"
+    if record.class.name == "Project" || record.class.name == "Task"
       record.owner == user
     else
       record.user == user

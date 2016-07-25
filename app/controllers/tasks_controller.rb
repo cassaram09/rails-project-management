@@ -57,6 +57,7 @@ class TasksController < ApplicationController
 
   ## ADDITIONAL ACTIONS
 
+  # PROJECT TASKS 
   def complete
     @tasks = @project.complete_tasks
   end
@@ -65,8 +66,20 @@ class TasksController < ApplicationController
     @tasks = @project.overdue_tasks
   end
 
-  def all_tasks
-    @tasks = @user.tasks
+  # ALL USER RELATED TASKS
+  def all_active_tasks
+    @tasks = @user.tasks.active + @user.assigned_tasks.active
+    @tasks.flatten.uniq
+  end
+
+  def all_complete_tasks
+    @tasks = @user.tasks.complete + @user.assigned_tasks.complete
+    @tasks.flatten.uniq
+  end
+
+  def all_overdue_tasks
+    @tasks = @user.tasks.overdue + @user.assigned_tasks.overdue
+    @tasks.flatten.uniq
   end
 
   def quick_new_task

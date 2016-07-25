@@ -7,7 +7,7 @@ class NotesController < ApplicationController
 
   def index
     if @project.owner == @user || @user.admin? || @project.collaborators.include?(@user)
-      @@notes = @project.notes.reverse
+      @notes = @project.notes.reverse
     else
       flash[:alert] = "You are not authorized to perform that action."
       redirect_to root_path
@@ -25,7 +25,7 @@ class NotesController < ApplicationController
     if @note.save
       redirect_to note_path(@note)
     else
-      render :index
+      render :new
     end
   end
 

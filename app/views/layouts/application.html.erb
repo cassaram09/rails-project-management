@@ -9,9 +9,22 @@
   </head>
   <body>
     <%= render "navs/nav_base"%>
-    <div class="container">
-      <%= render "layouts/flash_block" %>
-      <%= yield %>
+    <div class="header">
+      <div class="container">
+        <% if params[:controller] == "users/registrations" && params[:action] == "new" %>
+          <h1>Sign Up</h1>
+        <% elsif params[:controller] == "devise/sessions" && params[:action] == "new"%>
+          <h1>Login</h1>
+        <% elsif params[:controller] == "devise/passwords" %>
+          <h1>Reset Password</h1>
+        <% else %>
+          <h1>Rails PM</h1>
+        <% end %>
+      </div>
     </div>
+    <div class="container">
+        <%= render "layouts/flash_block" %>
+        <%= yield %>
+      </div>
   </body>
 </html>

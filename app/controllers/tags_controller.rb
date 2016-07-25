@@ -4,30 +4,26 @@ class TagsController < ApplicationController
   ## STANDARD RESTFUL ACTIONS
 
   def index
-    @tags = @user.tags
+    @tags = (@user.tags + @user.collaboration_tags).flatten
+    @tags.uniq!
     @tag = Tag.new
   end
 
    def create
     @tag = Tag.new(tag_params)
-    if @user.tags.collect {|t| t.name}.include?(@tag.name)
-      flash[:alert] = "You already made that tag!"
-      redirect_to tags_path
-    elsif 
-      @tag.save
+    if @tag.save
       redirect_to tags_path
     else
-      @tags = @user.tags
+      @tags = (@user.tags + @user.collaboration_tags).flatten
       render :index
     end
   end
 
   def update
-    if @tag.update(tag_params)
+    if @tag.user == @user && @tag.update(tag_params)
       redirect_to tags_path
     else
-    
-      @tags = @user.tags
+      @tags = (@user.tags + @user.collaboration_tags).flatten
       render :index
     end
   end
@@ -41,8 +37,12 @@ class TagsController < ApplicationController
   end
 
   def destroy
-    @tag.destroy
-    redirect_to tags_path
+    if @tag.user == @user
+      redirect_to tags_path
+      @tag.destroy
+    else
+      redirect_to tags_path
+    end
   end
 
   ## PRIVATE METHODS

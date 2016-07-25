@@ -23,7 +23,16 @@
   color: #fff;
   text-shadow: 1px 1px #333;
   position: relative;
-  top: 200px;
+  top: 150px;
+  z-index: 999;
+  height: 0px;
+  margin: 0px;
+}
+
+.hero-filter p {
+  text-align: center;
+  position: relative;
+  top: 350px;
   z-index: 999;
   height: 0px;
   margin: 0px;
@@ -54,13 +63,22 @@ footer p {
 
 .home-block-dark {
   background-color: #3399ff;
-  padding: 30px 25px;
+  padding: 75px 25px;
   color: #eee;
 }
 
+.home-block p{
+  font-size: 18px;
+  padding: 20px 40px;
+}
+
+.home-block h4 {
+  padding: 10px 40px;
+}
+
 .home-block-light {
-  background-color: #ddd;
-  padding: 30px 25px;
+  background-color: #fff;
+  padding: 75px 25px;
 }
 
 .btn-margin {

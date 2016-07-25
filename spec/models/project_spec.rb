@@ -1,5 +1,5 @@
 require_relative "../rails_helper.rb"
 
-RSpec.describe Comment, :type => :model do
+RSpec.describe Project :type => :model do
   
 end

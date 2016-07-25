@@ -69,18 +69,18 @@ class TasksController < ApplicationController
 
   # ALL USER RELATED TASKS
   def all_active_tasks
-    @tasks = @user.tasks.active + @user.assigned_tasks.active
-    @tasks.flatten.uniq
+    @tasks = (@user.tasks.active + @user.assigned_tasks.active).uniq
+    @tasks.flatten!
   end
 
   def all_complete_tasks
-    @tasks = @user.tasks.complete + @user.assigned_tasks.complete
-    @tasks.flatten.uniq
+    @tasks = (@user.tasks.complete + @user.assigned_tasks.complete).uniq
+    @tasks.flatten!
   end
 
   def all_overdue_tasks
-    @tasks = @user.tasks.overdue + @user.assigned_tasks.overdue
-    @tasks.flatten.uniq
+    @tasks = (@user.tasks.overdue + @user.assigned_tasks.overdue).uniq
+    @tasks.flatten!
   end
 
   def quick_new_task
@@ -110,9 +110,9 @@ class TasksController < ApplicationController
   end
 
   def all_task_statuses_count
-    @overdue = current_user.overdue_tasks.count + current_user.overdue_assigned_tasks.count
-    @active = current_user.active_tasks.count + current_user.active_assigned_tasks.count
-    @complete= current_user.complete_tasks.count + current_user.complete_assigned_tasks.count
+    @overdue = (current_user.overdue_tasks + current_user.overdue_assigned_tasks).uniq.count
+    @active = (current_user.active_tasks + current_user.active_assigned_tasks).uniq.count
+    @complete= (current_user.complete_tasks + current_user.omplete_tasks).uniq.count
   end
 
   def task_params

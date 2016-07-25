@@ -14,5 +14,5 @@
 @comment = Comment.create(user_id: 2, task_id: 1, content: "For the watch!")
 
 @note = Note.create(user_id: 1, project_id: 1, title: "Watch out for climbers", content: "If the climbers start to come up the wall, drop the scythe on them. That should hold them off, for a little while anyways.")
-@project.collaborators << [@ramsay, @tyrion, @ollie]
+@project.collaborators << [@ollie]
 @project.save

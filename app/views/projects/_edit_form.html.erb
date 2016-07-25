@@ -23,9 +23,8 @@
   <% else %>
     <div class="form-group">
       <%= f.label :status, class: "label-block" %>
-      <%= f.select :status, Project.statuses.collect {|k,v| [k.capitalize, k]}, selected: project.status %>
+      <span class="incomplete"> You can mark a project complete after you've completed all tasks.</span>
     </div>
-    <p> You can mark a project complete after you've completed all tasks!</p>
   <% end %>
   <div class="form-group">
   <%= f.hidden_field :project_id, value: project.id %>

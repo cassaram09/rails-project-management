@@ -3,13 +3,13 @@ class Task < ActiveRecord::Base
   include IndexCheck
   
   belongs_to :project
-  belongs_to :user
   has_many :comments
   has_many :task_tags
   has_many :tags, through: :task_tags
 
   has_many :user_tasks, foreign_key: "assigned_task_id"
-  has_many :assigned_users, through: :user_tasks, class_name: "User"
+  has_many :assigned_users, through: :user_tasks
+  belongs_to :owner, class_name: "User"
 
   enum status: [:active, :complete]
 

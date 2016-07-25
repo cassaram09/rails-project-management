@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
 
   has_many :assigned_tasks, through: :user_tasks
   has_many :user_tasks, foreign_key: "assigned_user_id"
+  has_many :tasks, foreign_key: "owner_id"
   
   enum role: [:user, :admin]
 

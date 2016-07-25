@@ -1,5 +1,5 @@
 <%= form_for(task)do |f| %>
-  <%= f.hidden_field :user_id, value: @user.id %>
+  <%= f.hidden_field :owner_id, value: @user.id %>
   <%= f.hidden_field :status, value: "complete" %>
   <%= f.submit "Mark Complete", class: "btn btn-sm btn-success"%>
 <% end %>

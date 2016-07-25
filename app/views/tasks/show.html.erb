@@ -5,7 +5,7 @@
     <div class="default-block">
       <h2><%= @task.name %></h2>
       <div class="line-dark"></div>
-      <p> Created: <%= @task.friendly_created_at %> by <%= @task.user.name %></p>
+      <p> Created: <%= @task.friendly_created_at %> by <%= @task.owner.name %></p>
       <p> Due: <%= @task.due_date %> </p>
       <p> Status: <%= @task.status %></p>
       <p> Tags: <%@task.tags.each do |tag| %> 

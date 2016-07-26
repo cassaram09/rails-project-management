@@ -53,11 +53,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem "rspec-rails"
-  gem "factory_girl_rails"
+  gem "factory_girl_rails", "~> 4.0"
   gem 'capybara'
-  gem "guard", ">= 2.2.2", :require => false
-  gem "guard-livereload",  :require => false
-  gem "rack-livereload"
   gem "rb-fsevent",        :require => false
 end
 

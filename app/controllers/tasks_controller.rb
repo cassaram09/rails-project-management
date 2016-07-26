@@ -46,7 +46,9 @@ class TasksController < ApplicationController
   def update
     authorize @task
     @task.update(task_params)
-    @task.update(tag_names: task_params[:tag_names])
+    if task_params[:tag_names]
+      @task.update(tag_names: task_params[:tag_names])
+    end
     redirect_to task_path(@task)
   end
 

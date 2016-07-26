@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   ## STANDARD RESTFUL ACTIONS
 
   def index
-    @projects = @user.active_projects + @user.collaboration_projects
+    @projects = (@user.active_projects + @user.collaboration_projects.active).reverse
   end
 
   def new
@@ -65,11 +65,11 @@ class ProjectsController < ApplicationController
   end
 
   def complete
-    @projects = @user.complete_projects.reverse
+    @projects = (@user.complete_projects + @user.collaboration_projects.complete).reverse
   end
 
   def overdue
-    @projects = @user.projects.overdue + @user.collaboration_projects.overdue
+    @projects = (@user.projects.overdue + @user.collaboration_projects.overdue).reverse
   end
 
   ## PRIVATE METHODS
@@ -84,9 +84,9 @@ class ProjectsController < ApplicationController
   end
 
   def project_statuses_count
-    @overdue = current_user.overdue_projects.count + current_user.collaboration_projects.active.count
-    @active = current_user.active_projects.count + current_user.collaboration_projects.active.count
-    @complete = current_user.complete_projects.count + current_user.collaboration_projects.active.count
+    @overdue = (current_user.overdue_projects + current_user.collaboration_projects.overdue).uniq.count
+    @active = (current_user.active_projects + current_user.collaboration_projects.active).uniq.count
+    @complete = (current_user.complete_projects + current_user.collaboration_projects.complete).uniq.count
   end
 
   def project_params

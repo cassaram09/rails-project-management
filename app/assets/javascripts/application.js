@@ -16,22 +16,6 @@
 //= require_tree .
 
 $(document).ready(function(){
-  $( "#show-task" ).click(function() {
-    $( ".quick-add" ).slideToggle( "fast", "linear" );
-    if ($( "#show-task" ).val() == "Add a Task"){
-      $( "#show-task" ).val("Hide");
-    } else {
-      $( "#show-task" ).val("Add a Task");
-    }
-  });
-  $( "#show" ).click(function() {
-    $( ".new-note-toggle" ).slideToggle( "slow", "linear" );
-    if ($( "#show" ).val() == "Create a new note"){
-      $( "#show" ).val("Hide");
-    } else {
-      $( "#show" ).val("Create a new note");
-    }
-  }); 
   $( "#show-profile-options" ).click(function() {
     $( ".profile-options" ).slideToggle( "slow", "swing" );
     if ($( "#show-profile-options" ).val() == "Edit Profile"){

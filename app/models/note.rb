@@ -4,6 +4,6 @@ class Note < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
 
-  validates :content, :title, presence: true
+  validates :title, :content, presence: true 
 
 end

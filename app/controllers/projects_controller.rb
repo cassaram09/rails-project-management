@@ -11,7 +11,7 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
-    1.times { @project.notes.build }
+    @project.notes.build
   end
 
   def create
@@ -19,6 +19,7 @@ class ProjectsController < ApplicationController
     if @project.save
       redirect_to project_path(@project)
     else
+      @project
       render :new
     end
   end

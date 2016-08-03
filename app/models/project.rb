@@ -37,8 +37,12 @@ class Project < ActiveRecord::Base
   end
 
   def notes_attributes=(attributes)
-    attributes.each do |k,v| 
-      self.notes.build(v)
+    attributes.each do |k,v|
+      if v["title"].blank? && v["content"].blank?
+        next
+      else
+        self.notes.build(v)
+      end
     end
   end
 

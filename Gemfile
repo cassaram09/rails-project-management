@@ -56,6 +56,7 @@ group :development, :test do
   gem "factory_girl_rails", "~> 4.0"
   gem 'capybara'
   gem "rb-fsevent",        :require => false
+  gem 'dotenv-rails'
 end
 
 group :development do

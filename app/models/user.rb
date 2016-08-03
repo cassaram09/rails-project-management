@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
 
   has_many :projects
   has_many :comments
-  has_many :tasks
   has_many :notes
   has_many :tags 
 

@@ -36,7 +36,6 @@ gem 'pundit'
 # Use Bootstrap for styles
 gem 'bootstrap-sass', '~> 3.3.6'
 # Use FriendlyId for user friendly URLs
-gem 'friendly_id', '~> 5.1.0'
 
 gem 'rails-rename', '~> 1.0.0'
 

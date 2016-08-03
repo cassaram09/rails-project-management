@@ -11,9 +11,11 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+    1.times { @project.notes.build }
   end
 
   def create
+    binding.pry
     @project = Project.new(project_params)
     if @project.save
       redirect_to project_path(@project)
@@ -90,6 +92,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name, :description, :collaborator_emails, :owner_id, :due_date, :status)
+    params.require(:project).permit(:name, :description, :collaborator_emails, :owner_id, :due_date, :status, notes_attributes: [:title, :content, :user_id])
   end
 end

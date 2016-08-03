@@ -47,7 +47,7 @@
       <%= link_to "#{@project.comments.count} Comments", project_comments_path(@project), class: "btn btn-default" %>
       </div>
       <div class="inline-button">
-        <%= link_to "#{@project.tasks.active.count} Notes", project_notes_path(@project), class: "btn btn-default" %>
+        <%= link_to "#{@project.notes.count} Notes", project_notes_path(@project), class: "btn btn-default" %>
       </div>
       <div class="line-light"></div>
     </div>

@@ -1,7 +1,7 @@
 class Task < ActiveRecord::Base
   include DateTimeConverter
   include IndexCheck
-  
+
   belongs_to :project
   has_many :comments
   has_many :task_tags

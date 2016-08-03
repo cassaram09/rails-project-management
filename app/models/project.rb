@@ -2,8 +2,9 @@ class Project < ActiveRecord::Base
   include DateTimeConverter
   include IndexCheck
   
-  has_many :tasks
   has_many :notes
+
+  has_many :tasks
   has_many :tags, through: :tasks
   has_many :comments, through: :tasks
   enum status: [:active, :complete]
@@ -34,6 +35,13 @@ class Project < ActiveRecord::Base
     emails = self.collaborators.collect {|collaborator| collaborator.email}
     emails.join(", ")
   end
+
+  def notes_attributes=(attributes)
+    attributes.each do |k,v| 
+      self.notes.build(v)
+    end
+  end
+
 
   def active_tasks
     self.tasks.active 

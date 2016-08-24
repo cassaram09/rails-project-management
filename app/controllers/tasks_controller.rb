@@ -25,6 +25,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to task_path(@task)
     else
+      @task_users = task_users
       render :new
     end
   end
